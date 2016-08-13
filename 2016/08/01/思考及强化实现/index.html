@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Promise思考及强化实现 | Gloria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,
+尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise思考及强化实现">
+<meta property="og:url" content="http://yoursite.com/2016/08/01/思考及强化实现/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,
+尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
+<meta property="og:updated_time" content="2016-08-13T07:11:16.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise思考及强化实现">
+<meta name="twitter:description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,
+尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Gloria</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">文章</a>
+                
+                    <a class="main-nav-link" href="/about">关于我</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">文章</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于我</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">Gloria</h2>
+            <h3 id="title">FE  大学生</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>changchun, China</span>
+            <a id="follow" target="_blank" href="https://github.com/jabbla">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                5
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                8
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/jabbla" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/ssdssf" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/asdasd" target="_blank" title="weixin" class=tooltip>
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/asdasd" target="_blank" title="qq" class=tooltip>
+                            <i class="fa fa-qq"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="promise-思考及强化实现" class="article article-type-promise" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Promise思考及强化实现
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/08/01/思考及强化实现/">
+            <time datetime="2016-08-01T14:40:53.000Z" itemprop="datePublished">2016-08-01</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/学习/">学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/es6/">es6</a>, <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/promise/">promise</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,</p>
+<p>尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。</p>
+<a id="more"></a>
+<blockquote>
+<p>本文原创，如需转载请注明出处</p>
+<h2 id="我需要什么"><a href="#我需要什么" class="headerlink" title="我需要什么"></a>我需要什么</h2><p>做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。</p>
+</blockquote>
+<p>第二次修改,废话不多说，直接进入正题<br>先看下面这段代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">do</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//查找数据库</span></div><div class="line">    setTimeout(()=&gt;&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'收到数据'</span>);</div><div class="line">        <span class="comment">//修改字段，并保存</span></div><div class="line">        setTimeout(()=&gt;&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'保存成功'</span>)</div><div class="line">            <span class="comment">//发送响应给前端</span></div><div class="line">        &#125;,<span class="number">1000</span>)</div><div class="line">        setTimeout</div><div class="line">    &#125;,<span class="number">1000</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">do</span>()</div></pre></td></tr></table></figure></p>
+<p>模拟了非常简单的一个从前端接受请求到发送响应回到前端的过程，<br>这个代码是非常简单的，不过看起来并不是，而且一旦需求更复杂，<br>这样风格的代码肯定会让我非常头疼</p>
+<h2 id="我需要的代码风格"><a href="#我需要的代码风格" class="headerlink" title="我需要的代码风格"></a>我需要的代码风格</h2><blockquote>
+<ol>
+<li>每个异步过程独立成块，不再是嵌套风格</li>
+<li>异步返回结果的处理过程独立于异步过程</li>
+<li>可伸缩，直接扩展异步结果处理过程,并不与之前的混在一起,实现细分，独立成块</li>
+<li>每个异步过程存在依赖</li>
+</ol>
+</blockquote>
+<p>好吧，发现promise满足我的所有需求，拿来现成用？这一点都不好玩<br>，所以研究了一下promise的用法，下面是我简易的需求说明</p>
+<h2 id="需求说明（参考ES6的实现效果）"><a href="#需求说明（参考ES6的实现效果）" class="headerlink" title="需求说明（参考ES6的实现效果）"></a>需求说明（参考ES6的实现效果）</h2><blockquote>
+<ol>
+<li>每个promise实例 resolve动作 reject动作</li>
+<li>promise实例 then方法注册resolve回调，reject回调</li>
+<li>A实例执行完回调，then()会返回一个B实例</li>
+<li>B实例跟A一样，同样有 resolve动作 reject动作</li>
+<li>调用B的then()方法同样会注册resolve回调，reject回调</li>
+<li>影响B动作的因素有4个(下面详细讲解)</li>
+<li>有catch同then一样，但是只能注册一个错误回调</li>
+<li>a实例如过程上依赖于另外一个b实例,则可被当做其resolve参数传递，并且b实例成功好事滚粗依赖于 a 的状态</li>
+<li>一旦实例状态发生改变,状态不会再改变</li>
+</ol>
+</blockquote>
+<p>##影响B实例的因素</p>
+<h4 id="1-A的resolve回调和reject回调是否有异常抛出"><a href="#1-A的resolve回调和reject回调是否有异常抛出" class="headerlink" title="1.A的resolve回调和reject回调是否有异常抛出"></a>1.A的resolve回调和reject回调是否有异常抛出</h4><pre><code>是：B执行reject动作 否：B执行resolve动作
+</code></pre><h4 id="2-A的reject动作是否有回调"><a href="#2-A的reject动作是否有回调" class="headerlink" title="2.A的reject动作是否有回调"></a>2.A的reject动作是否有回调</h4><pre><code>是：回到1. 、       否：B执行reject动作
+</code></pre><h4 id="3-A的resolve动作是否有回调"><a href="#3-A的resolve动作是否有回调" class="headerlink" title="3.A的resolve动作是否有回调"></a>3.A的resolve动作是否有回调</h4><pre><code>是：回到1           否： B执行resolve动作
+</code></pre><h4 id="4-A的回调中return-另一个promise实例C"><a href="#4-A的回调中return-另一个promise实例C" class="headerlink" title="4.A的回调中return 另一个promise实例C"></a>4.A的回调中return 另一个promise实例C</h4><pre><code>C resolve: B resolve    C reject: B reject
+</code></pre><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>Promise实例所有的属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise</span></span>&#123;</div><div class="line">    <span class="comment">//构造函数 fn为构建实例的异步过程</span></div><div class="line">    <span class="keyword">constructor</span>(fn)&#123;</div><div class="line">        <span class="comment">//必须为函数类型</span></div><div class="line">		<span class="keyword">if</span>(<span class="keyword">typeof</span> fn !== <span class="string">'function'</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'not a function'</span>);</div><div class="line">		<span class="keyword">this</span>.success = [];</div><div class="line">		<span class="keyword">this</span>.sucArg = <span class="literal">null</span>;</div><div class="line">		<span class="keyword">this</span>.fail = [];</div><div class="line">		<span class="keyword">this</span>.failArg = <span class="literal">null</span>;</div><div class="line">		<span class="keyword">this</span>.state = <span class="number">0</span>;</div><div class="line">		<span class="keyword">this</span>.parent = <span class="literal">null</span>;</div><div class="line">		<span class="comment">//fork promise分支</span></div><div class="line">		<span class="keyword">this</span>.fork = [];</div><div class="line">		<span class="comment">//传递的error</span></div><div class="line">		setTimeout(()=&gt;&#123;</div><div class="line">			fn(myPromise.resolve.bind(<span class="keyword">this</span>),myPromise.reject.bind(<span class="keyword">this</span>))	</div><div class="line">		&#125;,<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Promise实例的方法，then(),catch()<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">  <span class="comment">//onFulfilled成功处理函数，onRejected滚粗处理函数</span></div><div class="line">  then(onFulfilled,onRejected)&#123;</div><div class="line">      <span class="comment">/*参数格式限制*/</span></div><div class="line"><span class="keyword">let</span> fork = <span class="keyword">new</span> myPromise(()=&gt;&#123;&#125;);</div><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> onFulfilled ===<span class="string">'function'</span>)&#123;</div><div class="line">	<span class="keyword">this</span>.success.push(onFulfilled);</div><div class="line">	fork.forkSuc = onFulfilled;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> onRejected ===<span class="string">'function'</span>)&#123;</div><div class="line">	<span class="keyword">this</span>.fail.push(onRejected);</div><div class="line">	fork.forkRej = onRejected;</div><div class="line">&#125; </div><div class="line"><span class="keyword">this</span>.fork.push(fork);</div><div class="line"><span class="keyword">return</span> fork;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">catch</span>(onRejected)&#123;</div><div class="line">      <span class="comment">//参数必须函数</span></div><div class="line"><span class="keyword">let</span> fork = <span class="keyword">new</span> myPromise(()=&gt;&#123;&#125;);</div><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> onRejected !==<span class="string">'function'</span>) <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line"><span class="keyword">this</span>.fail.push(onRejected);</div><div class="line">fork.forkRej = onRejected;	</div><div class="line"><span class="keyword">this</span>.fork.push(fork);</div><div class="line"><span class="keyword">return</span> fork;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>Promise静态方法resolve,reject<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">static</span> resolve(value)&#123;</div><div class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.state!==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line"><span class="comment">//参数不是myPromise实例</span></div><div class="line"><span class="keyword">if</span>(value <span class="keyword">instanceof</span> myPromise)&#123;</div><div class="line">	<span class="comment">//如参数是一个promise实例</span></div><div class="line">	value.parent = <span class="keyword">this</span>;</div><div class="line">	<span class="keyword">if</span>(value.state===<span class="number">1</span>)&#123;</div><div class="line">		<span class="comment">//实例状态为成功</span></div><div class="line">		myPromise.resolve.call(<span class="keyword">this</span>,value.successArg);</div><div class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(value.state===<span class="number">-1</span>)&#123;</div><div class="line">		<span class="comment">//实例状态为失败</span></div><div class="line">		myPromise.reject.call(<span class="keyword">this</span>,value.failArg);</div><div class="line">	&#125;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">	<span class="keyword">if</span>(!<span class="keyword">this</span>.success.length)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">let</span> fn <span class="keyword">of</span> <span class="keyword">this</span>.fork)&#123;</div><div class="line">			myPromise.resolve.call(fn,value);</div><div class="line">		&#125;</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">this</span>.sucArg = value;</div><div class="line">		<span class="keyword">let</span> cur = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">let</span> fn <span class="keyword">of</span> <span class="keyword">this</span>.success)&#123;	<span class="keyword">if</span>(<span class="keyword">this</span>.fork.length&amp;&amp;fn===<span class="keyword">this</span>.fork[cur].forkSuc)&#123;</div><div class="line">				<span class="keyword">let</span> error,preArg,bool;</div><div class="line">				<span class="keyword">try</span>&#123;</div><div class="line">					preArg = fn(value);</div><div class="line">					<span class="keyword">if</span>(preArg <span class="keyword">instanceof</span> myPromise)&#123;</div><div class="line">						<span class="keyword">let</span> index = cur;</div><div class="line">						bool = <span class="literal">true</span>;</div><div class="line">						preArg.success.push(()=&gt;&#123;	myPromise.resolve.call(<span class="keyword">this</span>.fork[index],preArg.sucArg);</div><div class="line">						&#125;);</div><div class="line">						preArg.fail.push(()=&gt;&#123;			myPromise.reject.call(<span class="keyword">this</span>.fork[index],preArg.failArg);</div><div class="line">						&#125;)</div><div class="line">					&#125;</div><div class="line">				&#125;<span class="keyword">catch</span>(err)&#123;</div><div class="line">					error = err||<span class="literal">null</span>; </div><div class="line">				&#125;</div><div class="line">				<span class="keyword">if</span>(!bool)&#123;</div><div class="line">					error? myPromise.reject.call(<span class="keyword">this</span>.fork[cur],error): myPromise.resolve.call(<span class="keyword">this</span>.fork[cur],preArg);</div><div class="line">				&#125;</div><div class="line">				cur++;</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				fn(value);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//当前promise变为fulfilled</span></div><div class="line">	<span class="keyword">this</span>.state = <span class="number">1</span>;</div><div class="line">	<span class="comment">//如存在parent,则parent.resolve(value)</span></div><div class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>.parent) myPromise.resolve.call(<span class="keyword">this</span>.parent,value);</div><div class="line">&#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">static</span> reject(value)&#123;</div><div class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.state!==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line"><span class="comment">//参数是myPromise实例</span></div><div class="line"><span class="keyword">if</span>(value <span class="keyword">instanceof</span> myPromise)&#123;</div><div class="line">	value.parent = <span class="keyword">this</span>;</div><div class="line">	myPromise.reject.call(<span class="keyword">this</span>);</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">	<span class="keyword">if</span>(!<span class="keyword">this</span>.fail.length)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">let</span> fn <span class="keyword">of</span> <span class="keyword">this</span>.fork)&#123;</div><div class="line">			myPromise.reject.call(fn,value)</div><div class="line">		&#125;</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">this</span>.failArg = value;</div><div class="line">		<span class="keyword">let</span> cur = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">let</span> fn <span class="keyword">of</span> <span class="keyword">this</span>.fail)&#123;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">this</span>.fork.length&amp;&amp;fn===<span class="keyword">this</span>.fork[cur].forkRej)&#123;</div><div class="line">				<span class="keyword">let</span> error,preArg,bool;</div><div class="line">				<span class="keyword">try</span>&#123;</div><div class="line">					preArg = fn(value);</div><div class="line">					<span class="keyword">if</span>(preArg <span class="keyword">instanceof</span> myPromise)&#123;</div><div class="line">						<span class="keyword">let</span> index = cur;</div><div class="line">						bool = <span class="literal">true</span>;</div><div class="line">						preArg.success.push(()=&gt;&#123;	myPromise.resolve.call(<span class="keyword">this</span>.fork[index],preArg.sucArg);</div><div class="line">						&#125;);</div><div class="line">						preArg.fail.push(()=&gt;&#123;	myPromise.reject.call(<span class="keyword">this</span>.fork[index],preArg.failArg);</div><div class="line">						&#125;)</div><div class="line">					&#125;</div><div class="line">				&#125;<span class="keyword">catch</span>(err)&#123;</div><div class="line">					error = err||<span class="literal">null</span>; </div><div class="line">				&#125;</div><div class="line">				<span class="keyword">if</span>(!bool)&#123;</div><div class="line">					error? myPromise.reject.call(<span class="keyword">this</span>.fork[cur],error): myPromise.resolve.call(<span class="keyword">this</span>.fork[cur],preArg);</div><div class="line">				&#125;</div><div class="line">				cur++;</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				fn(value);</div><div class="line">			&#125;	</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">this</span>.state = <span class="number">-1</span>;</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>.parent) myPromise.reject.call(<span class="keyword">this</span>.parent,value);</div><div class="line">&#125;</div><div class="line">      </div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>好了，就这么多，这是个简易的Promise实现，如有错误，或者什么建议<br>QQ:387857274欢迎讨论</p>
+</blockquote>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2016/08/01/思考及强化实现/" data-id="cirsuv5ex0008moupnq499s5j" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2016/08/01/思考及强化实现/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2016/08/01/思考及强化实现/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/08/04/Canvas-知识体系简单总结/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                     Canvas 知识体系简单总结
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/03/24/常见的几种数组排序算法JS实现/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">常见的几种数组排序算法JS实现</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/04/Canvas-知识体系简单总结/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/08/04/Canvas-知识体系简单总结/" class="title"> Canvas 知识体系简单总结</a></p>
+                            <p class="item-date"><time datetime="2016-08-04T07:09:16.000Z" itemprop="datePublished">2016-08-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/01/思考及强化实现/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/08/01/思考及强化实现/" class="title">Promise思考及强化实现</a></p>
+                            <p class="item-date"><time datetime="2016-08-01T14:40:53.000Z" itemprop="datePublished">2016-08-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/24/常见的几种数组排序算法JS实现/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/03/24/常见的几种数组排序算法JS实现/" class="title">常见的几种数组排序算法JS实现</a></p>
+                            <p class="item-date"><time datetime="2016-03-24T12:09:29.000Z" itemprop="datePublished">2016-03-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/22/我所理解的JS执行环境和作用域链/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/03/22/我所理解的JS执行环境和作用域链/" class="title">我所理解的JS执行环境和作用域链</a></p>
+                            <p class="item-date"><time datetime="2016-03-22T12:45:22.000Z" itemprop="datePublished">2016-03-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/20/当我们说line-height时候-都会谈论到神马/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/03/20/当我们说line-height时候-都会谈论到神马/" class="title">当我们说Line-Height时候,都会谈论到神马</a></p>
+                            <p class="item-date"><time datetime="2016-03-20T07:14:05.000Z" itemprop="datePublished">2016-03-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">5</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 Zxr<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://yoursite.com/2016/08/01/思考及强化实现/';
+        
+        this.page.identifier = '思考及强化实现';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

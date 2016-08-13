@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>常见的几种数组排序算法JS实现 | Gloria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="常见的几种数组排序算法JS实现
+一些简单的排序js实现(小菜一只，大神勿喷)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的几种数组排序算法JS实现">
+<meta property="og:url" content="http://yoursite.com/2016/03/24/常见的几种数组排序算法JS实现/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="常见的几种数组排序算法JS实现
+一些简单的排序js实现(小菜一只，大神勿喷)">
+<meta property="og:updated_time" content="2016-08-13T07:10:05.046Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见的几种数组排序算法JS实现">
+<meta name="twitter:description" content="常见的几种数组排序算法JS实现
+一些简单的排序js实现(小菜一只，大神勿喷)">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Gloria</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">文章</a>
+                
+                    <a class="main-nav-link" href="/about">关于我</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.jpg" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">文章</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于我</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.jpg" />
+            <h2 id="name">Gloria</h2>
+            <h3 id="title">FE  大学生</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>changchun, China</span>
+            <a id="follow" target="_blank" href="https://github.com/jabbla">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                5
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                8
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/jabbla" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/ssdssf" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/asdasd" target="_blank" title="weixin" class=tooltip>
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/asdasd" target="_blank" title="qq" class=tooltip>
+                            <i class="fa fa-qq"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="常见的几种数组排序算法js实现-常见的几种数组排序算法JS实现" class="article article-type-常见的几种数组排序算法js实现" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            常见的几种数组排序算法JS实现
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/03/24/常见的几种数组排序算法JS实现/">
+            <time datetime="2016-03-24T12:09:29.000Z" itemprop="datePublished">2016-03-24</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/学习/">学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/算法/">算法</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>常见的几种数组排序算法JS实现</p>
+<p>一些简单的排序js实现(小菜一只，大神勿喷)</p>
+<a id="more"></a>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
+<p>　从给定的数据中，随机抽出一项，这项的左边放所有比它小的，右边放比它大的，然后再分别这两边执行上述操作，采用的是递归的思想，总结出来就是　实现一层，分别给两边递归，设置好出口</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fastSort</span>(<span class="params">array,head,tail</span>)</span>&#123;</div><div class="line">    <span class="comment">//考虑到给每个分区操作的时候都是在原有的数组中进行操作的，所以这里head,tail来确定分片的位置</span></div><div class="line">    <span class="comment">/*生成随机项*/</span></div><div class="line">    <span class="keyword">var</span> randomnum = <span class="built_in">Math</span>.floor(ranDom(head,tail));</div><div class="line">    <span class="keyword">var</span> random = array[randomnum];</div><div class="line">    <span class="comment">/*将小于random的项放置在其左边  策略就是通过一个临时的数组来储存分好区的结果，再到原数组中替换*/</span></div><div class="line">    <span class="keyword">var</span> arrayTemp = [];</div><div class="line">    <span class="keyword">var</span> unshiftHead = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = head;i &lt;= tail;i++)&#123;</div><div class="line">      <span class="keyword">if</span>(array[i]&lt;random)&#123;</div><div class="line">        arrayTemp.unshift(array[i]);</div><div class="line">        unshiftHead++;</div><div class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(array[i]&gt;random)&#123;</div><div class="line">        arrayTemp.push(array[i]);</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/*当它等于的时候放哪，这里我想选择放到队列的前面，也就是从unshift后的第一个位置放置*/</span></div><div class="line">      <span class="keyword">if</span>(array[i]===random)&#123;</div><div class="line">        arrayTemp.splice(unshiftHead,<span class="number">0</span>,array[i]);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*将对应项覆盖原来的记录*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j = head , u=<span class="number">0</span>;j &lt;= tail;j++,u++)&#123;</div><div class="line">      array.splice(j,<span class="number">1</span>,arrayTemp[u]);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*寻找中间项所在的index*/</span></div><div class="line">    <span class="keyword">var</span> nowIndex = array.indexOf(random);</div><div class="line"></div><div class="line">    <span class="comment">/*设置出口，当要放进去的片段只有2项的时候就可以收工了*/</span></div><div class="line">    <span class="keyword">if</span>(arrayTemp.length &lt;= <span class="number">2</span>)&#123;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*递归，同时应用其左右两个区域*/</span></div><div class="line">    fastSort(array,head,nowIndex);</div><div class="line">    fastSort(array,nowIndex+<span class="number">1</span>,tail);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><blockquote>
+<p>思想就是在已经排好序的数组中插入到相应的位置，以从小到大排序为例，扫描已经排好序的片段的每一项，如大于，则继续往后，直到他小于一项时，将其插入到这项的前面</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*start根据已排列好的项数决定*/</span></div><div class="line">    <span class="keyword">var</span> start=<span class="number">1</span>;</div><div class="line">    <span class="comment">/*按顺序，每一项检查已排列好的序列*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=start; i&lt;array.length; start++,i++)&#123;</div><div class="line">      <span class="comment">/*跟已排好序的序列做对比，并插入到合适的位置*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>; j&lt;start; j++)&#123;</div><div class="line">        <span class="comment">/*小于或者等于时（我们是升序）插入到该项前面*/</span></div><div class="line">        <span class="keyword">if</span>(array[i]&lt;=array[j])&#123;</div><div class="line">          <span class="built_in">console</span>.log(array[i]+<span class="string">' '</span>+array[j]);</div><div class="line">          array.splice(j,<span class="number">0</span>,array[i]);</div><div class="line">          <span class="comment">/*删除原有项*/</span></div><div class="line">          array.splice(i+<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><blockquote>
+<p>故名思意 ，就是一个个冒泡到最前端或者最后端，主要是通过两两依次比较，以升序为例，如果前一项比后一项大则交换顺序，一直比到最后一对</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*给每个未确定的位置做循环*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> unfix=array.length<span class="number">-1</span>; unfix&gt;<span class="number">0</span>; unfix--)&#123;</div><div class="line">      <span class="comment">/*给进度做个记录，比到未确定位置*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;unfix;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(array[i]&gt;array[i+<span class="number">1</span>])&#123;</div><div class="line">          <span class="keyword">var</span> temp = array[i];</div><div class="line">          array.splice(i,<span class="number">1</span>,array[i+<span class="number">1</span>]);</div><div class="line">          array.splice(i+<span class="number">1</span>,<span class="number">1</span>,temp);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><blockquote>
+<p>将当前未确定块的min或者max取出来插到最前面或者后面</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*给每个插入后的未确定的范围循环，初始是从0开始*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> unfixed=<span class="number">0</span>; unfixed&lt;array.length; unfixed++)&#123;</div><div class="line">      <span class="comment">/*设置当前范围的最小值和其索引*/</span></div><div class="line">      <span class="keyword">var</span> min = array[unfixed];</div><div class="line">      <span class="keyword">var</span> minIndex = unfixed;</div><div class="line">      <span class="comment">/*在该范围内选出最小值*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=unfixed+<span class="number">1</span>; j&lt;array.length; j++)&#123;</div><div class="line">        <span class="keyword">if</span>(min&gt;array[j])&#123;</div><div class="line">          min = array[j];</div><div class="line">          minIndex = j;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/*将最小值插入到unfixed，并且把它所在的原有项替换成*/</span></div><div class="line">      array.splice(unfixed,<span class="number">0</span>,min);</div><div class="line">      array.splice(minIndex+<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p><strong>总结一下，实现思想是很简单的,难点在于如何创造思想，还有就是个人的测试能力，和编程习惯，做注释其实不是仅仅为了别人看得更方便，而是自己思路的记录，有些人编着编着容易断片，注释起到了很好的引导作用</strong></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2016/03/24/常见的几种数组排序算法JS实现/" data-id="cirsuv5e80002moupb6n3mp1e" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2016/03/24/常见的几种数组排序算法JS实现/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2016/03/24/常见的几种数组排序算法JS实现/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/08/01/思考及强化实现/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Promise思考及强化实现
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/03/22/我所理解的JS执行环境和作用域链/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">我所理解的JS执行环境和作用域链</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/04/Canvas-知识体系简单总结/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/08/04/Canvas-知识体系简单总结/" class="title"> Canvas 知识体系简单总结</a></p>
+                            <p class="item-date"><time datetime="2016-08-04T07:09:16.000Z" itemprop="datePublished">2016-08-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/01/思考及强化实现/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/08/01/思考及强化实现/" class="title">Promise思考及强化实现</a></p>
+                            <p class="item-date"><time datetime="2016-08-01T14:40:53.000Z" itemprop="datePublished">2016-08-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/24/常见的几种数组排序算法JS实现/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/03/24/常见的几种数组排序算法JS实现/" class="title">常见的几种数组排序算法JS实现</a></p>
+                            <p class="item-date"><time datetime="2016-03-24T12:09:29.000Z" itemprop="datePublished">2016-03-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/22/我所理解的JS执行环境和作用域链/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/03/22/我所理解的JS执行环境和作用域链/" class="title">我所理解的JS执行环境和作用域链</a></p>
+                            <p class="item-date"><time datetime="2016-03-22T12:45:22.000Z" itemprop="datePublished">2016-03-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/20/当我们说line-height时候-都会谈论到神马/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
+                            <p class="item-title"><a href="/2016/03/20/当我们说line-height时候-都会谈论到神马/" class="title">当我们说Line-Height时候,都会谈论到神马</a></p>
+                            <p class="item-date"><time datetime="2016-03-20T07:14:05.000Z" itemprop="datePublished">2016-03-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">5</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 Zxr<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://yoursite.com/2016/03/24/常见的几种数组排序算法JS实现/';
+        
+        this.page.identifier = '常见的几种数组排序算法JS实现';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
