@@ -6,20 +6,23 @@
     <title> Canvas 知识体系简单总结 | Gloria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="知识点零零散散，一个上午整理了一下，内容不多,方便记忆。
-本文不是教程，如需教程移步 MDN Canvas教程">
+本文不是教程，如需教程移步 MDN Canvas教程
+本文原创，如需转载，请注明出处">
 <meta property="og:type" content="article">
 <meta property="og:title" content=" Canvas 知识体系简单总结">
 <meta property="og:url" content="http://jabbla.github.io/2016/08/04/Canvas-知识体系简单总结/index.html">
 <meta property="og:site_name" content="Gloria">
 <meta property="og:description" content="知识点零零散散，一个上午整理了一下，内容不多,方便记忆。
-本文不是教程，如需教程移步 MDN Canvas教程">
-<meta property="og:image" content="http://images.cnblogs.com/cnblogs_com/ZxrGloria/867272/o_canvas.jpg">
-<meta property="og:updated_time" content="2016-08-14T10:13:39.842Z">
+本文不是教程，如需教程移步 MDN Canvas教程
+本文原创，如需转载，请注明出处">
+<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas.jpg">
+<meta property="og:updated_time" content="2016-08-18T13:26:59.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" Canvas 知识体系简单总结">
 <meta name="twitter:description" content="知识点零零散散，一个上午整理了一下，内容不多,方便记忆。
-本文不是教程，如需教程移步 MDN Canvas教程">
-<meta name="twitter:image" content="http://images.cnblogs.com/cnblogs_com/ZxrGloria/867272/o_canvas.jpg">
+本文不是教程，如需教程移步 MDN Canvas教程
+本文原创，如需转载，请注明出处">
+<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas.jpg">
     
 
     
@@ -256,59 +259,23 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>知识点零零散散，一个上午整理了一下，内容不多,方便记忆。</p>
-<p>本文不是教程，如需教程移步 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial" target="_blank" rel="external">MDN Canvas教程</a></p>
-<a id="more"></a>
-<blockquote>
-<p>本文原创，如需转载，请注明出处</p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3></blockquote>
+            <hr>
 <p>知识点零零散散，一个上午整理了一下，内容不多,方便记忆。</p>
-<blockquote>
 <p>本文不是教程，如需教程移步 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial" target="_blank" rel="external">MDN Canvas教程</a></p>
-</blockquote>
-<h2 id="Canvas-能干什么"><a href="#Canvas-能干什么" class="headerlink" title="Canvas 能干什么"></a>Canvas 能干什么</h2><p>个人把它分为以下几点</p>
-<blockquote>
-<ol>
-<li>一个画板，能绘制复杂的图形，并应用各种样式。</li>
-<li>能在画板中放置图片，并可操作图片的尺寸和每个像素。</li>
-<li>鼠标事件能够访问到画板中的相应区域。</li>
-<li>能把画板中的图画，转换为DataURL的形式。</li>
-</ol>
-</blockquote>
-<h2 id="体系概览"><a href="#体系概览" class="headerlink" title="体系概览"></a>体系概览</h2><p><img src="http://images.cnblogs.com/cnblogs_com/ZxrGloria/862930/o_Canvas%E4%BD%93%E7%B3%BB%E6%A6%82%E8%A7%88.png" alt="Canvas体系概览"></p>
-<p> <strong>把Canvas想象成一个画板</strong></p>
-<blockquote>
-<ol>
-<li>一个绘制状态，可类比画图工具中的工具栏</li>
-<li>绘图元素，包括简单的图形，线条，复杂的组合，和图片</li>
-<li>绘制模式，比如画板中的图形存在绘制的先后顺序，而存在重叠部分，该如何显示存在重叠的图形，这是绘制模式要解决的问题</li>
-<li>裁切路径，只让画板的部分可见</li>
-<li>像素操作，操作ImageData的像素，画板的一部分</li>
-<li>区域访问，鼠标事件能够获取到所在的区域</li>
-</ol>
-</blockquote>
-<h2 id="绘制元素"><a href="#绘制元素" class="headerlink" title="绘制元素"></a>绘制元素</h2><p><img src="http://images.cnblogs.com/cnblogs_com/ZxrGloria/862930/o_%E7%BB%98%E5%9B%BE%E5%85%83%E7%B4%A0.png" alt="绘制元素"></p>
-<p> <strong>需要说明的是image的类型</strong></p>
-<blockquote>
-<ol>
-<li>HTMLImageElement</li>
-<li>HTMLVideoElement</li>
-<li>HTMLCanvasElement</li>
-<li>ImageBitmap</li>
-</ol>
-</blockquote>
-<h2 id="绘制状态"><a href="#绘制状态" class="headerlink" title="绘制状态"></a>绘制状态</h2><p><img src="http://images.cnblogs.com/cnblogs_com/ZxrGloria/862930/o_%E7%BB%98%E5%88%B6%E7%8A%B6%E6%80%81.png" alt="绘制状态"></p>
+<p>本文原创，如需转载，请注明出处</p>
+<hr>
+<a id="more"></a>
+<h2 id="Canvas-能干什么"><a href="#Canvas-能干什么" class="headerlink" title="Canvas 能干什么"></a>Canvas 能干什么</h2><p>个人把它分为以下几点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">一个画板，能绘制复杂的图形，并应用各种样式。</div><div class="line">能在画板中放置图片，并可操作图片的尺寸和每个像素。</div><div class="line">鼠标事件能够访问到画板中的相应区域。</div><div class="line">能把画板中的图画，转换为DataURL的形式。</div></pre></td></tr></table></figure></p>
+<h2 id="体系概览"><a href="#体系概览" class="headerlink" title="体系概览"></a>体系概览</h2><p><img src="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas/Canvas%E4%BD%93%E7%B3%BB%E6%A6%82%E8%A7%88.png" alt="Canvas体系概览"></p>
+<p> <strong>把Canvas想象成一个画板</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">一个绘制状态，可类比画图工具中的工具栏</div><div class="line">绘图元素，包括简单的图形，线条，复杂的组合，和图片</div><div class="line">绘制模式，比如画板中的图形存在绘制的先后顺序，而存在重叠部分，该如何显示存在重叠的图形，这是绘制模式要解决的问题</div><div class="line">裁切路径，只让画板的部分可见</div><div class="line">像素操作，操作ImageData的像素，画板的一部分</div><div class="line">区域访问，鼠标事件能够获取到所在的区域</div></pre></td></tr></table></figure></p>
+<h2 id="绘制元素"><a href="#绘制元素" class="headerlink" title="绘制元素"></a>绘制元素</h2><p><img src="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas/%E7%BB%98%E5%9B%BE%E5%85%83%E7%B4%A0.png" alt="绘制元素"></p>
+<p> <strong>需要说明的是image的类型</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">HTMLImageElement</div><div class="line">HTMLVideoElement</div><div class="line">HTMLCanvasElement</div><div class="line">ImageBitmap</div></pre></td></tr></table></figure></p>
+<h2 id="绘制状态"><a href="#绘制状态" class="headerlink" title="绘制状态"></a>绘制状态</h2><p><img src="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas/%E7%BB%98%E5%88%B6%E7%8A%B6%E6%80%81.png" alt="绘制状态"></p>
 <p>  <strong>需说明的是，一个canvas只有一组绘制状态</strong></p>
-<h2 id="区域访问"><a href="#区域访问" class="headerlink" title="区域访问"></a>区域访问</h2><blockquote>
-<p>addHitRegion({id:’abc’})<br>鼠标事件能够获取到所在的区域</p>
-</blockquote>
-<h2 id="绘制模式"><a href="#绘制模式" class="headerlink" title="绘制模式"></a>绘制模式</h2><blockquote>
-<p>globalCompositeOperation<br>比如画板中的图形存在绘制的先后顺序，而存在重叠部分，该如何显示存在重叠的图形，这是绘制模式要解决的问题</p>
-</blockquote>
-<h2 id="裁剪路径"><a href="#裁剪路径" class="headerlink" title="裁剪路径"></a>裁剪路径</h2><blockquote>
-<p>clip()<br>只让画板的部分可见</p>
-</blockquote>
-<h2 id="像素操作"><a href="#像素操作" class="headerlink" title="像素操作"></a>像素操作</h2><p><img src="http://images.cnblogs.com/cnblogs_com/ZxrGloria/862930/o_%E5%83%8F%E7%B4%A0%E6%93%8D%E4%BD%9C.png" alt="此处输入图片的描述"></p>
+<h2 id="区域访问"><a href="#区域访问" class="headerlink" title="区域访问"></a>区域访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">addHitRegion(&#123;id:&apos;abc&apos;&#125;)</div><div class="line">鼠标事件能够获取到所在的区域</div></pre></td></tr></table></figure>
+<h2 id="绘制模式"><a href="#绘制模式" class="headerlink" title="绘制模式"></a>绘制模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">globalCompositeOperation</div><div class="line">比如画板中的图形存在绘制的先后顺序，而存在重叠部分，该如何显示存在重叠的图形，这是绘制模式要解决的问题</div></pre></td></tr></table></figure>
+<h2 id="裁剪路径"><a href="#裁剪路径" class="headerlink" title="裁剪路径"></a>裁剪路径</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">clip()</div><div class="line">只让画板的部分可见</div></pre></td></tr></table></figure>
+<h2 id="像素操作"><a href="#像素操作" class="headerlink" title="像素操作"></a>像素操作</h2><p><img src="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas/%E5%83%8F%E7%B4%A0%E6%93%8D%E4%BD%9C.png" alt="像素操作"></p>
 
         
         </div>
@@ -480,7 +447,7 @@ var _hmt = _hmt || [];
                             <a href="/2016/08/18/Sudoku数据处理流程/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/sudo.jpg)" alt="Sudoku数据处理流程" class="thumbnail-image"></span>
     
 </a>
 
@@ -499,7 +466,7 @@ var _hmt = _hmt || [];
                             <a href="/2016/08/04/Canvas-知识体系简单总结/" class="thumbnail">
     
     
-        <span style="background-image:url(http://images.cnblogs.com/cnblogs_com/ZxrGloria/867272/o_canvas.jpg)" alt=" Canvas 知识体系简单总结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/canvas.jpg)" alt=" Canvas 知识体系简单总结" class="thumbnail-image"></span>
     
 </a>
 
@@ -518,7 +485,7 @@ var _hmt = _hmt || [];
                             <a href="/2016/08/01/思考及强化实现/" class="thumbnail">
     
     
-        <span style="background-image:url(http://images.cnblogs.com/cnblogs_com/ZxrGloria/867272/o_promise.jpg)" alt="Promise思考及强化实现" class="thumbnail-image"></span>
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/promise.jpg)" alt="Promise思考及强化实现" class="thumbnail-image"></span>
     
 </a>
 
@@ -537,7 +504,7 @@ var _hmt = _hmt || [];
                             <a href="/2016/05/14/Sublime效率开发实践/" class="thumbnail">
     
     
-        <span style="background-image:url(http://images.cnblogs.com/cnblogs_com/ZxrGloria/867272/o_sublime.jpg)" alt="Sublime效率开发实践" class="thumbnail-image"></span>
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/sublime.jpg)" alt="Sublime效率开发实践" class="thumbnail-image"></span>
     
 </a>
 
@@ -556,7 +523,7 @@ var _hmt = _hmt || [];
                             <a href="/2016/05/10/Hexo常用指令/" class="thumbnail">
     
     
-        <span style="background-image:url(http://images.cnblogs.com/cnblogs_com/ZxrGloria/867272/o_hexo.png)" alt="Hexo常用指令" class="thumbnail-image"></span>
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/hexo.png)" alt="Hexo常用指令" class="thumbnail-image"></span>
     
 </a>
 
