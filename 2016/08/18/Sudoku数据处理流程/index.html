@@ -3,20 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>我所理解的JS执行环境和作用域链 | Gloria</title>
+    <title>Sudoku数据处理流程 | Gloria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
+    <meta name="description" content="Sudoku这个项目陆陆续续地写了有2个星期了,断断续续地，今天终于做完最后一个模块，该放一放了，现在理一下项目的数据和数据处理流程，之后再填功能思路会更清晰一点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我所理解的JS执行环境和作用域链">
-<meta property="og:url" content="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/index.html">
+<meta property="og:title" content="Sudoku数据处理流程">
+<meta property="og:url" content="http://jabbla.github.io/2016/08/18/Sudoku数据处理流程/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
-<meta property="og:image" content="http://images.cnblogs.com/cnblogs_com/ZxrGloria/867272/o_js.jpg">
-<meta property="og:updated_time" content="2016-08-14T09:55:50.195Z">
+<meta property="og:description" content="Sudoku这个项目陆陆续续地写了有2个星期了,断断续续地，今天终于做完最后一个模块，该放一放了，现在理一下项目的数据和数据处理流程，之后再填功能思路会更清晰一点">
+<meta property="og:updated_time" content="2016-08-18T12:35:02.612Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我所理解的JS执行环境和作用域链">
-<meta name="twitter:description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
-<meta name="twitter:image" content="http://images.cnblogs.com/cnblogs_com/ZxrGloria/867272/o_js.jpg">
+<meta name="twitter:title" content="Sudoku数据处理流程">
+<meta name="twitter:description" content="Sudoku这个项目陆陆续续地写了有2个星期了,断断续续地，今天终于做完最后一个模块，该放一放了，现在理一下项目的数据和数据处理流程，之后再填功能思路会更清晰一点">
     
 
     
@@ -210,7 +208,7 @@ var _hmt = _hmt || [];
 </aside>
 
             
-            <section id="main"><article id="我所理解的js执行环境和作用域链-我所理解的JS执行环境和作用域链" class="article article-type-我所理解的js执行环境和作用域链" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-Sudoku数据处理流程" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -219,7 +217,7 @@ var _hmt = _hmt || [];
                 
     
         <h1 class="article-title" itemprop="name">
-            我所理解的JS执行环境和作用域链
+            Sudoku数据处理流程
         </h1>
     
 
@@ -228,8 +226,8 @@ var _hmt = _hmt || [];
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/03/22/我所理解的JS执行环境和作用域链/">
-            <time datetime="2016-03-22T12:45:22.000Z" itemprop="datePublished">2016-03-22</time>
+        <a href="/2016/08/18/Sudoku数据处理流程/">
+            <time datetime="2016-08-18T12:32:00.000Z" itemprop="datePublished">2016-08-18</time>
         </a>
     </div>
 
@@ -237,13 +235,13 @@ var _hmt = _hmt || [];
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/学习/">学习</a>
+        <a class="article-category-link" href="/categories/开发/">开发</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript/">javascript</a>
+        <a class="tag-link" href="/tags/Sudoku/">Sudoku</a>, <a class="tag-link" href="/tags/全栈/">全栈</a>
     </div>
 
                     </div>
@@ -253,31 +251,22 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直</p>
+            <hr>
+<p>Sudoku这个项目陆陆续续地写了有2个星期了,断断续续地，今天终于做完最后一个模<br>块，该放一放了，现在理一下项目的数据和数据处理流程，之后再填功能思路会更清<br>晰一点</p>
+<hr>
 <a id="more"></a>
-<p><strong>执行流</strong></p>
-<blockquote>
-<p>JS包含在HTML文件里的外部文件里或者内嵌script中,每个文件或者代码块都是单独扫描的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    fn1()   <span class="comment">//fn1</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'fn1'</span>);&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    fn1()   //error</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    function fn1()&#123;alert('fn1');&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>浏览器扫描此代码块 然后将具名函数的声明做预处理,然后代码按顺序执行</p>
-</blockquote>
-<p><em>注意是在同一代码块中哦,浏览器对每个代码块或者文件都是单独扫描的,也就是说预处理的作用范围是单个代码块</em></p>
-<blockquote>
-<p>之后按照全局顺序开始执行代码,执行流下行</p>
-</blockquote>
-<p><strong>执行环境</strong><br>每个函数都有自己的执行环境,当执行流进入函数时,会为函数生成一个<strong>执行环境</strong>和执行环境关联的<strong>变量对象</strong>,<strong>变量对象</strong>中存着定义在执行环境中的所有变量和函数,JS的全局环境是window对象<br><strong>执行环境栈</strong></p>
-<blockquote>
-<p>为保证代码有序地执行,通过执行流流过的顺序,执行环境依次入栈出栈<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    a = a+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">hello()</div></pre></td></tr></table></figure></p>
-<p>全局环境入栈-&gt;执行到第5行把hello()执行环境推到栈顶-&gt;hello()出栈,执行流重新回到上一层环境</p>
-</blockquote>
-<p><strong>作用域链</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    a = a+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">hello()</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>当执行流到达第2行时,它不会进入hello()因为它还没有被调用,只是把hello()函数上的作用域链的钩子指向全局函数的变量对象</p>
-<p>当执行流到达第5行时,创建hello()的执行环境,生成自己的变量对象,并将作用域链的钩子挂到此时的 全局变量对象上</p>
-</blockquote>
-<p>其实也就这么点东西,还是得多做做题,加深对这些概念的理解,深入学习,下午看的主要结论就是,概念看了谁都懂,主要还是得做一些不那么常规的题巩固记忆,和加深对概念的认识,OK.</p>
+<h2 id="后端数据"><a href="#后端数据" class="headerlink" title="后端数据"></a>后端数据</h2><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>A. UserModel,用户模型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">userName: <span class="built_in">String</span>,       <span class="comment">//用户名</span></div><div class="line">password: <span class="built_in">String</span>,       <span class="comment">//密码</span></div><div class="line">email: <span class="built_in">String</span>,          <span class="comment">//邮箱</span></div><div class="line">gameInfo: &#123;             <span class="comment">//用户的游戏记录</span></div><div class="line">    level4:&#123;</div><div class="line">        min: <span class="built_in">Number</span>,    <span class="comment">//最短时间</span></div><div class="line">        avg: <span class="built_in">Number</span>,    <span class="comment">//平均时间</span></div><div class="line">    &#125;,</div><div class="line">    level3:&#123;</div><div class="line">        min: <span class="built_in">Number</span>,</div><div class="line">        avg: <span class="built_in">Number</span>,</div><div class="line">    &#125;,</div><div class="line">    level2:&#123;</div><div class="line">        min: <span class="built_in">Number</span>,</div><div class="line">        avg: <span class="built_in">Number</span>,</div><div class="line">    &#125;,</div><div class="line">    level1:&#123;</div><div class="line">        min: <span class="built_in">Number</span>,</div><div class="line">        avg: <span class="built_in">Number</span>,</div><div class="line">    &#125;,</div><div class="line">&#125;</div><div class="line">current: &#123;              <span class="comment">//用户所处当前关卡信息</span></div><div class="line">    mission: <span class="built_in">String</span>,    <span class="comment">//所在关卡</span></div><div class="line">    time: <span class="built_in">Number</span>,       <span class="comment">//已用时间</span></div><div class="line">    board: &#123;            <span class="comment">//棋盘数据</span></div><div class="line">        <span class="string">'row+col'</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>B. LevelModel,等级模型<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">level: <span class="built_in">Number</span>           <span class="comment">//等级</span></div><div class="line">boards: [board,board]   <span class="comment">//数量不固定</span></div><div class="line"></div><div class="line"><span class="comment">//Board</span></div><div class="line">subLevel: <span class="built_in">Number</span>        <span class="comment">//子关卡</span></div><div class="line">board: <span class="built_in">String</span>           <span class="comment">//棋盘数据字符串</span></div></pre></td></tr></table></figure></p>
+<h3 id="排行榜数据"><a href="#排行榜数据" class="headerlink" title="排行榜数据"></a>排行榜数据</h3><h4 id="rank-json"><a href="#rank-json" class="headerlink" title="rank.json"></a>rank.json</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">level:[&#123;userName:<span class="string">'username'</span>,level:<span class="string">'修罗'</span>&#125;],</div><div class="line">cap:[&#123;userName:<span class="string">'username'</span>,cap:<span class="number">800</span>&#125;],</div><div class="line">real:[&#123;userName:<span class="string">'username'</span>,real:<span class="number">800</span>&#125;],</div></pre></td></tr></table></figure>
+<p>后端数据其实就是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1.UserCollection    //用户集合</div><div class="line">2.LevelCollection   //关卡集合</div><div class="line">3.rank.json         //定时生成的排行榜</div></pre></td></tr></table></figure></p>
+<h2 id="前端数据"><a href="#前端数据" class="headerlink" title="前端数据"></a>前端数据</h2><h3 id="保存在cookies的数据C"><a href="#保存在cookies的数据C" class="headerlink" title="保存在cookies的数据C"></a>保存在cookies的数据C</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">userName    <span class="comment">//用户名</span></div><div class="line">password    <span class="comment">//密码</span></div><div class="line">email       <span class="comment">//邮箱</span></div><div class="line">gameInfo    <span class="comment">//游戏信息</span></div><div class="line">current     <span class="comment">//当前关卡信息</span></div><div class="line">rankInfo    <span class="comment">//排行榜信息</span></div></pre></td></tr></table></figure>
+<h3 id="经处理后的数据D"><a href="#经处理后的数据D" class="headerlink" title="经处理后的数据D"></a>经处理后的数据D</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">userName    <span class="comment">//用户名</span></div><div class="line">level       <span class="comment">//等级</span></div><div class="line">cap         <span class="comment">//能力值</span></div><div class="line">real        <span class="comment">//水平值</span></div><div class="line">num         <span class="comment">//小关卡层数</span></div><div class="line">levelNum    <span class="comment">//大关卡层数</span></div><div class="line">detail:&#123;    <span class="comment">//游戏信息</span></div><div class="line">    First:&#123;</div><div class="line">        min:<span class="string">'...分...秒'</span>,</div><div class="line">        avg:<span class="string">'...分...秒'</span>,</div><div class="line">    &#125;,</div><div class="line">    Sec:&#123;...&#125;,</div><div class="line">    Thir:&#123;...&#125;,</div><div class="line">    Forth:&#123;...&#125;,</div><div class="line">&#125;</div><div class="line">current     <span class="comment">//当前关卡名称</span></div><div class="line">boardInfo:&#123;</div><div class="line">    mission         <span class="comment">//当前关卡名称</span></div><div class="line">    time            <span class="comment">//已用时间</span></div><div class="line">    board:&#123;         <span class="comment">//已填位置</span></div><div class="line">        <span class="string">'row+col'</span>:<span class="number">0</span> </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="开始游戏发送数据E"><a href="#开始游戏发送数据E" class="headerlink" title="开始游戏发送数据E"></a>开始游戏发送数据E</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">userName    <span class="comment">//用户名</span></div><div class="line">level       <span class="comment">//所在大关卡</span></div><div class="line">subLevel    <span class="comment">//所在小关卡</span></div></pre></td></tr></table></figure>
+<h3 id="更新游戏信息发送数据F"><a href="#更新游戏信息发送数据F" class="headerlink" title="更新游戏信息发送数据F"></a>更新游戏信息发送数据F</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">userName    <span class="comment">//用户名</span></div><div class="line">time        <span class="comment">//所用时间</span></div><div class="line">complete    <span class="comment">//是否完成</span></div><div class="line">board       <span class="comment">//当前用户已填位置</span></div></pre></td></tr></table></figure>
+<h3 id="开始游戏接收数据G"><a href="#开始游戏接收数据G" class="headerlink" title="开始游戏接收数据G"></a>开始游戏接收数据G</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">board       <span class="comment">//原始棋盘信息</span></div><div class="line">boardInfo   <span class="comment">//用户已填位置</span></div></pre></td></tr></table></figure>
+<h2 id="数据处理流程"><a href="#数据处理流程" class="headerlink" title="数据处理流程"></a>数据处理流程</h2><h3 id=""><a href="#" class="headerlink" title=""></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```bash</div><div class="line">FE--(userName,password)--&gt;BE--C--&gt;FE--&gt;D</div></pre></td></tr></table></figure></h3><h3 id="-1"><a href="#-1" class="headerlink" title=""></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```bash</div><div class="line">FE--(userName,password,email)--&gt;BE--C--&gt;FE--&gt;D</div></pre></td></tr></table></figure></h3><h3 id="-2"><a href="#-2" class="headerlink" title=""></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```bash</div><div class="line">FE--(level,board)--&gt;BE</div></pre></td></tr></table></figure></h3><h3 id="-3"><a href="#-3" class="headerlink" title=""></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```bash</div><div class="line">FE--E--&gt;BE--G--&gt;FE</div></pre></td></tr></table></figure></h3><h3 id="-4"><a href="#-4" class="headerlink" title=""></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```bash</div><div class="line">FE--F--&gt;BE--(404/200)--&gt;FE</div></pre></td></tr></table></figure></h3><p>欢迎访问<a href="sudo.zxrcool.com">Sudoku(数独游戏)</a>，多提提意见啦,有什么好的想法也可以QQ我</p>
+<p>持续更新</p>
 
         
         </div>
@@ -288,7 +277,7 @@ var _hmt = _hmt || [];
 
 </div>
 
-    <a data-url="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/" data-id="ciruh7h3a000dzoupfsxavirg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://jabbla.github.io/2016/08/18/Sudoku数据处理流程/" data-id="cis0b9a4e0000ukupqsl8ci1l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -356,7 +345,7 @@ var _hmt = _hmt || [];
 
             
     
-        <a href="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/">评论</a>
+        <a href="http://jabbla.github.io/2016/08/18/Sudoku数据处理流程/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2016/08/18/Sudoku数据处理流程/">评论</a>
     
 
         </footer>
@@ -365,19 +354,10 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/03/24/常见的几种数组排序算法JS实现/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    常见的几种数组排序算法JS实现
-                
-            </div>
-        </a>
     
-    
-        <a href="/2016/03/20/当我们说line-height时候-都会谈论到神马/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/08/04/Canvas-知识体系简单总结/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">当我们说Line-Height时候,都会谈论到神马</div>
+            <div class="article-nav-title"> Canvas 知识体系简单总结</div>
         </a>
     
 </nav>
@@ -391,7 +371,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/03/22/我所理解的JS执行环境和作用域链/" data-title="我所理解的JS执行环境和作用域链" data-url="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/"></div>
+    <div class="ds-thread" data-thread-key="2016/08/18/Sudoku数据处理流程/" data-title="Sudoku数据处理流程" data-url="http://jabbla.github.io/2016/08/18/Sudoku数据处理流程/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
