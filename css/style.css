@@ -802,20 +802,29 @@ code {
   height: auto;
 }
 .article-header {
-  padding: 20px 20px 0;
+  padding: 200px 0 0;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
 }
 .article-header .article-title {
   display: block;
   margin-bottom: 14px;
 }
+.article-title-wraper {
+  padding: 10px 20px;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+}
 .article-title {
   font-size: 2em;
-  color: #565a5f;
+  color: #fff;
   text-decoration: none;
   line-height: 1.3em;
 }
 a.article-title:visited {
-  color: #565a5f;
+  color: #fff;
 }
 a.article-title:hover {
   color: #38b7ea;
@@ -849,7 +858,7 @@ a.article-title:hover {
   margin-right: 3px;
 }
 .article-meta a {
-  color: #565a5f;
+  color: #fff;
 }
 .article-meta a:hover {
   color: #38b7ea;
@@ -994,7 +1003,6 @@ a.article-title:hover {
   line-height: 1em;
   padding: 6px 15px;
   border-radius: 15px;
-  background: #f5f8f9;
   color: #999;
   text-shadow: 0 1px #fff;
   text-decoration: none;
@@ -1009,8 +1017,8 @@ a.article-title:hover {
   font-size: 0.85em;
   line-height: 1.8em;
   border-top: 1px solid #eceff2;
-  padding-top: 1.8em;
-  margin: 0 20px 20px;
+  padding: 0.9em 0;
+  margin: -4.8em 20px 20px;
 }
 .article-footer:before,
 .article-footer:after {
