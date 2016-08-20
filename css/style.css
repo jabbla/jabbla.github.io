@@ -648,8 +648,7 @@ code {
 #profile .inner .base-info #avatar {
   display: block;
   margin: 10px auto 20px;
-  width: 240px;
-  height: 270px;
+  width: 100%;
 }
 #profile .inner .base-info #name,
 #profile .inner .base-info #title,
