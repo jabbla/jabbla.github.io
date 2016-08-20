@@ -1619,6 +1619,9 @@ ol.toc {
   border-top: 1px solid #f7f7f7;
   background-color: rgba(244,246,247,0.2);
 }
+.timeline-row .content .article-meta a {
+  color: #565a5f;
+}
 .timeline-row-major .node {
   width: 14px;
   height: 14px;
