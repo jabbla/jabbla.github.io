@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Gloria">
 <meta property="og:description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/js.jpg">
-<meta property="og:updated_time" content="2016-08-18T13:12:10.665Z">
+<meta property="og:updated_time" content="2016-08-20T12:40:20.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我所理解的JS执行环境和作用域链">
 <meta name="twitter:description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
@@ -219,17 +219,18 @@ var _hmt = _hmt || [];
         
         
         
-            <header class="article-header">
-                
+            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/js.jpg);">
+                <div class="article-title-wraper">
+                    
     
         <h1 class="article-title" itemprop="name">
             我所理解的JS执行环境和作用域链
         </h1>
     
 
-                
-                    <div class="article-meta">
-                        
+                    
+                        <div class="article-meta">
+                            
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2016/03/22/我所理解的JS执行环境和作用域链/">
@@ -238,28 +239,28 @@ var _hmt = _hmt || [];
     </div>
 
 
-                        
+                            
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/学习/">学习</a>
     </div>
 
-                        
+                            
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/javascript/">javascript</a>
     </div>
 
-                    </div>
+                        </div>
+                        
+                </div>
                 
             </header>
         
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直</p>
-<a id="more"></a>
-<p><strong>执行流</strong></p>
+            <p>看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直<br><a id="more"></a><br><strong>执行流</strong></p>
 <blockquote>
 <p>JS包含在HTML文件里的外部文件里或者内嵌script中,每个文件或者代码块都是单独扫描的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    fn1()   <span class="comment">//fn1</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'fn1'</span>);&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 </blockquote>

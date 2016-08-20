@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Gloria">
 <meta property="og:description" content="Sudoku这个项目陆陆续续地写了有2个星期了,断断续续地，今天终于做完最后一个模块，该放一放了，现在理一下项目的数据和数据处理流程，之后再填功能思路会更清晰一点">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/sudo.jpg">
-<meta property="og:updated_time" content="2016-08-19T07:20:54.404Z">
+<meta property="og:updated_time" content="2016-08-20T12:43:17.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sudoku数据处理流程">
 <meta name="twitter:description" content="Sudoku这个项目陆陆续续地写了有2个星期了,断断续续地，今天终于做完最后一个模块，该放一放了，现在理一下项目的数据和数据处理流程，之后再填功能思路会更清晰一点">
@@ -219,17 +219,18 @@ var _hmt = _hmt || [];
         
         
         
-            <header class="article-header">
-                
+            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/sudo.jpg);">
+                <div class="article-title-wraper">
+                    
     
         <h1 class="article-title" itemprop="name">
             Sudoku数据处理流程
         </h1>
     
 
-                
-                    <div class="article-meta">
-                        
+                    
+                        <div class="article-meta">
+                            
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2016/08/18/Sudoku数据处理流程/">
@@ -238,29 +239,28 @@ var _hmt = _hmt || [];
     </div>
 
 
-                        
+                            
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/开发/">开发</a>
     </div>
 
-                        
+                            
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/Sudoku/">Sudoku</a>, <a class="tag-link" href="/tags/全栈/">全栈</a>
     </div>
 
-                    </div>
+                        </div>
+                        
+                </div>
                 
             </header>
         
         <div class="article-entry" itemprop="articleBody">
         
             
-            <hr>
-<p>Sudoku这个项目陆陆续续地写了有2个星期了,断断续续地，今天终于做完最后一个模<br>块，该放一放了，现在理一下项目的数据和数据处理流程，之后再填功能思路会更清<br>晰一点</p>
-<hr>
-<a id="more"></a>
+            <p>Sudoku这个项目陆陆续续地写了有2个星期了,断断续续地，今天终于做完最后一个模块，该放一放了，现在理一下项目的数据和数据处理流程，之后再填功能思路会更清晰一点<br><a id="more"></a></p>
 <h2 id="后端数据"><a href="#后端数据" class="headerlink" title="后端数据"></a>后端数据</h2><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>A. UserModel,用户模型</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">userName: <span class="built_in">String</span>,       <span class="comment">//用户名</span></div><div class="line">password: <span class="built_in">String</span>,       <span class="comment">//密码</span></div><div class="line">email: <span class="built_in">String</span>,          <span class="comment">//邮箱</span></div><div class="line">gameInfo: &#123;             <span class="comment">//用户的游戏记录</span></div><div class="line">    level4:&#123;</div><div class="line">        min: <span class="built_in">Number</span>,    <span class="comment">//最短时间</span></div><div class="line">        avg: <span class="built_in">Number</span>,    <span class="comment">//平均时间</span></div><div class="line">    &#125;,</div><div class="line">    level3:&#123;</div><div class="line">        min: <span class="built_in">Number</span>,</div><div class="line">        avg: <span class="built_in">Number</span>,</div><div class="line">    &#125;,</div><div class="line">    level2:&#123;</div><div class="line">        min: <span class="built_in">Number</span>,</div><div class="line">        avg: <span class="built_in">Number</span>,</div><div class="line">    &#125;,</div><div class="line">    level1:&#123;</div><div class="line">        min: <span class="built_in">Number</span>,</div><div class="line">        avg: <span class="built_in">Number</span>,</div><div class="line">    &#125;,</div><div class="line">&#125;</div><div class="line">current: &#123;              <span class="comment">//用户所处当前关卡信息</span></div><div class="line">    mission: <span class="built_in">String</span>,    <span class="comment">//所在关卡</span></div><div class="line">    time: <span class="built_in">Number</span>,       <span class="comment">//已用时间</span></div><div class="line">    board: &#123;            <span class="comment">//棋盘数据</span></div><div class="line">        <span class="string">'row+col'</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>B. LevelModel,等级模型<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">level: <span class="built_in">Number</span>           <span class="comment">//等级</span></div><div class="line">boards: [board,board]   <span class="comment">//数量不固定</span></div><div class="line"></div><div class="line"><span class="comment">//Board</span></div><div class="line">subLevel: <span class="built_in">Number</span>        <span class="comment">//子关卡</span></div><div class="line">board: <span class="built_in">String</span>           <span class="comment">//棋盘数据字符串</span></div></pre></td></tr></table></figure></p>

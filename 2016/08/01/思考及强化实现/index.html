@@ -5,20 +5,17 @@
     
     <title>Promise思考及强化实现 | Gloria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,
-尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
+    <meta name="description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise思考及强化实现">
 <meta property="og:url" content="http://jabbla.github.io/2016/08/01/思考及强化实现/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,
-尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
+<meta property="og:description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/promise.jpg">
-<meta property="og:updated_time" content="2016-08-18T13:12:25.003Z">
+<meta property="og:updated_time" content="2016-08-20T12:39:40.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise思考及强化实现">
-<meta name="twitter:description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,
-尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
+<meta name="twitter:description" content="做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。">
 <meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/promise.jpg">
     
 
@@ -222,17 +219,18 @@ var _hmt = _hmt || [];
         
         
         
-            <header class="article-header">
-                
+            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/promise.jpg);">
+                <div class="article-title-wraper">
+                    
     
         <h1 class="article-title" itemprop="name">
             Promise思考及强化实现
         </h1>
     
 
-                
-                    <div class="article-meta">
-                        
+                    
+                        <div class="article-meta">
+                            
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2016/08/01/思考及强化实现/">
@@ -241,28 +239,28 @@ var _hmt = _hmt || [];
     </div>
 
 
-                        
+                            
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/学习/">学习</a>
     </div>
 
-                        
+                            
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/es6/">es6</a>, <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/promise/">promise</a>
     </div>
 
-                    </div>
+                        </div>
+                        
+                </div>
                 
             </header>
         
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,</p>
-<p>尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。</p>
-<a id="more"></a>
+            <p>做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,<br>尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。<br><a id="more"></a></p>
 <blockquote>
 <p>本文原创，如需转载请注明出处</p>
 <h2 id="我需要什么"><a href="#我需要什么" class="headerlink" title="我需要什么"></a>我需要什么</h2><p>做了Sudoku项目后，很头疼的问题就是代码维护，很大一部分原因是回调嵌套太多，影响代码的可读性,增加了维护难度,尤其是后端的数据库操作，用nodeJs通常会写许多回调嵌套。这次终于打算揭竿起义。</p>

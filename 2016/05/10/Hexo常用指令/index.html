@@ -5,23 +5,17 @@
     
     <title>Hexo常用指令 | Gloria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Hexo常用指令
-大部分都是从官网复制粘贴，会持续更新
-此后会写一篇，修改Hexo主题的教程，或者Hexo工作流程剖析">
+    <meta name="description" content="Hexo常用指令大部分都是从官网复制粘贴，会持续更新此后会写一篇，修改Hexo主题的教程，或者Hexo工作流程剖析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo常用指令">
 <meta property="og:url" content="http://jabbla.github.io/2016/05/10/Hexo常用指令/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="Hexo常用指令
-大部分都是从官网复制粘贴，会持续更新
-此后会写一篇，修改Hexo主题的教程，或者Hexo工作流程剖析">
+<meta property="og:description" content="Hexo常用指令大部分都是从官网复制粘贴，会持续更新此后会写一篇，修改Hexo主题的教程，或者Hexo工作流程剖析">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/hexo.png">
-<meta property="og:updated_time" content="2016-08-18T13:11:57.180Z">
+<meta property="og:updated_time" content="2016-08-20T12:40:01.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo常用指令">
-<meta name="twitter:description" content="Hexo常用指令
-大部分都是从官网复制粘贴，会持续更新
-此后会写一篇，修改Hexo主题的教程，或者Hexo工作流程剖析">
+<meta name="twitter:description" content="Hexo常用指令大部分都是从官网复制粘贴，会持续更新此后会写一篇，修改Hexo主题的教程，或者Hexo工作流程剖析">
 <meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/hexo.png">
     
 
@@ -225,17 +219,18 @@ var _hmt = _hmt || [];
         
         
         
-            <header class="article-header">
-                
+            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/hexo.png);">
+                <div class="article-title-wraper">
+                    
     
         <h1 class="article-title" itemprop="name">
             Hexo常用指令
         </h1>
     
 
-                
-                    <div class="article-meta">
-                        
+                    
+                        <div class="article-meta">
+                            
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2016/05/10/Hexo常用指令/">
@@ -244,28 +239,28 @@ var _hmt = _hmt || [];
     </div>
 
 
-                        
+                            
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/学习/">学习</a>
     </div>
 
-                        
+                            
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/hexo/">hexo</a>
     </div>
 
-                    </div>
+                        </div>
+                        
+                </div>
                 
             </header>
         
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>Hexo常用指令</p>
-<p>大部分都是从官网复制粘贴，会持续更新</p>
-<p>此后会写一篇，修改Hexo主题的教程，或者Hexo工作流程剖析<br><a id="more"></a></p>
+            <p>Hexo常用指令<br>大部分都是从官网复制粘贴，会持续更新<br>此后会写一篇，修改Hexo主题的教程，或者Hexo工作流程剖析<br><a id="more"></a></p>
 <h2 id="Hexo的目录结构"><a href="#Hexo的目录结构" class="headerlink" title="Hexo的目录结构:"></a>Hexo的目录结构:</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── _config.yml</div><div class="line">├── package.json</div><div class="line">├── scaffolds</div><div class="line">├── source</div><div class="line">|   ├── _drafts</div><div class="line">|   └── _posts</div><div class="line">└── themes</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">package.json</div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"hexo-site"</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"0.0.0"</span>,</div><div class="line">  <span class="string">"private"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"hexo"</span>: &#123;</div><div class="line">    <span class="string">"version"</span>: <span class="string">""</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"dependencies"</span>: &#123;</div><div class="line">    <span class="string">"hexo"</span>: <span class="string">"^3.0.0"</span>,</div><div class="line">    <span class="string">"hexo-generator-archive"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="string">"hexo-generator-category"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="string">"hexo-generator-index"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="string">"hexo-generator-tag"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="string">"hexo-renderer-ejs"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="string">"hexo-renderer-stylus"</span>: <span class="string">"^0.2.0"</span>,</div><div class="line">    <span class="string">"hexo-renderer-marked"</span>: <span class="string">"^0.2.4"</span>,</div><div class="line">    <span class="string">"hexo-server"</span>: <span class="string">"^0.1.2"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="scaffolds"><a href="#scaffolds" class="headerlink" title="scaffolds"></a>scaffolds</h2><p>Scaffold folder. When you create a new post, Hexo bases the new file on the scaffold.</p>
