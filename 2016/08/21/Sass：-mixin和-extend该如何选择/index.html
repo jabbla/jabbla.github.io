@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>我所理解的JS执行环境和作用域链 | Gloria</title>
+    <title>Sass：@mixin和@extend该如何选择 | Gloria</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
+    <meta name="description" content="Sass译文第二弹W3CPlus:http://www.w3cplus.com/preprocessor/sass-mixin-or-extend.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我所理解的JS执行环境和作用域链">
-<meta property="og:url" content="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/index.html">
+<meta property="og:title" content="Sass：@mixin和@extend该如何选择">
+<meta property="og:url" content="http://jabbla.github.io/2016/08/21/Sass：-mixin和-extend该如何选择/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
-<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/js.jpg">
-<meta property="og:updated_time" content="2016-08-20T12:40:20.914Z">
+<meta property="og:description" content="Sass译文第二弹W3CPlus:http://www.w3cplus.com/preprocessor/sass-mixin-or-extend.html">
+<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/chose.jpg">
+<meta property="og:updated_time" content="2016-08-21T13:44:07.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我所理解的JS执行环境和作用域链">
-<meta name="twitter:description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
-<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/js.jpg">
+<meta name="twitter:title" content="Sass：@mixin和@extend该如何选择">
+<meta name="twitter:description" content="Sass译文第二弹W3CPlus:http://www.w3cplus.com/preprocessor/sass-mixin-or-extend.html">
+<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/chose.jpg">
     
 
     
@@ -215,17 +215,17 @@ var _hmt = _hmt || [];
 </aside>
 
             
-            <section id="main"><article id="我所理解的js执行环境和作用域链-我所理解的JS执行环境和作用域链" class="article article-type-我所理解的js执行环境和作用域链" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-Sass：-mixin和-extend该如何选择" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
         
-            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/js.jpg);">
+            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/chose.jpg);">
                     <div class="article-title-wraper">
                         
     
         <h1 class="article-title" itemprop="name">
-            我所理解的JS执行环境和作用域链
+            Sass：@mixin和@extend该如何选择
         </h1>
     
 
@@ -234,8 +234,8 @@ var _hmt = _hmt || [];
                                 
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/03/22/我所理解的JS执行环境和作用域链/">
-            <time datetime="2016-03-22T12:45:22.000Z" itemprop="datePublished">2016-03-22</time>
+        <a href="/2016/08/21/Sass：-mixin和-extend该如何选择/">
+            <time datetime="2016-08-21T13:30:00.000Z" itemprop="datePublished">2016-08-21</time>
         </a>
     </div>
 
@@ -243,13 +243,13 @@ var _hmt = _hmt || [];
                                 
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/学习/">学习</a>
+        <a class="article-category-link" href="/categories/译文/">译文</a>
     </div>
 
                                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript/">javascript</a>
+        <a class="tag-link" href="/tags/Sass/">Sass</a>
     </div>
 
                             </div>
@@ -261,29 +261,54 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直<br><a id="more"></a><br><strong>执行流</strong></p>
-<blockquote>
-<p>JS包含在HTML文件里的外部文件里或者内嵌script中,每个文件或者代码块都是单独扫描的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    fn1()   <span class="comment">//fn1</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'fn1'</span>);&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    fn1()   //error</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    function fn1()&#123;alert('fn1');&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>浏览器扫描此代码块 然后将具名函数的声明做预处理,然后代码按顺序执行</p>
-</blockquote>
-<p><em>注意是在同一代码块中哦,浏览器对每个代码块或者文件都是单独扫描的,也就是说预处理的作用范围是单个代码块</em></p>
-<blockquote>
-<p>之后按照全局顺序开始执行代码,执行流下行</p>
-</blockquote>
-<p><strong>执行环境</strong><br>每个函数都有自己的执行环境,当执行流进入函数时,会为函数生成一个<strong>执行环境</strong>和执行环境关联的<strong>变量对象</strong>,<strong>变量对象</strong>中存着定义在执行环境中的所有变量和函数,JS的全局环境是window对象<br><strong>执行环境栈</strong></p>
-<blockquote>
-<p>为保证代码有序地执行,通过执行流流过的顺序,执行环境依次入栈出栈<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    a = a+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">hello()</div></pre></td></tr></table></figure></p>
-<p>全局环境入栈-&gt;执行到第5行把hello()执行环境推到栈顶-&gt;hello()出栈,执行流重新回到上一层环境</p>
-</blockquote>
-<p><strong>作用域链</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    a = a+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">hello()</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>当执行流到达第2行时,它不会进入hello()因为它还没有被调用,只是把hello()函数上的作用域链的钩子指向全局函数的变量对象</p>
-<p>当执行流到达第5行时,创建hello()的执行环境,生成自己的变量对象,并将作用域链的钩子挂到此时的 全局变量对象上</p>
-</blockquote>
-<p>其实也就这么点东西,还是得多做做题,加深对这些概念的理解,深入学习,下午看的主要结论就是,概念看了谁都懂,主要还是得做一些不那么常规的题巩固记忆,和加深对概念的认识,OK.</p>
+            <p>Sass译文第二弹<br>W3CPlus:<a href="http://www.w3cplus.com/preprocessor/sass-mixin-or-extend.html" target="_blank" rel="external">http://www.w3cplus.com/preprocessor/sass-mixin-or-extend.html</a><br><a id="more"></a></p>
+<h1 id="Sass：-mixin？-extend？该如何选择"><a href="#Sass：-mixin？-extend？该如何选择" class="headerlink" title="Sass：@mixin？@extend？该如何选择"></a>Sass：@mixin？@extend？该如何选择</h1><p><code>Mixins</code>允许我们在项目中复用<em>样式片段</em>，可以传递参数这个特性使得它们非常灵活，强大。同样，我们也可以使用<code>@extend</code>命令让一个选择器继承其它选择器去复用<em>样式片段</em>。有的时候<code>Mixin</code>和<code>extend</code>好像做了同样的事情，那我们应该选择哪一个呢？</p>
+<p>这个问题我会在本文的最后给出答案。在这之前，我先谈一谈关于<code>@mixin</code>指令的一些事情。</p>
+<p>除了传递参数，我想让你知道如何给一个<code>mixin</code>传递CSS片段，了解这个片段的作用域。然后我会回到刚才的问题，将<code>@extend</code>和<code>@mixin</code>进行对比，帮助你了解他们的使用场景。</p>
+<h2 id="向Mixin传递样式片段"><a href="#向Mixin传递样式片段" class="headerlink" title="向Mixin传递样式片段"></a>向Mixin传递样式片段</h2><p>除了传递参数，也可以直接传递一个<em>样式片段</em>给<code>Mixin</code>。在<code>Mixin</code>中，添加<code>@content;</code>语句，然后传递的样式片段就会代替<code>@content;</code>出现在相应的位置。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">mixin</span> button &#123;  </div><div class="line"> <span class="attribute">font-size</span>: <span class="number">1em</span>;  </div><div class="line"> <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">1.0em</span>;  </div><div class="line"> <span class="attribute">text-decoration</span>: none;  </div><div class="line"> <span class="attribute">color</span>: <span class="number">#fff</span>;  </div><div class="line"> @<span class="keyword">content</span>;  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.button-green</span> &#123;  </div><div class="line"> @<span class="keyword">include</span> button &#123;  </div><div class="line">   <span class="attribute">background</span>: green  </div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>.button-green</code>中调用了<code>Mixin</code>。<code>@include</code>指令传递了一个将背景色设置为绿色的CSS片段，然后这个片段就会代替<code>@content</code>语句出现在<code>mixin</code>中相应的位置</p>
+<p>The Sass compiles to:<br>这段Sass被编译成：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.button-green</span> &#123;  </div><div class="line">  <span class="attribute">font-size</span>: <span class="number">1em</span>;  </div><div class="line">  <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">1.0em</span>;  </div><div class="line">  <span class="attribute">text-decoration</span>: none;  </div><div class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;  </div><div class="line">  <span class="attribute">background</span>: green;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果是设置成这样，也可以只放一个<code>@content</code>语句在<code>mixin</code>中，然后使用<code>@include</code>传递包括选择器在内的所有东西。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">mixin</span> button &#123;  </div><div class="line">  @<span class="keyword">content</span>;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">include</span> button &#123;  </div><div class="line">  <span class="selector-class">.background-green</span> &#123;  </div><div class="line">    <span class="attribute">font-size</span>: <span class="number">1em</span>;  </div><div class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">1.0em</span>;  </div><div class="line">    <span class="attribute">text-decoration</span>: none;  </div><div class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;  </div><div class="line">    <span class="attribute">background</span>: green;  </div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这段Sass编译出来的结果跟刚才一样</p>
+<p>当然也可以像最开始那样，把一些<em>样式片段</em>放在<code>mixin</code>中，然后使用<code>@include</code>传递另外的样式。但是要时刻警惕，这些样式都需要一个选择器，下面的例子就是一个反面教材，它是不会工作的。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">mixin</span> button &#123;  </div><div class="line"> <span class="attribute">font-size</span>: <span class="number">1em</span>;  </div><div class="line"> <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">1.0em</span>;  </div><div class="line"> <span class="attribute">text-decoration</span>: none;  </div><div class="line"> <span class="attribute">color</span>: <span class="number">#fff</span>;  </div><div class="line"> @<span class="keyword">content</span>;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">include</span> button &#123;  </div><div class="line"> <span class="attribute">background</span>: green;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这段代码，编译过程中会抛出错误，因为没有一个选择器去应用这些样式。</p>
+<p>你可能想知道，何时使用<code>@content</code>而不是仅仅传递一个参数值。下面是<a href="https://robots.thoughtbot.com/sasss-content-directive" target="_blank" rel="external">Christian Reuter</a>提供的一些使用场景。</p>
+<ul>
+<li>嵌套（内联）的媒体查询</li>
+<li>keyframes</li>
+<li>上下文差异化</li>
+<li>结合<code>@at-root</code>书写BEM</li>
+</ul>
+<h2 id="变量作用域-和-内容片段"><a href="#变量作用域-和-内容片段" class="headerlink" title="变量作用域 和 内容片段"></a>变量作用域 和 内容片段</h2><p>当一个内容片段传进<code>mixin</code>的时候，它的作用域是在定义它的地方，而不是在<code>mixin</code>里面。也就是说，传进去的内容片段不能使用在<code>mixin</code>中定义的变量。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$color</span>: green;</div><div class="line"></div><div class="line">@<span class="keyword">mixin</span> button(<span class="variable">$color</span>: <span class="number">#fff</span>) &#123;  </div><div class="line"> <span class="attribute">color</span>: <span class="variable">$color</span>;  </div><div class="line"> @<span class="keyword">content</span>;  </div><div class="line"> <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="variable">$color</span>;  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.button-green</span> &#123;  </div><div class="line"> @<span class="keyword">include</span> button &#123;<span class="attribute">background</span>: <span class="variable">$color</span>;&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这个例子中，在最外层和<code>mixin</code>的参数中都有定义变量<code>$color</code>。这两个变量分别有不同的色值。</p>
+<p>在<code>mixin</code>中，<code>$color</code>变量的值是<code>#fff</code>。在传递给<code>.button-green</code>的内容片段中，<code>$color</code>将会使用在最外层定义的<code>green</code>值</p>
+<p> 所以，上面的Sass会被编译成下面这段CSS</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.button-green</span> &#123;  </div><div class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;  </div><div class="line">    <span class="attribute">background</span>: green;  </div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#fff</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用<code>@include</code>传递进的内容片段将会使用最外层变量的<code>green</code>值，然后代替<code>@content</code>出现在<code>mixin</code>，<code>mixin</code>中的其它地方，字体颜色，边框颜色都使用<code>mixin</code>中定义的<code>#fff</code>值</p>
+<h2 id="应该使用-mixin-还是-extend"><a href="#应该使用-mixin-还是-extend" class="headerlink" title="应该使用 @mixin 还是 @extend"></a>应该使用 @mixin 还是 @extend</h2><p><code>@mixin</code>和<code>@extend</code>都能帮助你模块化代码，然后更加方便地在样式表中复用一些样式片段。</p>
+<p>你可能会问，到底什么时候使用<code>@mixin</code>，什么时候使用<code>@extend</code>?</p>
+<p>不急，我们先看看一些代码编译出来是什么样的。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.button</span> &#123;  </div><div class="line">  <span class="attribute">background</span>: green;  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.button-1</span> &#123;  </div><div class="line">  @<span class="keyword">extend</span> .button;  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.button-2</span> &#123;  </div><div class="line">  @<span class="keyword">extend</span> .button;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Using @extend produces <a href="http://vanseodesign.com/css/dry-principles/" target="_blank" rel="external">DRY CSS</a>.</p>
+<p>使用<code>@extend</code>产生 <a href="http://vanseodesign.com/css/dry-principles/" target="_blank" rel="external">DRY CSS</a>风格的代码。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.button</span>, <span class="selector-class">.button-1</span>, <span class="selector-class">.button-2</span> &#123;  </div><div class="line">  <span class="attribute">background</span>: green;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，样式片段没有重复，这就是<a href="http://vanseodesign.com/css/dry-principles/" target="_blank" rel="external">DRY</a>。但是<code>@mixin</code>就不能产生<a href="http://vanseodesign.com/css/dry-principles/" target="_blank" rel="external">DRY</a>式的代码。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">mixin</span> button &#123;  </div><div class="line">  <span class="attribute">background-color</span>: green;  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.button-1</span> &#123;  </div><div class="line">  @<span class="keyword">include</span> button;  </div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="selector-class">.button-2</span> &#123;  </div><div class="line">  @<span class="keyword">include</span> button;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段使用<code>@mixin</code>的Sass编译出来的样子：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.button</span> &#123;  </div><div class="line">  <span class="attribute">background-color</span>: green;  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.button-1</span> &#123;  </div><div class="line">  <span class="attribute">background-color</span>: green;  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.button-2</span> &#123;  </div><div class="line">  <span class="attribute">background-color</span>: green;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到，相同的样式片段在不同的选择器中重复多次，这也导致了编译出来的CSS不是<a href="http://vanseodesign.com/css/dry-principles/" target="_blank" rel="external">DRY</a>形式的。</p>
+<p>这可能会暗示你应该一直使用<code>@extend</code>，但是<code>@extend</code>也有一些缺点。<code>@extend</code>会增加选择器之间的联系，然后把他们堆在一起。</p>
+<p>被继承的选择器和继承别人的选择器可能会在样式表的不同位置，这就导致维护困难，放置顺序，或者需要差异化的一些问题</p>
+<p><code>@extend</code>命令不够灵活。不能向它传递参数，它原本是啥样就是啥样。这里还有一些在<code>@media</code>中使用<code>@extend</code>的限制，比如，不能横跨多个<code>@media</code>指令使用<code>@extend</code>。</p>
+<p>还有一个重要的问题就是<code>@extend</code>增加了选择器之间的联系。当你正在为一些相关的元素设置样式，就拿一组按钮来说，使用<code>@extend</code>让他们共享样式看起来合情合理。但是如果这些被复用的<em>样式片段</em>并不仅仅局限于相关的元素，那么使用<code>@mixin</code>或许更好。</p>
+<p><code>@mixin</code>主要的优势就是它能够接受参数。如果想传递参数，你会很自然地选择<code>@mixin</code>而不是<code>@extend</code>。</p>
+<p>如果没有任何参数，使用<code>@extend</code>来创造<a href="http://vanseodesign.com/css/dry-principles/" target="_blank" rel="external">DRY</a>应该是个不错的选择。不过要注意的是，使用gzip压缩过的文件可能会破坏代码中的<a href="http://vanseodesign.com/css/dry-principles/" target="_blank" rel="external">DRY</a>。</p>
+<p>当文件很小的时候，编译完成代码中有重复的片段并不是一件坏事。不过如果源文件中存在这样的重复片段，会使得代码很难维护。使用<code>@mixin</code>会减少编译后文件中<a href="http://vanseodesign.com/css/dry-principles/" target="_blank" rel="external">DRY</a>式的代码。但是，如果gzip的算法对重复片段的优化工作做得比较好，那么编译后的代码不会变得肿胀。</p>
+<p><code>@mixin</code>会更强大，更灵活，它与gzip的组合跟<code>@extend</code>的主要优势相比，一点都不会逊色。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>除了给一个<code>@mixin</code>传递参数之外，还能直接传递<em>样式片段</em>。你可能不会经常这么做，但是在一些使用场景中这么做更有意义</p>
+<p>在大作数情况下<code>@mixin</code>会比<code>@extend</code>更好，但是它们俩都有自己的一席之地。当<em>样式</em>和<em>选择器</em>之间的关系在某些方面比较紧密的时候，使用<code>@extend</code>。除此之外，你可以使用<code>@mixin</code>在任何地方。</p>
+<p>原文链接: <a href="http://vanseodesign.com/css/sass-mixin-or-extend/" target="_blank" rel="external">http://vanseodesign.com/css/sass-mixin-or-extend/</a></p>
 
         
         </div>
@@ -294,7 +319,7 @@ var _hmt = _hmt || [];
 
 </div>
 
-    <a data-url="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/" data-id="cis38c6p8000ikcup42vkaxde" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://jabbla.github.io/2016/08/21/Sass：-mixin和-extend该如何选择/" data-id="cis4o0ymx0000rguppzbpcg8t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -362,7 +387,7 @@ var _hmt = _hmt || [];
 
             
     
-        <a href="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/">评论</a>
+        <a href="http://jabbla.github.io/2016/08/21/Sass：-mixin和-extend该如何选择/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2016/08/21/Sass：-mixin和-extend该如何选择/">评论</a>
     
 
         </footer>
@@ -371,19 +396,10 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/03/24/常见的几种数组排序算法JS实现/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    常见的几种数组排序算法JS实现
-                
-            </div>
-        </a>
     
-    
-        <a href="/2016/03/20/当我们说line-height时候-都会谈论到神马/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/08/19/为什么你要开始学习Sass/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">当我们说Line-Height时候,都会谈论到神马</div>
+            <div class="article-nav-title">为什么你要开始学习Sass</div>
         </a>
     
 </nav>
@@ -397,7 +413,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/03/22/我所理解的JS执行环境和作用域链/" data-title="我所理解的JS执行环境和作用域链" data-url="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/"></div>
+    <div class="ds-thread" data-thread-key="2016/08/21/Sass：-mixin和-extend该如何选择/" data-title="Sass：@mixin和@extend该如何选择" data-url="http://jabbla.github.io/2016/08/21/Sass：-mixin和-extend该如何选择/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
