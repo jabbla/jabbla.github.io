@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>SVG元素上的transform | Gloria</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="同HTML元素一样，我们可以通过transform函数操作SVG元素。然而transform在SVG元素和HTML元素上的工作方式会有一些差别。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVG元素上的transform">
+<meta property="og:url" content="http://jabbla.github.io/2016/09/06/SVG元素上的transform/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="同HTML元素一样，我们可以通过transform函数操作SVG元素。然而transform在SVG元素和HTML元素上的工作方式会有一些差别。">
+<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/svg/1.jpg">
+<meta property="og:updated_time" content="2016-09-06T04:43:53.826Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVG元素上的transform">
+<meta name="twitter:description" content="同HTML元素一样，我们可以通过transform函数操作SVG元素。然而transform在SVG元素和HTML元素上的工作方式会有一些差别。">
+<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/svg/1.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?07639b42133588f7c5683099b2c26dc2";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Gloria</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">全部文章</a>
+                
+                    <a class="main-nav-link" href="/categories/学习/">学习</a>
+                
+                    <a class="main-nav-link" href="/categories/开发/">开发</a>
+                
+                    <a class="main-nav-link" href="/categories/译文/">译文</a>
+                
+                    <a class="main-nav-link" href="/about">关于我</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">全部文章</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories/学习/">学习</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories/开发/">开发</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories/译文/">译文</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于我</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">Gloria</h2>
+            <h3 id="title">FE  大学生</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>changchun, China</span>
+            <a id="follow" target="_blank" href="https://github.com/jabbla">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                13
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/jabbla" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/1783375687/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/./about/" target="_blank" title="weixin" class=tooltip>
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/./about/" target="_blank" title="qq" class=tooltip>
+                            <i class="fa fa-qq"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-SVG元素上的transform" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/svg/1.jpg);">
+                    <div class="article-title-wraper">
+                        
+    
+        <h1 class="article-title" itemprop="name">
+            SVG元素上的transform
+        </h1>
+    
+
+                        
+                            <div class="article-meta">
+                                
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/09/06/SVG元素上的transform/">
+            <time datetime="2016-09-06T04:41:00.000Z" itemprop="datePublished">2016-09-06</time>
+        </a>
+    </div>
+
+
+                                
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/译文/">译文</a>
+    </div>
+
+                                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CSS/">CSS</a>, <a class="tag-link" href="/tags/SVG/">SVG</a>
+    </div>
+
+                            </div>
+                            
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>同HTML元素一样，我们可以通过transform函数操作SVG元素。然而transform在SVG元素和HTML元素上的工作方式会有一些差别。<br><a id="more"></a><br>首先，<a href="https://connect.microsoft.com/IE/feedbackdetail/view/1046003/css-transforms-feature-detection-not-working-on-svg-elements" target="_blank" rel="external">IE不支持SVG元素的CSS transform属性</a>，但是如果只是应用一些2D变换，为了适配IE,我们可以使用<a href="https://developer.mozilla.org/en/docs/Web/SVG/Attribute/transform" target="_blank" rel="external">SVG的transform属性</a>。</p>
+<p>SVG的transform属性中的所有函数的参数只能是纯数字，比如说，我们不能在translate函数中使用%单位（虽说在火狐浏览器中的css transform属性也不能使用—此处有链接—），rotate，skew角度只能使用deg单位，我们能在css transform属性中可以使用的所有其它单位在这里都不能使用。</p>
+<blockquote>
+<p>注：火狐浏览器现在已经支持<code>transform-origin</code>上应用带有<code>%</code>的值，不过与chorme不同的是，火狐的<code>%</code>是相对于<code>svg</code>画布而不是元素自身。</p>
+</blockquote>
+<p>而且蛋疼的是，JS的特征检测会有问题（通过js读取在外部css文件中设置的transform属性会返回与其等价的矩阵），所以我们需要另外一种检测IE的方法，或者直接在html上书写transform属性。</p>
+<p>SVG元素和HTML元素工作方式的差异，主要是由元素坐标系的不同造成的。无论是HTML元素还是SVG元素，都有一个自己的坐标系。对于HTML元素，初始的坐标原点在元素的中心。对于SVG元素，其坐标系原点是在svg画板的<code>（0，0）</code>处（假设在svg标签内祖先元素和自身都不存在任何变换）。如果SVG元素的中心点不在画板的<code>(0,0)</code>点，像rotate,scale或者skew这些变换的结果，都会与HTML元素上应用的结果大不一样。</p>
+<p>为了更好地理解这些差异，让我们来看看transform函数是如何工作的。</p>
+<h2 id="transform函数是如何工作的"><a href="#transform函数是如何工作的" class="headerlink" title="transform函数是如何工作的"></a>transform函数是如何工作的</h2><p>我们要清楚在一个存在嵌套的元素上应用变换会有叠加效果。也就是说，在一个包含后代的元素上应用变换，后代元素也会根据自己的坐标系产生相应的变换。为了方便起见，我们后面的例子都是以祖先元素不存在变换，并且其中不包含任何子孙元素为前提的。</p>
+<h2 id="位移"><a href="#位移" class="headerlink" title="位移"></a>位移</h2><p><code>translation</code>会在相同的方向上以相同的距离移动元素上的所有点，并且会保留元素上除了位置信息的所有其它信息。这种位移可以被解释成移动一个元素的坐标原点，所以位置是相对于那个坐标原点的任何元素都会被移动。这种位移之后的效果并不依赖于坐标系的位置。</p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig1.png" alt="Figure #1: translate transform: HTML 元素 (左边) vs SVG 元素 (右边)"><br>translate transform: HTML 元素 (左边) vs SVG 元素 (右边)</p>
+<p>上面的图片展示了当<code>translate</code>分别应用到HTML元素和SVG元素上的区别。</p>
+<p>正如我们看到的，它们的区别在于各自坐标系的位置。HTML元素的坐标原点在自身<code>50% 50%</code>处，SVG元素的坐标原点在SVG画布<code>0 0</code>处，不过无论坐标原点处在什么位置，它们最后呈现的效果都是一样的。</p>
+<p>对于HTML和SVG元素，我们都可以在 CSS transform 中使用3种2D的位移函数：<code>translateX(tx)</code>,<code>translateY(ty)</code>和<code>translate(tx[, ty])</code>。前两个分别作用在 X方向 和 Y方向(相对于元素自身的坐标系)。需要注意的是，如果在<code>translate</code>之前存在另外的变换，X方向，Y方向就可能不再代表着水平方向，垂直方向。而第三个位移函数则同时在x,y方向上分别移动tx,ty个单位，<code>ty</code>是可选的，如果不明确指定，默认是<code>0</code>。</p>
+<p>SVG元素除了CSS tranform属性，还有SVG tranform属性。在这个例子中，我们在tranform属性中只定义了<code>translate</code>，SVG属性中可以使用逗号分隔，或者空格分隔，其中<code>1</code>代表着<code>1px</code>，下面的两种为SVG元素应用位移的方式是等价的：</p>
+<p>使用CSS transform:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rec</span> &#123;</div><div class="line">    <span class="comment">/* doesn't work in IE */</span></div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(295px, 115px);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用SVG transform:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> <span class="attr">transform</span>=<span class="string">'translate(295 115)'</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注：SVG transform 和 CSS transform 将会被合并</p>
+</blockquote>
+<p>连续的<code>translate()</code>将会被相加在一起，比如我们可以书写一个与<code>translate(tx1 + tx2, ty1 + ty2)</code>等价的链式写法<code>translate(tx1, ty1) translate(tx2, ty2)</code>，注意，这种等价关系只有当两个<code>translate()</code>之间没有任何其它的转换的情况下成立。从<code>translate(tx, ty)</code>返回到初始状态，应用<code>translate(-tx, -ty)</code>即可。</p>
+<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>2D旋转会基于一个固定点将元素及其子孙元素旋转一定的角度（固定点的位置在旋转前后不会被改变），旋转后的效果会因固定点位置的变化而不同。就像位移一样，旋转不会扭曲元素，元素自身的属性不会发生变化。<code>rotate()</code>同样具有可加性，在相反的方向应用相同角度的<code>rotate()</code>就能返回到初始状态。</p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig2.png" alt="Figure #2: basic rotate transform: HTML 元素 (左边) vs SVG 元素 (右边)"></p>
+<p>上面展示了在两种不同元素上应用<code>rotate()</code>的区别。旋转一个元素，其自身的坐标系会基于原点旋转相同的角度，同时也会应用到后代元素。</p>
+<p>一个元素上的所有点都会绕着自身的坐标原点旋转，HTML元素的坐标原点在<code>50% 50%</code>处，SVG元素的坐标原点则是在SVG画板的<code>0 0</code>处。</p>
+<p>CSS transform中的2D旋转函数就是<code>rotate(angle)</code>。<code>angle</code>可以是多种单位的值： <code>degrees</code>，<code>radians</code>，<code>turn</code>,<code>grad</code>,我们也可以使用<code>calc()</code>(比如<code>calc(.25turn - 30deg)</code> )，这个属性现在<a href="http://codepen.io/thebabydino/pen/wfraH" target="_blank" rel="external">只能在Chorme 38+/Opera 25+使用</a>， 如果<code>angle</code>是正值，将会沿着顺时针方向旋转（反之，则会是逆时针）。</p>
+<p>在SVG的transform属性中的旋转函数是这样的：<code>rotate(angle[ x y])</code>，<code>angle</code>的值与CSS transform属性中的一样(必须是无单位的<code>degree</code>值，正值表示顺时针旋转，负值反之，可选的<code>x y</code>表示旋转时固定点的位置，其值默认是该元素坐标系的原点)，如果只有<code>x</code>，则变换无效。</p>
+<p>与<code>translate()</code>一样，参数可以使用逗号或者空格分隔。</p>
+<p>指定<code>x y</code>不代表该元素的坐标原点被移动到了<code>x y</code>上，就像元素一样，其坐标系也同时绕着<code>x y</code>点旋转。</p>
+<p>也就是说，我们可以使用两种方法旋转一个SVG元素(效果可以在上面的图片中看到)。</p>
+<p>使用CSS transform:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="comment">/* doesn't work in IE */</span></div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(45deg);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用SVG transform属性：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- works everywhere --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'65'</span> <span class="attr">y</span>=<span class="string">'65'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> <span class="attr">transform</span>=<span class="string">'rotate(45)'</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>我们可以在CSS transform中指定<code>transform-origin</code>属性来模拟SVG中的<code>x y</code>参数，长度单位是相对于元素坐标系而言的，百分比单位则是以元素自身为基准，完美！！不过也有一些需要注意的地方。</p>
+<p>首先，<code>transform-origin</code>，<code>rotate()</code>中指定固定点，两者是不一样的，比如我们需要绕着元素的<code>50% 50%</code>点旋转SVG元素，下面是两种实现方式：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(45deg);</div><div class="line">  </div><div class="line">  <span class="comment">/* doesn't work as intended in Firefox </span></div><div class="line">   * % values are taken relative to the SVG, not the element</div><div class="line">   * which actually seems to be correct */</div><div class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'65'</span> <span class="attr">y</span>=<span class="string">'65'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> </span></div><div class="line">      <span class="attr">transform</span>=<span class="string">'rotate(45 140 105)'</span> /&gt;</div><div class="line"><span class="comment">&lt;!-- 140 = 65 + 150/2 --&gt;</span></div><div class="line"><span class="comment">&lt;!-- 105 = 65 +  80/2 --&gt;</span></div></pre></td></tr></table></figure>
+<p>在Chorme中两者实现了相同的效果，如下图</p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig3.png" alt="Figure #3: 围绕一个固定点旋转一个 SVG 元素: 使用 CSS (左边) vs. 使用SVG transform(右边)"><br>围绕一个固定点旋转一个 SVG 元素: 使用 CSS (左边) vs. 使用SVG transform(右边)</p>
+<p>正如上图所展示的，第一个CSS transform例子会将元素的坐标系原点移动到自身的<code>50% 50%</code>位置，然后基于坐标系原点旋转，第二个SVG transform例子则是仅仅将元素中心点的位置作为旋转的固定点，自身的坐标系并没有因此改变，所以所有基于自身坐标系的变换都不会发生变化。</p>
+<p>为了加深理解，我们再应用一个相同角度<code>45°</code>，相反方向的<code>roatate()</code>：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(45deg) <span class="built_in">rotate</span>(-45deg);</div><div class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">50%</span>; <span class="comment">/* Chrome, Firefox behaves differently */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'65'</span> <span class="attr">y</span>=<span class="string">'65'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> </span></div><div class="line">      <span class="attr">transform</span>=<span class="string">'rotate(45 140 105) rotate(-45)'</span> /&gt;</div><div class="line"><span class="comment">&lt;!-- 140 = 65 + 150/2 --&gt;</span></div><div class="line"><span class="comment">&lt;!-- 105 = 65 +  80/2 --&gt;</span></div></pre></td></tr></table></figure>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig4.png" alt="Figure #4: 在SVG元素上链式调用旋转: CSS transforms (左边) vs. SVG transform (右边)"><br>在SVG元素上链式调用旋转: CSS transforms (左边) vs. SVG transform (右边)</p>
+<p>如图所示，在CSS transform中，设置<code>transform-origin</code>为<code>50% 50%</code>，两次的<code>rotate()</code>会相互抵消，因为两次的旋转都是围绕坐标系原点<code>50% 50%</code>，而在SVG transform中，第一次指定了旋转的固定点在元素中心，而第二次并没有指定，所以默认以元素坐标系原点为固定点。如果想实现预期的效果可以指定第二个为:<code>rotate(-45 140 105)</code>而不是<code>rotate(-45)</code>。</p>
+<p>我们能为SVG transform的每个<code>roatate()</code>指定不同的固定点，但是只能为CSS transform的每个<code>rotate()</code>指定一个<code>transform-origin</code>。如果想实现一个矩形先绕右下角的点旋转<code>90°</code>,再绕右上角旋转<code>90°</code>，对于SVG tranform来说很容易实现，为每个<code>rotate()</code>指定不同的固定点就可以了：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'0'</span> <span class="attr">y</span>=<span class="string">'80'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> </span></div><div class="line">      <span class="attr">transform</span>=<span class="string">'rotate(90 150 160) rotate(90 150 80)'</span>/&gt;</div><div class="line"><span class="comment">&lt;!--</span></div><div class="line">bottom right:</div><div class="line">  x = x-offset + width = 0 + 150 = 150</div><div class="line">  y = y-offset + height = 80 + 80 = 160</div><div class="line">top right:</div><div class="line">  x = x-offset + width = 0 + 150 = 150</div><div class="line">  y = y-offset = 80</div><div class="line">--&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3cPlus/svg-transforms-fig5.png" alt="Figure #5: 链式调用不同固定点的rotate (SVG transform )"><br>链式调用不同固定点的rotate (SVG transform )</p>
+<p>我们如何做到在CSS transform中实现相同的效果呢？第一步很简单，我们可以指定<code>transform-origin</code>为<code>right bottom</code>，但是第二步呢？如果只是简单地链式书写在第一个的后面， 元素会以<code>right bottom</code>为固定点再次旋转<code>90°</code>。</p>
+<p>为了忽略<code>transform-origin</code>的位置，我们需要再添加3个变换，第 一个就是 <code>translate(x, y)</code> ，为了与第二次的旋转固定点对应，我们使用 <code>translate(x, y)</code> 使元素的坐标系原点和我们希望的固定点重合，第二个就是旋转，第三个是<code>translate(-x, -y)</code>(第一次变换的相反操作)。</p>
+<p>下面是上面例子的代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="comment">/* doesn't work as intended in Firefox </span></div><div class="line">   * % values are taken relative to the SVG, not the element</div><div class="line">   * which actually seems to be correct */</div><div class="line">  <span class="attribute">transform-origin</span>: right bottom; <span class="comment">/* or 100% 100%, same thing */</span></div><div class="line">  <span class="attribute">transform</span>:</div><div class="line">    <span class="built_in">rotate</span>(90deg)</div><div class="line">    <span class="built_in">translate</span>(0, -100%) <span class="comment">/* go from bottom right to top right */</span></div><div class="line">    <span class="built_in">rotate</span>(90deg)</div><div class="line">    <span class="built_in">translate</span>(0, 100%);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面这张图片展示了上面代码的步骤：</p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig6.gif" alt="Figure #6: 链式CSS transform的工作流程 "><br>链式CSS transform的工作流程</p>
+<p>然而在火狐浏览器中,<code>transform-origin</code>只能使用长度单位，<code>translate()</code>中的百分比单位也不能使用。</p>
+<blockquote>
+<p>注：在火狐浏览器中<code>transform-origin</code>已经支持百分比单位了，但是它的行为与chorme不太一样，所以我们不建议您使用这个方法。</p>
+</blockquote>
+<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>缩放会在相应的方向上应用缩放因子，然后改变元素所有点到其坐标系原点到的距离。除非各个方向的缩放因子都是相同的，不然该元素的形状必定被改变。</p>
+<p>在<code>(-1,1)</code>范围之内的缩放因子会缩小元素，范围之外的因子则会放大元素。一个负值的因子不仅会改变元素的大小，还会基于坐标系原点镜像处理所有的点。如果因子不等于<code>1</code>，那么在相应的方向上就会出现缩放的情况。</p>
+<p>一个缩放函数的效果会依赖元素坐标系原点的位置，对于同一个元素，两个具有相同缩放因子的缩放函数，会因为不同的坐标系原点表现出不同的效果。</p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig7.png" alt="Figure #7: scale transform: HTML 元素 (左边) vs SVG 元素 (右边)"><br>scale transform: HTML 元素 (左边) vs SVG 元素 (右边)</p>
+<p>上图是分别在HTML元素和SVG元素上应用缩放的不同结果，两者拥有完全相同的缩放因子，不同的是，HTML元素的坐标系原点在元素<code>50% 50%</code>处，而SVG元素的坐标原点则是SVG画板的<code>0 0</code>处。</p>
+<p>在CSS transform中有3种2D的缩放函数： <code>scale(sx[, sy])</code> <code>scaleX(sx)</code> <code>scaleX(sx)</code> <code>scaleY(sy)</code>。第一个函数，会同时在<code>x</code>和<code>y</code>方向上应用<code>sx</code>和<code>sy</code>缩放因子，<code>sy</code>是可选的，如果该函数只有一个参数，会默认是<code>sx</code>的值。其它两个函数是分别在两个方向进行缩放，<code>scaleX(sx)</code> <code>scaleY(sy)</code>分别等价于<code>scale(sx,1)</code> <code>scale(1,sy)</code>，如果在此之前存在其它的变换，那么相应的<code>x</code>和<code>y</code>方向将不再是水平和垂直的。</p>
+<p>在SVG transform中，只有<code>scale(sx[ sy])</code>。同样，可以使用空格或者逗号分隔参数。</p>
+<p>对于SVG元素来说，以下的两种缩放方法是等价的：</p>
+<p>使用CSS transform:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">   <span class="comment">/* doesn't work in IE */</span></div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(2, 1.5);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用SVG transform:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- works everywhere --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'65'</span> <span class="attr">y</span>=<span class="string">'65'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> <span class="attr">transform</span>=<span class="string">'scale(2 1.5)'</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在同一个元素上应用上面两种方法会产生相同的效果，就像上一个图片中的右边的区域。如果我想实现像应用在HTML元素上一样的效果呢？来看一看我是如何让实现的。</p>
+<p>我们可以使用CSS transform中的<code>transform-origin</code>改变元素的坐标原点，或者使用<code>translate()</code> <code>scale()</code> <code>translate()</code>这样的组合，在第二种方法中，我们先将元素坐标系原点移动到元素的<code>50% 50%</code>位置，然后应用缩放，最后做与第一个位移相反的操作。如果使用SVG transform属性，我们只能使用前面CSS transform中的第二种方式，类似的方法，下面是具体的代码。</p>
+<p>使用CSS transform中的<code>transform-origin</code>：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="comment">/* doesn't work in IE */</span></div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(2, 1.5);</div><div class="line"></div><div class="line">  <span class="comment">/* doesn't work as intended in Firefox </span></div><div class="line">   * % values are taken relative to the SVG, not the element</div><div class="line">   * which actually seems to be correct */</div><div class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在CSS transform中链式调用：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="comment">/* doesn't work in IE */</span></div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(140px, 105px)</div><div class="line">             <span class="built_in">scale</span>(2 1.5)</div><div class="line">             <span class="built_in">translate</span>(-140px, -105px);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在SVG transform中链式调用:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'65'</span> <span class="attr">y</span>=<span class="string">'65'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> </span></div><div class="line">      <span class="attr">transform</span>=<span class="string">'translate(140 105) scale(2 1.5) translate(-140 -105)'</span>/&gt;</div><div class="line"><span class="comment">&lt;!-- works everywhere --&gt;</span></div></pre></td></tr></table></figure></p>
+<p>下面的demo将会展示链式调用的工作过程（点击播放►按钮开始）</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="pvXyOW" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/pvXyOW/" target="_blank" rel="external">Chaining on SVG elements to scale wrt a certain point</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>还有就是，两个连续的<code>scale()</code>如<code>scale(sx1, sy1) scale(sx2, sy2)</code>,可以写成<code>scale(sx1*sx2, sy1*sy2)</code>。<code>scale(1/sx1, 1/sy1)</code>可以对<code>scale(sx1,sy1)</code>做相反的操作。如果所有的<code>scale()</code>参数的绝对值等于<code>1</code>，那么这个元素不产生任何的缩放。</p>
+<h2 id="倾斜"><a href="#倾斜" class="headerlink" title="倾斜"></a>倾斜</h2><p>倾斜操作会将元素上所有点的坐标值在相应的方向上移动一段距离，这段距离取决于倾斜的角度而和每个点到倾斜轴的距离。也就是说，在一个方向上倾斜，另一个方向上的所有点相应的坐标值不会被改变。倾斜一个元素必定会扭曲这个元素，这点和旋转不太一样，倾斜一个矩形，这个矩形会变成不等边的平行四边形，倾斜一个圆，这个圆会变成椭圆。倾斜操作过后，角度(对于倾斜角<code>α</code>，矩形的直角将会变成<code>90° ± α</code>)或者长度都会发生变化，但是元素的原始区域会被保留。</p>
+<p>另外，与位移，旋转不一样的是，倾斜不具有可加性，连续两次<code>α1</code> <code>α2</code>的倾斜，不等于一次<code>α1+α2</code>的倾斜。</p>
+<p>下面的demo展示了倾斜的工作方式，你可以调整倾斜轴，倾斜角度，瞧瞧它们是如何作用于初始正方形的：</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="JoQRdb" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/JoQRdb/" target="_blank" rel="external">How the skew transform works</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>倾斜的角度等于初始轴与终轴的夹角(非倾斜轴)，如果应用<code>[0°, 90°]</code>夹角的倾斜，元素上所有点倾斜轴方向上的坐标会加上与其非倾斜轴方向坐标符号相等的值，如果是<code>[-90°, 0°]</code>，则该值的符号相反。</p>
+<p>如果我们应用一个在<code>X</code>轴方向上的倾斜，元素<code>y</code>轴方向的坐标保持不变，<code>X</code>轴方向的坐标会增加或者减少<code>d</code>，这个<code>d</code>取决于倾斜角度和该点<code>y</code>轴上的坐标，顶边和底边的长度不变，两侧的长度会随着倾斜角度的增加而增加，当角度为<code>±90°</code>时两侧将会是无限长，当角度慢慢靠近<code>±180°</code>的时候，两侧的长度将会逐渐减少。</p>
+<blockquote>
+<p>注：<code>(90°, 180°]</code>之间的角<code>α</code>等同于<code>α - 180°</code>（落在区间<code>(-90°, 0°]</code>），同样，如果<code>α</code>在<code>(-180°, -90°]</code>之间，则等同于<code>α + 180°</code>(落在区间<code>[0°, 90°)</code>)</p>
+</blockquote>
+<p>同样，如果我们应用一个在<code>y</code>轴方向上的倾斜，元素<code>X</code>轴方向的坐标保持不变，<code>y</code>轴方向的坐标会增加或者减少<code>d</code>，这个<code>d</code>取决于倾斜角度和该点<code>X</code>轴上的坐标，两侧的长度不变，上下的长度会随着倾斜角度的增加而增加，当角度为<code>±90°</code>时上下将会是无限长，当角度慢慢靠近<code>±180°</code>的时候，上下的长度将会逐渐减少。</p>
+<p>倾斜操作与旋转操作一样，元素的坐标原点都会影响最终的呈现效果，对同一个元素在相同的轴方向上做相同倾斜操作，会产生不同的结果：</p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig8.png" alt="Figure #8: skew transform: HTML元素 (左边) vs SVG元素 (右边)"><br>skew transform: HTML元素 (左边) vs SVG元素 (右边)</p>
+<p>以上是分别对HTML元素和SVG元素做相同的倾斜操作后的图片，相同的角度，相同的倾斜轴，不同的是，它们的坐标原点不一样。HTML元素在其<code>50% 50%</code>处，SVG元素在SVG画布的<code>0 0</code>处。</p>
+<p>方便起见，在这我们只关注元素上的一个点：右上角。两者右上角在垂直方向上始终保持不变，在水平方向上，HTML元素中向左平移，SVG元素中向右平移，右下角都向右平移。为什么会这样？</p>
+<p>就像前面提到的，<code>X</code>轴方向的倾斜，<code>y</code>轴方向的坐标保持不变，<code>X</code>轴方向的坐标会增加或者减少<code>d</code>，这个<code>d</code>取决于倾斜角度和该点<code>y</code>轴上的坐标。如果倾斜角在<code>[0°, 90°]</code>之间，则<code>d</code>的符号与<code>y</code>坐标相同，如果在<code>[-90°, 0°]</code>之间，则相反。</p>
+<p>在这个例子中，倾斜角是<code>60°</code>，所以在这里右上角<code>y</code>轴方向的坐标是导致两者不同的关键，在HTML元素中，由于坐标系原点在元素中央，所以右上角的<code>y</code>坐标为负值，在SVG元素中，坐标系原点在SVG画板的<code>0 0</code>处，所以右上角<code>y</code>坐标为正值。像上面所说的，这样分别加在两者右上角<code>d</code>的符号也是相反的，也就造成了HTML元素的右上角向左移动，SVG元素的右上角向右移动。</p>
+<p>无论是CSS transform还是SVG transform，都有两个倾斜函数:<code>skewX(angle)</code>和<code>skewY(angle)</code>，前者的倾斜轴是<code>X</code>轴，后者的倾斜轴是<code>y</code>轴。</p>
+<p>在CSS transform中，<code>angle</code>的单位可以是<code>deg</code> <code>rad</code> <code>turn</code> <code>grad</code> ,还能使用<code>calc()</code>(需要牢记的是，只有Blink内核的浏览器支持在<code>calc()</code>中计算角度)</p>
+<p>在SVG transform中，倾斜角度都是没有单位的<code>deg</code>值。</p>
+<p>也就是说有两种方法书写上一张图片中右边的效果：</p>
+<p>使用CSS transform:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">skewX</span>(60deg); <span class="comment">/* doesn't work in IE */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用SVG transform:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- works everywhere --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'65'</span> <span class="attr">y</span>=<span class="string">'65'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> <span class="attr">transform</span>=<span class="string">'skewX(60)'</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>如果我想实现像应用在HTML元素上一样的效果呢？就像旋转一样，存在3种方式：</p>
+<p>使用CSS transform的<code>transform-origin</code>(不建议使用):<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="comment">/* doesn't work in IE */</span></div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">skewX</span>(60deg);</div><div class="line">  </div><div class="line">  <span class="comment">/* doesn't work as intended in Firefox </span></div><div class="line">   * % values are taken relative to the SVG, not the element</div><div class="line">   * which actually seems to be correct */</div><div class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">50%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在CSS transform中链式调用：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rect</span> &#123;</div><div class="line">  <span class="comment">/* doesn't work in IE */</span></div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(140px, 105px)</div><div class="line">             <span class="built_in">skewX</span>(60deg)</div><div class="line">             <span class="built_in">translate</span>(-140px, -105px);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在SVG transform中链式调用:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- works everywhere --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'65'</span> <span class="attr">y</span>=<span class="string">'65'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> </span></div><div class="line">      <span class="attr">transform</span>=<span class="string">'translate(140 105) skewX(60) translate(-140 -105)'</span> /&gt;</div></pre></td></tr></table></figure></p>
+<p>下面的demo将会展示链式调用的工作过程（点击播放►按钮开始）</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="VLwpgP" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/VLwpgP/" target="_blank" rel="external">Chaining on SVG elements to skew wrt a certain point</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="缩短调用链"><a href="#缩短调用链" class="headerlink" title="缩短调用链"></a>缩短调用链</h2><p>我们可以通过链式调用，在SVG元素上实现在HTML元素上进行<code>rotate</code> <code>scale</code> <code>skew</code>操作一样的效果，使用SVG transform也能做到兼容IE浏览器。然而，你不觉得这样的写法很丑陋么？难道就没有更加简便的方式？</p>
+<p>如果我们可以将元素的坐标系原点移动到元素自身的<code>50% 50%</code>处，那么调用链会大大缩短，像下面这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'-75'</span> <span class="attr">y</span>=<span class="string">'-40'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> </span></div><div class="line">      <span class="attr">transform</span>=<span class="string">'translate(140 105) rotate(45)'</span>/&gt;</div><div class="line"><span class="comment">&lt;!-- 75 = 150/2, 40 = 80/2 --&gt;</span></div></pre></td></tr></table></figure></p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="VLwzPv" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/VLwzPv/" target="_blank" rel="external">Chaining on SVG elements to rotate wrt a certain point #1</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>如果使用SVG元素的<a href="http://sarasoueidan.com/blog/svg-coordinate-systems/" target="_blank" rel="external"><code>viewBox</code></a>属性，第一个<code>translate</code>也能被精简掉。<code>viewBox</code>属性中有4个值，前两个指定了SVG画布的左上角在显示区域的位置，<br>后两个则是SVG画布显示区域的<code>width</code>和<code>height</code>，如果没有明确指定<code>viewBox</code>，画布的位置就是在显示区域的<code>0 0</code>处。</p>
+<p>下面的两张图片能很好地展现<code>viewBox=&#39;-140 -105 280 210&#39;</code>使用前和使用后的区别。</p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig9.png" alt="Figure #9: viewBox使用前 vs. viewBox使用后"><br>viewBox使用前 vs. viewBox使用后</p>
+<p>回到刚才的话题，如果想将SVG画布的坐标原点<code>0 0</code>移动到矩形的中心点，我们可以像下面这样设置<code>viewBox</code>:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">viewBox</span>=<span class="string">'-140 -105 650 350'</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">'-75'</span> <span class="attr">y</span>=<span class="string">'-40'</span> <span class="attr">width</span>=<span class="string">'150'</span> <span class="attr">height</span>=<span class="string">'80'</span> <span class="attr">transform</span>=<span class="string">'rotate(45)'</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="oXNewX" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/oXNewX/" target="_blank" rel="external">Setting proper <code>viewBox</code> to rotate wrt a certain point #1</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h2><p>将SVG画布的原点移动到元素的中心点，可以大大简化SVG图形的变换操作。下面的demo展示了3个四角星(点击播放/暂停)，最初都在中央，然后各自旋转，平移，倾斜，缩放，当中并没有使用<code>transform-origin</code>或者链式调用：</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="XbWzVE" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/XbWzVE/" target="_blank" rel="external">SVG Stars - final</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>让我们看一看，这个demo是如何一步一步工作的。</p>
+<p>非常轻松地画出四角星（其实就是一个包含8个点的多边形）</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="BNawMe" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/BNawMe/" target="_blank" rel="external">4 point star - the points</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>有3个这样的星星，我不想连续3次重复定义这个多边形，所以使用了1个<code>&lt;defs&gt;</code>和3个<code>&lt;use&gt;</code>:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">viewBox</span>=<span class="string">'-512 -512 1024 1024'</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">polygon</span> <span class="attr">id</span>=<span class="string">'star'</span> <span class="attr">points</span>=<span class="string">'250,0 64,64 0,250 -64,64 -250,0 -64,-64 0,-250 64,-64'</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">g</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">use</span> <span class="attr">xlink:href</span>=<span class="string">'#star'</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">use</span> <span class="attr">xlink:href</span>=<span class="string">'#star'</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">use</span> <span class="attr">xlink:href</span>=<span class="string">'#star'</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">g</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>首先，星星需要从<code>0</code>放大到<code>1</code>:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">use</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: ani <span class="number">4s</span> linear infinite;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">keyframes</span> ani &#123;</div><div class="line">  0% &#123; <span class="attribute">transform</span>: <span class="built_in">scale</span>(0); &#125;</div><div class="line">  25%, 100% &#123; <span class="attribute">transform</span>: <span class="built_in">scale</span>(1); &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的代码实现的效果：</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="gpOXgV" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/gpOXgV/" target="_blank" rel="external">SVG Stars - step #1</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>下一步就是为我们的动画增加旋转效果，同时我希望每一个星星都有不同的旋转角度，下面是代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$n: 3;</div><div class="line">$α: 360deg/$n;</div><div class="line">$β: random($α/1deg)*1deg;</div><div class="line"></div><div class="line">@for $i from 1 through $n &#123;</div><div class="line">  $γ: $β + ($i - 1)*$α;</div><div class="line"></div><div class="line">  use:nth-of-type(#&#123;$i&#125;) &#123;</div><div class="line">    fill: hsl($γ, 100%, 80%);</div><div class="line">    animation: ani-#&#123;$i&#125; 4s linear infinite;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  @keyframes ani-#&#123;$i&#125; &#123;</div><div class="line">    0% &#123; transform: scale(0); &#125;</div><div class="line">    25% &#123; transform: scale(1); &#125;</div><div class="line">    50%, 100% &#123; transform: rotate($γ); &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实现的效果如下：</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="ZGEaeJ" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/ZGEaeJ/" target="_blank" rel="external">SVG Stars - step #2</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>下一步，平移，旋转：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@keyframes ani-#&#123;$i&#125; &#123;</div><div class="line">  0% &#123; transform: scale(0); &#125;</div><div class="line">  25% &#123; transform: scale(1); &#125;</div><div class="line">  50% &#123; transform: rotate($γ); &#125;</div><div class="line">  75%, 100% &#123;</div><div class="line">    transform: rotate($γ) translate(13em) scale(.2);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="WvNXXG" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/WvNXXG/" target="_blank" rel="external">SVG Stars - step #3</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>好了，我们还需要与缩放配合，添加倾斜效果：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@keyframes ani-#&#123;$i&#125; &#123;</div><div class="line">  0% &#123; transform: scale(0); &#125;</div><div class="line">  25% &#123; transform: scale(1); &#125;</div><div class="line">  50% &#123; transform: rotate($γ); &#125;</div><div class="line">  75% &#123;</div><div class="line">    transform: rotate($γ) translate(13em) scale(.2);</div><div class="line">  &#125;</div><div class="line">  83% &#123;</div><div class="line">    transform: rotate($γ) translate(13em) scale(.2)</div><div class="line">      skewY(30deg) scaleX(.866);</div><div class="line">  &#125;</div><div class="line">  91% &#123;</div><div class="line">    transform: rotate($γ) translate(13em) scale(.2)</div><div class="line">      skewY(60deg) scaleX(.5);</div><div class="line">   &#125;</div><div class="line">  100% &#123;</div><div class="line">    transform: rotate($γ) translate(13em) scale(.2)</div><div class="line">      skewY(90deg) scaleX(0);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我在原来的基础上添加一些帧。当倾斜角线性变化的时候，其缩放因子会像余弦函数一样变化，如下图一样：</p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg-transforms-fig10.gif" alt="Figure #10: 三角函数 正弦 (蓝色) 余弦 (红色)"><br>三角函数 正弦 (蓝色) 余弦 (红色)</p>
+<p>在火狐浏览器中，这个纯CSS的demo有点蛋疼，然后因为IE不支持SVG元素上的CSS transform,所以这个demo在IE上也不能运行，使其兼容IE只能使用SVG transform，然后配合javascript动态地改变那些值，下面是这个兼容版本(点击开始)：</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="vOYegp" data-default-tab="result" data-user="thebabydino" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/thebabydino/pen/vOYegp/" target="_blank" rel="external">Stars - JS version</a> by Ana Tudor (<a href="http://codepen.io/thebabydino" target="_blank" rel="external">@thebabydino</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://jabbla.github.io/2016/09/06/SVG元素上的transform/" data-id="cisqzrw4s0000vkuplklkvdtn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://jabbla.github.io/2016/09/06/SVG元素上的transform/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2016/09/06/SVG元素上的transform/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2016/08/30/HTML元素上的SVG滤镜/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">HTML元素上的SVG滤镜</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/09/06/SVG元素上的transform/" data-title="SVG元素上的transform" data-url="http://jabbla.github.io/2016/09/06/SVG元素上的transform/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/09/06/SVG元素上的transform/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/svg/1.jpg)" alt="SVG元素上的transform" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/译文/">译文</a></p>
+                            <p class="item-title"><a href="/2016/09/06/SVG元素上的transform/" class="title">SVG元素上的transform</a></p>
+                            <p class="item-date"><time datetime="2016-09-06T04:41:00.000Z" itemprop="datePublished">2016-09-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/30/HTML元素上的SVG滤镜/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/photo-filters.jpg)" alt="HTML元素上的SVG滤镜" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/译文/">译文</a></p>
+                            <p class="item-title"><a href="/2016/08/30/HTML元素上的SVG滤镜/" class="title">HTML元素上的SVG滤镜</a></p>
+                            <p class="item-date"><time datetime="2016-08-30T03:28:00.000Z" itemprop="datePublished">2016-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/24/解决Sass媒体查询的重复问题，优化工作流程/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/banner.png)" alt="解决Sass媒体查询的重复问题，优化工作流程" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/译文/">译文</a></p>
+                            <p class="item-title"><a href="/2016/08/24/解决Sass媒体查询的重复问题，优化工作流程/" class="title">解决Sass媒体查询的重复问题，优化工作流程</a></p>
+                            <p class="item-date"><time datetime="2016-08-24T00:27:00.000Z" itemprop="datePublished">2016-08-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/21/Sass：-mixin和-extend该如何选择/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/chose.jpg)" alt="Sass：@mixin和@extend该如何选择" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/译文/">译文</a></p>
+                            <p class="item-title"><a href="/2016/08/21/Sass：-mixin和-extend该如何选择/" class="title">Sass：@mixin和@extend该如何选择</a></p>
+                            <p class="item-date"><time datetime="2016-08-21T13:30:00.000Z" itemprop="datePublished">2016-08-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/19/为什么你要开始学习Sass/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/sass.png)" alt="为什么你要开始学习Sass" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/译文/">译文</a></p>
+                            <p class="item-title"><a href="/2016/08/19/为什么你要开始学习Sass/" class="title">为什么你要开始学习Sass</a></p>
+                            <p class="item-date"><time datetime="2016-08-19T07:10:00.000Z" itemprop="datePublished">2016-08-19</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/译文/">译文</a><span class="category-list-count">5</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVG/">SVG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sudoku/">Sudoku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈/">全栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率工具/">效率工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/SVG/" style="font-size: 15px;">SVG</a> <a href="/tags/Sass/" style="font-size: 20px;">Sass</a> <a href="/tags/Sudoku/" style="font-size: 10px;">Sudoku</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/全栈/" style="font-size: 10px;">全栈</a> <a href="/tags/效率工具/" style="font-size: 10px;">效率工具</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 Zxr<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'jabbla2016'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
