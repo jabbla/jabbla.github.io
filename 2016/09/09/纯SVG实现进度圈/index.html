@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>常见的几种数组排序算法JS实现 | Gloria</title>
+    <title>纯SVG实现进度圈 | Gloria</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="常见的几种数组排序算法JS实现一些简单的排序js实现(小菜一只，大神勿喷)">
+    <meta name="description" content="进度圈是经典的仪表盘元素，可以将统计数据直观地展现为摘要视图。我们可以通过javascript+canvas+css，图片或者利用SVG实现一个进度圈。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见的几种数组排序算法JS实现">
-<meta property="og:url" content="http://jabbla.github.io/2016/03/24/常见的几种数组排序算法JS实现/index.html">
+<meta property="og:title" content="纯SVG实现进度圈">
+<meta property="og:url" content="http://jabbla.github.io/2016/09/09/纯SVG实现进度圈/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="常见的几种数组排序算法JS实现一些简单的排序js实现(小菜一只，大神勿喷)">
-<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/sort.jpg">
-<meta property="og:updated_time" content="2016-08-20T12:40:10.774Z">
+<meta property="og:description" content="进度圈是经典的仪表盘元素，可以将统计数据直观地展现为摘要视图。我们可以通过javascript+canvas+css，图片或者利用SVG实现一个进度圈。">
+<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/0139c1554283420000019ae91821e9.jpg">
+<meta property="og:updated_time" content="2016-09-09T06:28:33.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见的几种数组排序算法JS实现">
-<meta name="twitter:description" content="常见的几种数组排序算法JS实现一些简单的排序js实现(小菜一只，大神勿喷)">
-<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/sort.jpg">
+<meta name="twitter:title" content="纯SVG实现进度圈">
+<meta name="twitter:description" content="进度圈是经典的仪表盘元素，可以将统计数据直观地展现为摘要视图。我们可以通过javascript+canvas+css，图片或者利用SVG实现一个进度圈。">
+<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/0139c1554283420000019ae91821e9.jpg">
     
 
     
@@ -215,17 +215,17 @@ var _hmt = _hmt || [];
 </aside>
 
             
-            <section id="main"><article id="常见的几种数组排序算法js实现-常见的几种数组排序算法JS实现" class="article article-type-常见的几种数组排序算法js实现" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-纯SVG实现进度圈" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
         
-            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/sort.jpg);">
+            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/0139c1554283420000019ae91821e9.jpg);">
                     <div class="article-title-wraper">
                         
     
         <h1 class="article-title" itemprop="name">
-            常见的几种数组排序算法JS实现
+            纯SVG实现进度圈
         </h1>
     
 
@@ -234,19 +234,14 @@ var _hmt = _hmt || [];
                                 
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/03/24/常见的几种数组排序算法JS实现/">
-            <time datetime="2016-03-24T12:09:29.000Z" itemprop="datePublished">2016-03-24</time>
+        <a href="/2016/09/09/纯SVG实现进度圈/">
+            <time datetime="2016-09-09T06:28:00.000Z" itemprop="datePublished">2016-09-09</time>
         </a>
     </div>
 
 
                                 
                                 
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/算法/">算法</a>
-    </div>
-
                             </div>
                             
                     </div>
@@ -256,24 +251,33 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>常见的几种数组排序算法JS实现<br>一些简单的排序js实现(小菜一只，大神勿喷)<br><a id="more"></a></p>
-<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
-<p>　从给定的数据中，随机抽出一项，这项的左边放所有比它小的，右边放比它大的，然后再分别这两边执行上述操作，采用的是递归的思想，总结出来就是　实现一层，分别给两边递归，设置好出口</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fastSort</span>(<span class="params">array,head,tail</span>)</span>&#123;</div><div class="line">    <span class="comment">//考虑到给每个分区操作的时候都是在原有的数组中进行操作的，所以这里head,tail来确定分片的位置</span></div><div class="line">    <span class="comment">/*生成随机项*/</span></div><div class="line">    <span class="keyword">var</span> randomnum = <span class="built_in">Math</span>.floor(ranDom(head,tail));</div><div class="line">    <span class="keyword">var</span> random = array[randomnum];</div><div class="line">    <span class="comment">/*将小于random的项放置在其左边  策略就是通过一个临时的数组来储存分好区的结果，再到原数组中替换*/</span></div><div class="line">    <span class="keyword">var</span> arrayTemp = [];</div><div class="line">    <span class="keyword">var</span> unshiftHead = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = head;i &lt;= tail;i++)&#123;</div><div class="line">      <span class="keyword">if</span>(array[i]&lt;random)&#123;</div><div class="line">        arrayTemp.unshift(array[i]);</div><div class="line">        unshiftHead++;</div><div class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(array[i]&gt;random)&#123;</div><div class="line">        arrayTemp.push(array[i]);</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/*当它等于的时候放哪，这里我想选择放到队列的前面，也就是从unshift后的第一个位置放置*/</span></div><div class="line">      <span class="keyword">if</span>(array[i]===random)&#123;</div><div class="line">        arrayTemp.splice(unshiftHead,<span class="number">0</span>,array[i]);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*将对应项覆盖原来的记录*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j = head , u=<span class="number">0</span>;j &lt;= tail;j++,u++)&#123;</div><div class="line">      array.splice(j,<span class="number">1</span>,arrayTemp[u]);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*寻找中间项所在的index*/</span></div><div class="line">    <span class="keyword">var</span> nowIndex = array.indexOf(random);</div><div class="line"></div><div class="line">    <span class="comment">/*设置出口，当要放进去的片段只有2项的时候就可以收工了*/</span></div><div class="line">    <span class="keyword">if</span>(arrayTemp.length &lt;= <span class="number">2</span>)&#123;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*递归，同时应用其左右两个区域*/</span></div><div class="line">    fastSort(array,head,nowIndex);</div><div class="line">    fastSort(array,nowIndex+<span class="number">1</span>,tail);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><blockquote>
-<p>思想就是在已经排好序的数组中插入到相应的位置，以从小到大排序为例，扫描已经排好序的片段的每一项，如大于，则继续往后，直到他小于一项时，将其插入到这项的前面</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*start根据已排列好的项数决定*/</span></div><div class="line">    <span class="keyword">var</span> start=<span class="number">1</span>;</div><div class="line">    <span class="comment">/*按顺序，每一项检查已排列好的序列*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=start; i&lt;array.length; start++,i++)&#123;</div><div class="line">      <span class="comment">/*跟已排好序的序列做对比，并插入到合适的位置*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>; j&lt;start; j++)&#123;</div><div class="line">        <span class="comment">/*小于或者等于时（我们是升序）插入到该项前面*/</span></div><div class="line">        <span class="keyword">if</span>(array[i]&lt;=array[j])&#123;</div><div class="line">          <span class="built_in">console</span>.log(array[i]+<span class="string">' '</span>+array[j]);</div><div class="line">          array.splice(j,<span class="number">0</span>,array[i]);</div><div class="line">          <span class="comment">/*删除原有项*/</span></div><div class="line">          array.splice(i+<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><blockquote>
-<p>故名思意 ，就是一个个冒泡到最前端或者最后端，主要是通过两两依次比较，以升序为例，如果前一项比后一项大则交换顺序，一直比到最后一对</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*给每个未确定的位置做循环*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> unfix=array.length<span class="number">-1</span>; unfix&gt;<span class="number">0</span>; unfix--)&#123;</div><div class="line">      <span class="comment">/*给进度做个记录，比到未确定位置*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;unfix;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(array[i]&gt;array[i+<span class="number">1</span>])&#123;</div><div class="line">          <span class="keyword">var</span> temp = array[i];</div><div class="line">          array.splice(i,<span class="number">1</span>,array[i+<span class="number">1</span>]);</div><div class="line">          array.splice(i+<span class="number">1</span>,<span class="number">1</span>,temp);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><blockquote>
-<p>将当前未确定块的min或者max取出来插到最前面或者后面</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*给每个插入后的未确定的范围循环，初始是从0开始*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> unfixed=<span class="number">0</span>; unfixed&lt;array.length; unfixed++)&#123;</div><div class="line">      <span class="comment">/*设置当前范围的最小值和其索引*/</span></div><div class="line">      <span class="keyword">var</span> min = array[unfixed];</div><div class="line">      <span class="keyword">var</span> minIndex = unfixed;</div><div class="line">      <span class="comment">/*在该范围内选出最小值*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=unfixed+<span class="number">1</span>; j&lt;array.length; j++)&#123;</div><div class="line">        <span class="keyword">if</span>(min&gt;array[j])&#123;</div><div class="line">          min = array[j];</div><div class="line">          minIndex = j;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/*将最小值插入到unfixed，并且把它所在的原有项替换成*/</span></div><div class="line">      array.splice(unfixed,<span class="number">0</span>,min);</div><div class="line">      array.splice(minIndex+<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p><strong>总结一下，实现思想是很简单的,难点在于如何创造思想，还有就是个人的测试能力，和编程习惯，做注释其实不是仅仅为了别人看得更方便，而是自己思路的记录，有些人编着编着容易断片，注释起到了很好的引导作用</strong></p>
+            <p>进度圈是经典的仪表盘元素，可以将统计数据直观地展现为摘要视图。我们可以通过javascript+canvas+css，图片或者利用SVG实现一个进度圈。<br><a id="more"></a></p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="ozXrQo" data-default-tab="result" data-user="airen" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/airen/pen/ozXrQo/" target="_blank" rel="external">SVG Progress Circle - Sass</a> by Airen (<a href="http://codepen.io/airen" target="_blank" rel="external">@airen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>使用SVG实现一个进度圈并没有想象中那么难，我们先从基本的开始：</p>
+<h2 id="1-创建背景"><a href="#1-创建背景" class="headerlink" title="1.-创建背景"></a>1.-创建背景</h2><p>首先，创建一个半径为90px的圆形，然后使用cx,cy设置圆心在svg中的位置。<br>我在这里还添加了一些样式属性，比如3px的灰色轮廓。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"240"</span> <span class="attr">height</span>=<span class="string">"240"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">r</span>=<span class="string">"90"</span> <span class="attr">cy</span>=<span class="string">"120"</span> <span class="attr">cx</span>=<span class="string">"120"</span> <span class="attr">stroke-width</span>=<span class="string">"3"</span> <span class="attr">stroke</span>=<span class="string">"#333"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg_progress_circle_one-2cdca423d001954fc8e26e1d5ea036a10e49a5fd868dd1ac8a5aa239adf8a310.png" alt="背景圆效果图"></p>
+<h2 id="2-添加进度效果"><a href="#2-添加进度效果" class="headerlink" title="2.-添加进度效果"></a>2.-添加进度效果</h2><p>现在需要在刚才的背景上再添加一个表示进度的圆形：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"240"</span> <span class="attr">height</span>=<span class="string">"240"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">id</span>=<span class="string">"backdrop"</span> <span class="attr">r</span>=<span class="string">"90"</span> <span class="attr">cy</span>=<span class="string">"120"</span> <span class="attr">cx</span>=<span class="string">"120"</span> <span class="attr">stroke-width</span>=<span class="string">"3"</span> <span class="attr">stroke</span>=<span class="string">"#333"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">id</span>=<span class="string">"progress"</span> <span class="attr">r</span>=<span class="string">"90"</span> <span class="attr">cy</span>=<span class="string">"120"</span> <span class="attr">cx</span>=<span class="string">"120"</span> <span class="attr">stroke-width</span>=<span class="string">"4"</span> <span class="attr">stroke</span>=<span class="string">"red"</span>  <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>好了，现在我们已经画好了需要的两个圆，可以想象，<code>100%</code>可以用一个全红的圆形表示，但是，如果我想表示一个具体的百分比呢？</p>
+<h2 id="3-stroke-dasharray与stroke-dashoffset"><a href="#3-stroke-dasharray与stroke-dashoffset" class="headerlink" title="3.-stroke-dasharray与stroke-dashoffset"></a>3.-stroke-dasharray与stroke-dashoffset</h2><p>接下来需要书写CSS，SVG提供了<code>stroke-dasharray</code>和<code>stroke-dashoffset</code>两个属性，它们可以将刚才的圆形的轮廓变成虚线。如果两个属性都被设置成<code>100px</code>,会有下面的效果：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#progress</span> &#123;</div><div class="line">  <span class="attribute">stroke-dasharray</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">stroke-dashoffset</span>: <span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg_progress_circle_two-708d73461b8369cfd094134c16c19728943323b2f27b8a2b6f99ab7b961a5a1b.png" alt="应用``stroke-dasharray`` ``stroke-dashoffset``"></p>
+<p>然后，我们可以使用<code>keyframe</code>为其添加一些动画：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#progress</span> &#123;</div><div class="line">  <span class="attribute">stroke-dasharray</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">stroke-dashoffset</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">animation</span>: progressAnimation <span class="number">600ms</span> linear infinite;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">keyframes</span> progressAnimation &#123;</div><div class="line">  <span class="selector-tag">from</span> &#123;</div><div class="line">    <span class="attribute">stroke-dashoffset</span>: <span class="number">100px</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="selector-tag">to</span> &#123;</div><div class="line">    <span class="attribute">stroke-dashoffset</span>: <span class="number">300px</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/svg_progress_offset-b0718614b0f1de9df0207d4612f3992aef19740977256943c9fcfadd5c2e91fe.gif" alt="添加动画后的效果"></p>
+<h2 id="4-实现具体百分比的表示"><a href="#4-实现具体百分比的表示" class="headerlink" title="4.-实现具体百分比的表示"></a>4.-实现具体百分比的表示</h2><p>到目前为止，动画效果，进度圆和背景圆都已经完成，最后的工作就是使用<code>stroke-dashoffset stroke-dasharray</code>将给定的百分比表示出来，这可能会涉及到数学方面的知识。</p>
+<p>在这里我们使用Sass完成这项工作，当然，利用javascript+CSSDOM这个组合也可以实现我们想要的效果(可以处理浮点数的情况)。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$radius</span>: <span class="number">90</span>;</div><div class="line"><span class="variable">$percent</span>: <span class="number">83</span>;</div><div class="line"></div><div class="line"><span class="variable">$circumference</span>: (pi() * (<span class="number">2</span> * <span class="variable">$radius</span>));</div><div class="line"><span class="variable">$stroke_percentage</span>: <span class="variable">$circumference</span> - ((<span class="variable">$percent</span> / <span class="number">100</span>) * <span class="variable">$circumference</span>);</div><div class="line"></div><div class="line"><span class="selector-id">#progress</span> &#123;</div><div class="line">  stroke-dasharray: <span class="variable">$circumference</span>;</div><div class="line">  stroke-dashoffset: <span class="variable">$circumference</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#progress</span> &#123;</div><div class="line">    <span class="attribute">animation</span>: progressAnimation <span class="number">1600ms</span> linear <span class="number">500ms</span> forwards;</div><div class="line">    <span class="attribute">transition</span>: stroke-dasharray <span class="number">400ms</span> linear;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@keyframes progressAnimation &#123;</div><div class="line">  to &#123;</div><div class="line">    stroke-dashoffset: <span class="variable">$stroke_percentage</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>首先，我们设置了一些需要用到的变量，<code>$radius</code>(圆的半径)，<code>percent</code>(需要展示的百分比)，<code>$circumference</code>(圆的周长)。</p>
+<p>接下来，对<code>$circumference</code>做减法算出<code>stroke-dashoffset</code>的值。</p>
+<p>如果你尝试运行这个例子，会发现圆的进度条会以3点钟方向为起点，为了修正这个问题，我们需要将整个SVG 逆时针旋转<code>90°</code></p>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>我添加了一些其它的效果，这些效果多少也都会涉及一些数学知识。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="ALvYLR" data-default-tab="result" data-user="airen" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/airen/pen/ALvYLR/" target="_blank" rel="external">SVG Progress Circle - Sass</a> by Airen (<a href="http://codepen.io/airen" target="_blank" rel="external">@airen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>如果你有任何的问题，可以在文章下面留言。另外，在前面示例的基础上采用一些JavaScript代码来处理进度条百分比的效果：</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="ozXrJp" data-default-tab="result" data-user="airen" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/airen/pen/ozXrJp/" target="_blank" rel="external">SVG Progress Circle JS</a> by Airen (<a href="http://codepen.io/airen" target="_blank" rel="external">@airen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
 
         
         </div>
@@ -284,7 +288,7 @@ var _hmt = _hmt || [];
 
 </div>
 
-    <a data-url="http://jabbla.github.io/2016/03/24/常见的几种数组排序算法JS实现/" data-id="cis4o2f4m000jmoup2kbr8qhw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://jabbla.github.io/2016/09/09/纯SVG实现进度圈/" data-id="cisvduq7200006kupi0l71sir" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -352,7 +356,7 @@ var _hmt = _hmt || [];
 
             
     
-        <a href="http://jabbla.github.io/2016/03/24/常见的几种数组排序算法JS实现/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2016/03/24/常见的几种数组排序算法JS实现/">评论</a>
+        <a href="http://jabbla.github.io/2016/09/09/纯SVG实现进度圈/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2016/09/09/纯SVG实现进度圈/">评论</a>
     
 
         </footer>
@@ -361,19 +365,10 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/05/10/Hexo常用指令/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    Hexo常用指令
-                
-            </div>
-        </a>
     
-    
-        <a href="/2016/03/22/我所理解的JS执行环境和作用域链/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/09/06/SVG元素上的transform/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">我所理解的JS执行环境和作用域链</div>
+            <div class="article-nav-title">SVG元素上的transform</div>
         </a>
     
 </nav>
@@ -387,7 +382,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/03/24/常见的几种数组排序算法JS实现/" data-title="常见的几种数组排序算法JS实现" data-url="http://jabbla.github.io/2016/03/24/常见的几种数组排序算法JS实现/"></div>
+    <div class="ds-thread" data-thread-key="2016/09/09/纯SVG实现进度圈/" data-title="纯SVG实现进度圈" data-url="http://jabbla.github.io/2016/09/09/纯SVG实现进度圈/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
