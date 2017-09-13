@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title> Canvas 知识体系简单总结 | Gloria</title>
+    <title>ScriptText Webpack Plugin使用说明 | Gloria</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="知识点零零散散，一个上午整理了一下，内容不多,方便记忆。本文不是教程，如需教程移步 MDN Canvas教程本文原创，如需转载，请注明出处">
+    <meta name="description" content="写了个自动生成script标签的Webpack插件，用着比较顺手">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" Canvas 知识体系简单总结">
-<meta property="og:url" content="http://jabbla.github.io/2016/08/04/Canvas-知识体系简单总结/index.html">
+<meta property="og:title" content="ScriptText Webpack Plugin使用说明">
+<meta property="og:url" content="http://jabbla.github.io/2017/09/13/ScriptText-Webpack-Plugin使用说明/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="知识点零零散散，一个上午整理了一下，内容不多,方便记忆。本文不是教程，如需教程移步 MDN Canvas教程本文原创，如需转载，请注明出处">
-<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas.jpg">
-<meta property="og:updated_time" content="2016-08-20T12:39:31.897Z">
+<meta property="og:description" content="写了个自动生成script标签的Webpack插件，用着比较顺手">
+<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/webpack.jpg">
+<meta property="og:updated_time" content="2017-09-13T13:38:53.674Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" Canvas 知识体系简单总结">
-<meta name="twitter:description" content="知识点零零散散，一个上午整理了一下，内容不多,方便记忆。本文不是教程，如需教程移步 MDN Canvas教程本文原创，如需转载，请注明出处">
-<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas.jpg">
+<meta name="twitter:title" content="ScriptText Webpack Plugin使用说明">
+<meta name="twitter:description" content="写了个自动生成script标签的Webpack插件，用着比较顺手">
+<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/image/blog/webpack.jpg">
     
 
     
@@ -215,17 +215,17 @@ var _hmt = _hmt || [];
 </aside>
 
             
-            <section id="main"><article id="canvas 知识体系简单总结-Canvas-知识体系简单总结" class="article article-type-canvas 知识体系简单总结" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-ScriptText-Webpack-Plugin使用说明" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
         
-            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/canvas.jpg);">
+            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/image/blog/webpack.jpg);">
                     <div class="article-title-wraper">
                         
     
         <h1 class="article-title" itemprop="name">
-             Canvas 知识体系简单总结
+            ScriptText Webpack Plugin使用说明
         </h1>
     
 
@@ -234,22 +234,17 @@ var _hmt = _hmt || [];
                                 
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/08/04/Canvas-知识体系简单总结/">
-            <time datetime="2016-08-04T07:09:00.000Z" itemprop="datePublished">2016-08-04</time>
+        <a href="/2017/09/13/ScriptText-Webpack-Plugin使用说明/">
+            <time datetime="2017-09-13T13:30:00.000Z" itemprop="datePublished">2017-09-13</time>
         </a>
     </div>
 
 
                                 
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/学习/">学习</a>
-    </div>
-
                                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/canvas/">canvas</a>, <a class="tag-link" href="/tags/html5/">html5</a>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/webpack/">webpack</a>
     </div>
 
                             </div>
@@ -261,18 +256,56 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>知识点零零散散，一个上午整理了一下，内容不多,方便记忆。<br>本文不是教程，如需教程移步 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial" target="_blank" rel="external">MDN Canvas教程</a><br>本文原创，如需转载，请注明出处<br><a id="more"></a></p>
-<h2 id="Canvas-能干什么"><a href="#Canvas-能干什么" class="headerlink" title="Canvas 能干什么"></a>Canvas 能干什么</h2><p>个人把它分为以下几点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">一个画板，能绘制复杂的图形，并应用各种样式。</div><div class="line">能在画板中放置图片，并可操作图片的尺寸和每个像素。</div><div class="line">鼠标事件能够访问到画板中的相应区域。</div><div class="line">能把画板中的图画，转换为DataURL的形式。</div></pre></td></tr></table></figure></p>
-<h2 id="体系概览"><a href="#体系概览" class="headerlink" title="体系概览"></a>体系概览</h2><p><img src="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas/Canvas%E4%BD%93%E7%B3%BB%E6%A6%82%E8%A7%88.png" alt="Canvas体系概览"></p>
-<p> <strong>把Canvas想象成一个画板</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">一个绘制状态，可类比画图工具中的工具栏</div><div class="line">绘图元素，包括简单的图形，线条，复杂的组合，和图片</div><div class="line">绘制模式，比如画板中的图形存在绘制的先后顺序，而存在重叠部分，该如何显示存在重叠的图形，这是绘制模式要解决的问题</div><div class="line">裁切路径，只让画板的部分可见</div><div class="line">像素操作，操作ImageData的像素，画板的一部分</div><div class="line">区域访问，鼠标事件能够获取到所在的区域</div></pre></td></tr></table></figure></p>
-<h2 id="绘制元素"><a href="#绘制元素" class="headerlink" title="绘制元素"></a>绘制元素</h2><p><img src="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas/%E7%BB%98%E5%9B%BE%E5%85%83%E7%B4%A0.png" alt="绘制元素"></p>
-<p> <strong>需要说明的是image的类型</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">HTMLImageElement</div><div class="line">HTMLVideoElement</div><div class="line">HTMLCanvasElement</div><div class="line">ImageBitmap</div></pre></td></tr></table></figure></p>
-<h2 id="绘制状态"><a href="#绘制状态" class="headerlink" title="绘制状态"></a>绘制状态</h2><p><img src="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas/%E7%BB%98%E5%88%B6%E7%8A%B6%E6%80%81.png" alt="绘制状态"></p>
-<p>  <strong>需说明的是，一个canvas只有一组绘制状态</strong></p>
-<h2 id="区域访问"><a href="#区域访问" class="headerlink" title="区域访问"></a>区域访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">addHitRegion(&#123;id:&apos;abc&apos;&#125;)</div><div class="line">鼠标事件能够获取到所在的区域</div></pre></td></tr></table></figure>
-<h2 id="绘制模式"><a href="#绘制模式" class="headerlink" title="绘制模式"></a>绘制模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">globalCompositeOperation</div><div class="line">比如画板中的图形存在绘制的先后顺序，而存在重叠部分，该如何显示存在重叠的图形，这是绘制模式要解决的问题</div></pre></td></tr></table></figure>
-<h2 id="裁剪路径"><a href="#裁剪路径" class="headerlink" title="裁剪路径"></a>裁剪路径</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">clip()</div><div class="line">只让画板的部分可见</div></pre></td></tr></table></figure>
-<h2 id="像素操作"><a href="#像素操作" class="headerlink" title="像素操作"></a>像素操作</h2><p><img src="http://oc3wui92y.bkt.clouddn.com/image/blog/canvas/%E5%83%8F%E7%B4%A0%E6%93%8D%E4%BD%9C.png" alt="像素操作"></p>
+            <p>写了个自动生成script标签的Webpack插件，用着比较顺手<br><a id="more"></a></p>
+<h1 id="ScriptText-Webpack-Plugin"><a href="#ScriptText-Webpack-Plugin" class="headerlink" title="ScriptText Webpack Plugin"></a>ScriptText Webpack Plugin</h1><p><img src="https://img.shields.io/badge/language-node.js-orange.svg" alt="language"><br><a href="https://badge.fury.io/js/scripttext-webpack-plugin" target="_blank" rel="external"><img src="https://badge.fury.io/js/scripttext-webpack-plugin.svg" alt="npm version"></a><br><img src="https://travis-ci.org/jabbla/ScriptTextWebpackPlugin.svg?branch=master" alt="travis"></p>
+<p><a href="https://nodei.co/npm/scripttext-webpack-plugin/" target="_blank" rel="external"><img src="https://nodei.co/npm/scripttext-webpack-plugin.png" alt="NPM"></a></p>
+<p>Webpack插件，用来自动生成script标签</p>
+<p>应用场景：在html文件中自动添加webpack打包后的script引用</p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install scripttext-webpack-plugin --save-dev</div></pre></td></tr></table></figure>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>该插件会自动将位置标记替换为引用目标chunk的script标签</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> ScriptTextPlugin = <span class="built_in">require</span>(<span class="string">'scripttext-webpack-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    entry: &#123;</div><div class="line">        page1: <span class="string">'./src/page1/js/index.js'</span></div><div class="line">    &#125;,</div><div class="line">    output: &#123;</div><div class="line">        filename: <span class="string">'[name]/js/index.[chunkhash:10].js'</span>,</div><div class="line">        path: path.resolve(__dirname, <span class="string">'./dist'</span>)</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        <span class="keyword">new</span> ScriptTextPlugin(option)</div><div class="line">    ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="option"><a href="#option" class="headerlink" title="option"></a>option</h4><blockquote>
+<p>插件配置对象</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="keyword">default</span>: &#123;&#125;,            <span class="comment">//默认选项</span></div><div class="line">    config: [configItems]   <span class="comment">//config数组   </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="default"><a href="#default" class="headerlink" title="default"></a>default</h4><blockquote>
+<p>默认配置，与configItem对应，基于deep assign</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*configItem*/</span></div><div class="line">&#123;</div><div class="line">    source: &#123;</div><div class="line">        filename: <span class="string">'index.html'</span>,</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*default*/</span></div><div class="line">&#123;</div><div class="line">    pageName: <span class="string">'index1'</span>,</div><div class="line">    source: &#123;</div><div class="line">        path: p2</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*result configItem*/</span></div><div class="line">&#123;</div><div class="line">    pageName: <span class="string">'index1'</span>,</div><div class="line">    source: &#123;</div><div class="line">        filename: <span class="string">'index.html'</span>,</div><div class="line">        path: p2</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="configItem"><a href="#configItem" class="headerlink" title="configItem"></a>configItem</h4><blockquote>
+<p>option.config数组项</p>
+</blockquote>
+<h5 id="configItem各属性含义"><a href="#configItem各属性含义" class="headerlink" title="configItem各属性含义"></a>configItem各属性含义</h5><ol>
+<li>source：用来配置源文件的名称及路径</li>
+<li>output: 用来配置生成后的文件及路径</li>
+<li>pageName: 用来设置[pageName]代表的字符串</li>
+<li>chunks: 配置引用的各个chunk</li>
+<li>script: 插入生成的script的相关规则</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    pageName: <span class="string">'page1'</span>,      <span class="comment">//页面名称，在所有的path和filename中可以用[pageName]代替</span></div><div class="line">    source: &#123;&#125;,</div><div class="line">    output: &#123;&#125;,</div><div class="line">    chunks: [chunk],</div><div class="line">    script: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="pageName"><a href="#pageName" class="headerlink" title="pageName"></a>pageName</h4><blockquote>
+<p>用来设置[pageName]代表的字符串</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">有效范围</div><div class="line">source.filename source.path</div><div class="line">output.filename output.path</div><div class="line">chunk.path</div></pre></td></tr></table></figure>
+<h4 id="source"><a href="#source" class="headerlink" title="source"></a>source</h4><blockquote>
+<p>用来配置源文件的名称及路径，路径为绝对路径</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    filename: <span class="string">'index.html'</span>,</div><div class="line">    path: path.resolve(__dirname, <span class="string">'./src/[pageName]/'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="output"><a href="#output" class="headerlink" title="output"></a>output</h4><blockquote>
+<p>用来配置生成后的文件及路径，绝对路径</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    filename: <span class="string">'index.html'</span>,</div><div class="line">    path: path.resolve(__dirname, <span class="string">'./dist/[pageName]/'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="chunk"><a href="#chunk" class="headerlink" title="chunk"></a>chunk</h4><blockquote>
+<p>配置要生成script标签的chunk，其中path会原样输出</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    name: <span class="string">'page1'</span>,          <span class="comment">//entry配置中的chunkName</span></div><div class="line">    path: <span class="string">'./[pageName]/js'</span> <span class="comment">//生成的script中路径</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="script"><a href="#script" class="headerlink" title="script"></a>script</h4><blockquote>
+<p>插入生成的script的相关规则</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    positionFlag: <span class="string">'!!!&#123;&#123;&#123;webpack-chunks&#125;&#125;&#125;'</span> <span class="comment">//位置标记</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>源文件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--positionFlag默认为&#123;&#123;&#123;webpack-chunks&#125;&#125;&#125;，如果没有该标志默认插在&lt;/body&gt;之前，如果没有&lt;/body&gt;标签则插在文件末尾--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>webpack.config.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> ScriptTextPlugin = <span class="built_in">require</span>(<span class="string">'scripttext-webpack-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    entry: &#123;</div><div class="line">        chunk1: <span class="string">'./src/js/chunk1.js'</span></div><div class="line">        chunk2: <span class="string">'./src/js/chunk2.js'</span></div><div class="line">    &#125;,</div><div class="line">    output: &#123;</div><div class="line">        filename: <span class="string">'[name].[chunkhash:10].js'</span>,</div><div class="line">        path: path.resolve(__dirname, <span class="string">'./dist'</span>)</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        <span class="keyword">new</span> ScriptTextPlugin(&#123;</div><div class="line">           <span class="keyword">default</span>: ...,</div><div class="line">            config: [</div><div class="line">                &#123;</div><div class="line">                    pageName: <span class="string">'page1'</span>,</div><div class="line">                    chunks: [</div><div class="line">                        &#123;name: <span class="string">'chunk1'</span>, path: <span class="string">'./[pageName]/js'</span>&#125;,</div><div class="line">                        &#123;name: <span class="string">'chunk2'</span>, path: <span class="string">'./[pageName]/js'</span>&#125;</div><div class="line">                    ]</div><div class="line">                &#125;</div><div class="line">            ]</div><div class="line">        &#125;)</div><div class="line">    ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>生成的文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang="en"&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset="UTF-8"&gt;</div><div class="line">    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div><div class="line">    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;</div><div class="line">    &lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;script src="page1\js\chunk1.947b04c5d3.js"&gt;&lt;/script&gt;</div><div class="line">&lt;script src="page1\js\chunk2.a7213u22d3.js"&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
 
         
         </div>
@@ -283,7 +316,7 @@ var _hmt = _hmt || [];
 
 </div>
 
-    <a data-url="http://jabbla.github.io/2016/08/04/Canvas-知识体系简单总结/" data-id="cj7j2uuse0002foup6ep6co3t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://jabbla.github.io/2017/09/13/ScriptText-Webpack-Plugin使用说明/" data-id="cj7j2uut0000hfoupf5thg309" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -351,7 +384,7 @@ var _hmt = _hmt || [];
 
             
     
-        <a href="http://jabbla.github.io/2016/08/04/Canvas-知识体系简单总结/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2016/08/04/Canvas-知识体系简单总结/">评论</a>
+        <a href="http://jabbla.github.io/2017/09/13/ScriptText-Webpack-Plugin使用说明/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2017/09/13/ScriptText-Webpack-Plugin使用说明/">评论</a>
     
 
         </footer>
@@ -360,19 +393,19 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/08/18/Sudoku数据处理流程/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/09/13/浅入Redux分享/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    Sudoku数据处理流程
+                    浅入Redux分享
                 
             </div>
         </a>
     
     
-        <a href="/2016/08/01/思考及强化实现/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/03/06/一些面试题的JS实现（二）/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Promise思考及强化实现</div>
+            <div class="article-nav-title">一些面试题的JS实现（二）</div>
         </a>
     
 </nav>
@@ -386,7 +419,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/08/04/Canvas-知识体系简单总结/" data-title=" Canvas 知识体系简单总结" data-url="http://jabbla.github.io/2016/08/04/Canvas-知识体系简单总结/"></div>
+    <div class="ds-thread" data-thread-key="2017/09/13/ScriptText-Webpack-Plugin使用说明/" data-title="ScriptText Webpack Plugin使用说明" data-url="http://jabbla.github.io/2017/09/13/ScriptText-Webpack-Plugin使用说明/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
