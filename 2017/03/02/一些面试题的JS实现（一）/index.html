@@ -1,267 +1,346 @@
 <!DOCTYPE html>
-<html lang=zh>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
-    <meta charset="utf-8">
-    
-    <title>一些面试题的JS实现（一） | Gloria</title>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript,算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些面试题的JS实现（一）">
 <meta property="og:url" content="http://jabbla.github.io/2017/03/02/一些面试题的JS实现（一）/index.html">
 <meta property="og:site_name" content="Gloria">
 <meta property="og:description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧">
-<meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/samuel-zeller-15627.jpg">
 <meta property="og:updated_time" content="2017-03-02T12:00:15.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些面试题的JS实现（一）">
 <meta name="twitter:description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧">
-<meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/samuel-zeller-15627.jpg">
-    
 
-    
 
-    
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
-
-    <link rel="stylesheet" href="/css/style.css">
-
-    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
-    
-    
-    
-    
-        <script>
-var _hmt = _hmt || [];
-(function() {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?07639b42133588f7c5683099b2c26dc2";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
 </script>
 
-    
+
+
+  <link rel="canonical" href="http://jabbla.github.io/2017/03/02/一些面试题的JS实现（一）/"/>
+
+
+
+
+
+  <title>一些面试题的JS实现（一） | Gloria</title>
+  
+
+
+
+
+
+
+
 
 </head>
 
-<body>
-    <div id="container">
-        <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="/" id="logo">
-                <i class="logo"></i>
-                <span class="site-title">Gloria</span>
-            </a>
-            <nav id="main-nav">
-                
-                    <a class="main-nav-link" href="/.">主页</a>
-                
-                    <a class="main-nav-link" href="/archives">全部文章</a>
-                
-                    <a class="main-nav-link" href="/categories/学习/">学习</a>
-                
-                    <a class="main-nav-link" href="/categories/开发/">开发</a>
-                
-                    <a class="main-nav-link" href="/categories/译文/">译文</a>
-                
-                    <a class="main-nav-link" href="/about">关于我</a>
-                
-            </nav>
-            
-                
-                <nav id="sub-nav">
-                    <div class="profile" id="profile-nav">
-                        <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.png" />
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                    </div>
-                </nav>
-            
-            <div id="search-form-wrap">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(未命名)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-        </div>
-    </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                
-                    <td><a class="main-nav-link" href="/.">主页</a></td>
-                
-                    <td><a class="main-nav-link" href="/archives">全部文章</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories/学习/">学习</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories/开发/">开发</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories/译文/">译文</a></td>
-                
-                    <td><a class="main-nav-link" href="/about">关于我</a></td>
-                
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
-    </div>
-
-                </td>
-            </tr>
-        </table>
-    </div>
-</header>
-
-        <div class="outer">
-            
-                
-
-<aside id="profile">
-    <div class="inner profile-inner">
-        <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.png" />
-            <h2 id="name">Gloria</h2>
-            <h3 id="title">FE  大学生</h3>
-            <span id="location"><i class="fa fa-map-marker"></i>changchun, China</span>
-            <a id="follow" target="_blank" href="https://github.com/jabbla">关注我</a>
-        </div>
-        <div class="article-info profile-block">
-            <div class="article-info-block">
-                18
-                <span>文章</span>
-            </div>
-            <div class="article-info-block">
-                17
-                <span>标签</span>
-            </div>
-        </div>
-        
-        <div class="profile-block social-links">
-            <table>
-                <tr>
-                    
-                    
-                    <td>
-                        <a href="https://github.com/jabbla" target="_blank" title="github" class=tooltip>
-                            <i class="fa fa-github"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="http://weibo.com/1783375687/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="weibo" class=tooltip>
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/./about/" target="_blank" title="weixin" class=tooltip>
-                            <i class="fa fa-weixin"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/./about/" target="_blank" title="qq" class=tooltip>
-                            <i class="fa fa-qq"></i>
-                        </a>
-                    </td>
-                    
-                </tr>
-            </table>
-        </div>
-        
-    </div>
-</aside>
-
-            
-            <section id="main"><article id="post-一些面试题的JS实现（一）" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header" style="background-image: url(http://oc3wui92y.bkt.clouddn.com/samuel-zeller-15627.jpg);">
-                    <div class="article-title-wraper">
-                        
+  
+  
     
-        <h1 class="article-title" itemprop="name">
-            一些面试题的JS实现（一）
-        </h1>
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
     
 
-                        
-                            <div class="article-meta">
-                                
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/03/02/一些面试题的JS实现（一）/">
-            <time datetime="2017-03-02T11:39:00.000Z" itemprop="datePublished">2017-03-02</time>
-        </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gloria</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">zxr's blog</p>
+      
+  </div>
 
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
-                                
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/学习/">学习</a>
-    </div>
+<nav class="site-nav">
+  
 
-                                
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/算法/">算法</a>
-    </div>
-
-                            </div>
-                            
-                    </div>
-                
-            </header>
+  
+    <ul id="menu" class="menu">
+      
         
-        <div class="article-entry" itemprop="articleBody">
-        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
             
-            <p>这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧<br><a id="more"></a></p>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jabbla.github.io/2017/03/02/一些面试题的JS实现（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zxr">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gloria">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一些面试题的JS实现（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-02T19:39:00+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧<br><a id="more"></a></p>
 <h2 id="1-实现一个单例模式"><a href="#1-实现一个单例模式" class="headerlink" title="1.实现一个单例模式"></a>1.实现一个单例模式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">single</span>(<span class="params">func</span>)</span>&#123;</div><div class="line">          <span class="keyword">var</span> instance;</div><div class="line">           <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">config</span>)</span>&#123;</div><div class="line">                  <span class="keyword">return</span> instance || <span class="keyword">new</span> func(config);</div><div class="line">           &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>主要就是使创建的对象始终保存在一个引用中，下次创建的时候如果引用不为空则使用引用的值</p>
 <h2 id="2-二维数组的查找"><a href="#2-二维数组的查找" class="headerlink" title="2.二维数组的查找"></a>2.二维数组的查找</h2><p><strong>题目：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</strong><br>1 2 8 9<br>2 4 9 12<br>4 7 10 13<br>6 8 11 15<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">array,num</span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> find = <span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">          <span class="keyword">if</span>(x&gt;array[<span class="number">0</span>].length<span class="number">-1</span> || y&gt;array.length<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">          <span class="keyword">var</span> value = array[x][y];</div><div class="line">          <span class="keyword">if</span>(value&lt;num)&#123;</div><div class="line">               <span class="keyword">return</span> find(x+<span class="number">1</span>,y) || find(x,y+<span class="number">1</span>);</div><div class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(value&gt;num)&#123;</div><div class="line">               <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(value===num)&#123;</div><div class="line">              <span class="keyword">return</span> &#123;x: x,y: y&#125; </div><div class="line">          &#125;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> find(<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -284,358 +363,385 @@ var _hmt = _hmt || [];
 <h2 id="9-调整数组顺序使奇数位于偶数前面"><a href="#9-调整数组顺序使奇数位于偶数前面" class="headerlink" title="9.调整数组顺序使奇数位于偶数前面"></a>9.调整数组顺序使奇数位于偶数前面</h2><p><strong>题目： 输入一个整数数组，实现一个函数来调整该书组的数字顺序，使得所有技术位于数组的前半部分，所有偶数位于数组的后半部分。</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> left = <span class="number">0</span>,</div><div class="line">        right = array.length<span class="number">-1</span>,</div><div class="line">        temp,itemL,itemR;</div><div class="line">    <span class="keyword">while</span>(right&gt;=left)&#123;</div><div class="line">        <span class="built_in">console</span>.log(right,left);</div><div class="line">        itemL = array[left]%<span class="number">2</span>;</div><div class="line">        itemR = array[right]%<span class="number">2</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(itemL===<span class="number">0</span>) left++;</div><div class="line">        <span class="keyword">if</span>(itemR!==<span class="number">0</span>) right--;</div><div class="line">        <span class="keyword">if</span>(itemL &amp;&amp; !itemR) &#123;</div><div class="line">            temp = array[left];</div><div class="line">            array[left] = array[right];</div><div class="line">            array[right] = temp;</div><div class="line">            left++;</div><div class="line">            right--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> array;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>思路： 根据题目的特点，可以轻易发现，只要每次判断数组两端的值即可，所以拿两个变量分别记录数组的首部和尾部，然后分情况讨论首尾是否移动</p>
 
-        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
         </div>
-        <footer class="article-footer">
-            <div class="share-container">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/09/纯SVG实现进度圈/" rel="next" title="纯SVG实现进度圈">
+                <i class="fa fa-chevron-left"></i> 纯SVG实现进度圈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/06/一些面试题的JS实现（二）/" rel="prev" title="一些面试题的JS实现（二）">
+                一些面试题的JS实现（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zxr</p>
+              <p class="site-description motion-element" itemprop="description">sadad</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-实现一个单例模式"><span class="nav-number">1.</span> <span class="nav-text">1.实现一个单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-二维数组的查找"><span class="nav-number">2.</span> <span class="nav-text">2.二维数组的查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-重建二叉树"><span class="nav-number">3.</span> <span class="nav-text">3.重建二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-用两个栈实现队列"><span class="nav-number">4.</span> <span class="nav-text">4.用两个栈实现队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-旋转数组的最小数字"><span class="nav-number">5.</span> <span class="nav-text">5.旋转数组的最小数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-斐波那契数列"><span class="nav-number">6.</span> <span class="nav-text">6.斐波那契数列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-二进制中1的个数"><span class="nav-number">7.</span> <span class="nav-text">7.二进制中1的个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-数值的整数次方"><span class="nav-number">8.</span> <span class="nav-text">8.数值的整数次方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-调整数组顺序使奇数位于偶数前面"><span class="nav-number">9.</span> <span class="nav-text">9.调整数组顺序使奇数位于偶数前面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zxr</span>
+
+  
 </div>
 
-    <a data-url="http://jabbla.github.io/2017/03/02/一些面试题的JS实现（一）/" data-id="cj7j2uut0000jfoupzn2d04m2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
 
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-            if ($('#' + id).length) {
-                box = $('#' + id);
 
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
 
-              box = $(html);
+  <span class="post-meta-divider">|</span>
 
-              $('body').append(box);
-            }
 
-            $('.article-share-box.on').hide();
 
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
 
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
 
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
-            
-    
-        <a href="http://jabbla.github.io/2017/03/02/一些面试题的JS实现（一）/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://jabbla.github.io/2017/03/02/一些面试题的JS实现（一）/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2017/03/06/一些面试题的JS实现（二）/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    一些面试题的JS实现（二）
-                
-            </div>
-        </a>
-    
-    
-        <a href="/2016/09/09/纯SVG实现进度圈/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">纯SVG实现进度圈</div>
-        </a>
-    
-</nav>
-
-
-    
-</article>
-
-
-    
-    <section id="comments">
-    
-        
-    <div class="ds-thread" data-thread-key="2017/03/02/一些面试题的JS实现（一）/" data-title="一些面试题的JS实现（一）" data-url="http://jabbla.github.io/2017/03/02/一些面试题的JS实现（一）/"></div>
-    <style>
-        #ds-thread #ds-reset .ds-textarea-wrapper {
-            background: none;
-        }
-        #ds-reset .ds-avatar img {
-            box-shadow: none;
-        }
-        #ds-reset .ds-gradient-bg {
-            background: #f7f7f7;
-        }
-        #ds-thread #ds-reset li.ds-tab a {
-            border-radius: 3px;
-        }
-        #ds-thread #ds-reset .ds-post-button {
-            color: white;
-            border: none;
-            box-shadow: none;
-            background: #d32;
-            text-shadow: none;
-            font-weight: normal;
-            font-family: 'Microsoft Yahei';
-        }
-        #ds-thread #ds-reset .ds-post-button:hover {
-            color: white;
-            background: #DE594C;
-        }
-        #ds-thread #ds-reset .ds-post-button:active {
-            background: #d32;
-        }
-        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
-            color: white;
-            background: #d32;
-            box-shadow: none;
-            text-shadow: none;
-            font-weight: normal;
-        }
-    </style>
-
-    
-    </section>
-
-</section>
-            
-                <aside id="sidebar">
-   
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">最新文章</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/09/13/浅入Redux分享/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/redux.jpg)" alt="浅入Redux分享" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/组内分享/">组内分享</a></p>
-                            <p class="item-title"><a href="/2017/09/13/浅入Redux分享/" class="title">浅入Redux分享</a></p>
-                            <p class="item-date"><time datetime="2017-09-13T13:39:00.000Z" itemprop="datePublished">2017-09-13</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/09/13/ScriptText-Webpack-Plugin使用说明/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/blog/webpack.jpg)" alt="ScriptText Webpack Plugin使用说明" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/09/13/ScriptText-Webpack-Plugin使用说明/" class="title">ScriptText Webpack Plugin使用说明</a></p>
-                            <p class="item-date"><time datetime="2017-09-13T13:30:00.000Z" itemprop="datePublished">2017-09-13</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/03/06/一些面试题的JS实现（二）/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/samuel-zeller-15627.jpg)" alt="一些面试题的JS实现（二）" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
-                            <p class="item-title"><a href="/2017/03/06/一些面试题的JS实现（二）/" class="title">一些面试题的JS实现（二）</a></p>
-                            <p class="item-date"><time datetime="2017-03-06T11:42:00.000Z" itemprop="datePublished">2017-03-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/03/02/一些面试题的JS实现（一）/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/samuel-zeller-15627.jpg)" alt="一些面试题的JS实现（一）" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/学习/">学习</a></p>
-                            <p class="item-title"><a href="/2017/03/02/一些面试题的JS实现（一）/" class="title">一些面试题的JS实现（一）</a></p>
-                            <p class="item-date"><time datetime="2017-03-02T11:39:00.000Z" itemprop="datePublished">2017-03-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/09/09/纯SVG实现进度圈/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/0139c1554283420000019ae91821e9.jpg)" alt="纯SVG实现进度圈" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/译文/">译文</a></p>
-                            <p class="item-title"><a href="/2016/09/09/纯SVG实现进度圈/" class="title">纯SVG实现进度圈</a></p>
-                            <p class="item-date"><time datetime="2016-09-09T06:28:00.000Z" itemprop="datePublished">2016-09-09</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">分类</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组内分享/">组内分享</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/译文/">译文</a><span class="category-list-count">6</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">标签</h3>
-        <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVG/">SVG</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sudoku/">Sudoku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redux/">redux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全栈/">全栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率工具/">效率工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">标签云</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/SVG/" style="font-size: 16.67px;">SVG</a> <a href="/tags/Sass/" style="font-size: 16.67px;">Sass</a> <a href="/tags/Sudoku/" style="font-size: 10px;">Sudoku</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/全栈/" style="font-size: 10px;">全栈</a> <a href="/tags/效率工具/" style="font-size: 10px;">效率工具</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">链接</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-    
-    <div id="toTop" class="fa fa-angle-up"></div>
-</aside>
-            
-        </div>
-        <footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            &copy; 2017 Zxr<br>
-            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
-        </div>
-    </div>
-</footer>
-        
-    
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:'jabbla2016'};
-    (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
 
 
 
-    
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
-    
 
 
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
 
-    </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
