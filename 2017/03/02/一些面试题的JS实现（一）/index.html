@@ -79,16 +79,19 @@
 
 
 
-<meta name="description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧">
+<meta name="description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧
+1.实现一个单例模式123456function single(func)&amp;#123;          var instance;           return function(config)&amp;#123;                  return instance || new func(confi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些面试题的JS实现（一）">
 <meta property="og:url" content="http://jabbla.github.io/2017/03/02/一些面试题的JS实现（一）/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧">
-<meta property="og:updated_time" content="2017-03-02T12:00:15.536Z">
+<meta property="og:description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧
+1.实现一个单例模式123456function single(func)&amp;#123;          var instance;           return function(config)&amp;#123;                  return instance || new func(confi">
+<meta property="og:updated_time" content="2017-10-22T07:24:07.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些面试题的JS实现（一）">
-<meta name="twitter:description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧">
+<meta name="twitter:description" content="这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧
+1.实现一个单例模式123456function single(func)&amp;#123;          var instance;           return function(config)&amp;#123;                  return instance || new func(confi">
 
 
 
@@ -340,7 +343,7 @@
       
 
       
-        <p>这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧<br><a id="more"></a></p>
+        <p>这些题目摘自《剑指offer》，会给出实现，思路，但是不会详细讲解，大家开动起脑筋吧</p>
 <h2 id="1-实现一个单例模式"><a href="#1-实现一个单例模式" class="headerlink" title="1.实现一个单例模式"></a>1.实现一个单例模式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">single</span>(<span class="params">func</span>)</span>&#123;</div><div class="line">          <span class="keyword">var</span> instance;</div><div class="line">           <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">config</span>)</span>&#123;</div><div class="line">                  <span class="keyword">return</span> instance || <span class="keyword">new</span> func(config);</div><div class="line">           &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>主要就是使创建的对象始终保存在一个引用中，下次创建的时候如果引用不为空则使用引用的值</p>
 <h2 id="2-二维数组的查找"><a href="#2-二维数组的查找" class="headerlink" title="2.二维数组的查找"></a>2.二维数组的查找</h2><p><strong>题目：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</strong><br>1 2 8 9<br>2 4 9 12<br>4 7 10 13<br>6 8 11 15<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">array,num</span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> find = <span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">          <span class="keyword">if</span>(x&gt;array[<span class="number">0</span>].length<span class="number">-1</span> || y&gt;array.length<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">          <span class="keyword">var</span> value = array[x][y];</div><div class="line">          <span class="keyword">if</span>(value&lt;num)&#123;</div><div class="line">               <span class="keyword">return</span> find(x+<span class="number">1</span>,y) || find(x,y+<span class="number">1</span>);</div><div class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(value&gt;num)&#123;</div><div class="line">               <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(value===num)&#123;</div><div class="line">              <span class="keyword">return</span> &#123;x: x,y: y&#125; </div><div class="line">          &#125;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> find(<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>

@@ -79,16 +79,19 @@
 
 
 
-<meta name="description" content="接着上一部分的面试题继续">
+<meta name="description" content="接着上一部分的面试题继续
+树的子结构题目： 输入两颗二叉树A和B，判断B是不是A的子结构。123456789function calc(tree1,tree2)&amp;#123;    if(!tree2) return true;    if(!tree1) return false;    if(tree1.value===tree2.value)&amp;#123;        return calc(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些面试题的JS实现（二）">
 <meta property="og:url" content="http://jabbla.github.io/2017/03/06/一些面试题的JS实现（二）/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="接着上一部分的面试题继续">
-<meta property="og:updated_time" content="2017-03-06T11:44:38.433Z">
+<meta property="og:description" content="接着上一部分的面试题继续
+树的子结构题目： 输入两颗二叉树A和B，判断B是不是A的子结构。123456789function calc(tree1,tree2)&amp;#123;    if(!tree2) return true;    if(!tree1) return false;    if(tree1.value===tree2.value)&amp;#123;        return calc(">
+<meta property="og:updated_time" content="2017-10-22T07:23:56.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些面试题的JS实现（二）">
-<meta name="twitter:description" content="接着上一部分的面试题继续">
+<meta name="twitter:description" content="接着上一部分的面试题继续
+树的子结构题目： 输入两颗二叉树A和B，判断B是不是A的子结构。123456789function calc(tree1,tree2)&amp;#123;    if(!tree2) return true;    if(!tree1) return false;    if(tree1.value===tree2.value)&amp;#123;        return calc(">
 
 
 
@@ -340,7 +343,7 @@
       
 
       
-        <p>接着上一部分的面试题继续<br><a id="more"></a></p>
+        <p>接着上一部分的面试题继续</p>
 <h2 id="树的子结构"><a href="#树的子结构" class="headerlink" title="树的子结构"></a>树的子结构</h2><p>题目： 输入两颗二叉树A和B，判断B是不是A的子结构。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span>(<span class="params">tree1,tree2</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(!tree2) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    <span class="keyword">if</span>(!tree1) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">if</span>(tree1.value===tree2.value)&#123;</div><div class="line">        <span class="keyword">return</span> calc(tree1.left,tree2.left) &amp;&amp; calc(tree1.right,tree2.right);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> calc(tree1.left,tree2) || calc(tree1.right,tree2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>思路： 自己假想一下如果让你判断一个结构是否是另一个结构的子结构，你会怎么做，放心，你会发现规律的；</p>
 <p>额外扩展题： 输入两个二叉树，找出它们的不同<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">diff</span>(<span class="params">tre1,tre2</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> diffs = [];</div><div class="line">    <span class="keyword">var</span> calc = <span class="function"><span class="keyword">function</span>(<span class="params">tree1,tree2</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(!tree1 &amp;&amp; !tree2) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span>(!tree1 || !tree2 || tree1.value!==tree2.value)&#123;</div><div class="line">            <span class="keyword">var</span> v1 = tree1 &amp;&amp; tree1.value,</div><div class="line">                v2 = tree2 &amp;&amp; tree2.value;</div><div class="line">            diffs.push([v1,v2]);</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(tree1.value===tree2.value)&#123;</div><div class="line">            calc(tree1.left,tree2.left);</div><div class="line">            calc(tree1.right,tree2.right);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    calc(tre1,tre2);</div><div class="line">    <span class="keyword">return</span> diffs;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
