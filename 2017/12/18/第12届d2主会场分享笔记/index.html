@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第一次参加D2，收获当然是有的，中了一支圆珠笔……只能眼睁睁地看着别人抱着键盘回去。不说了，还是大概地捋一下主会场的分享，先来一篇流水账吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第12届d2主会场分享笔记">
+<meta property="og:url" content="http://jabbla.github.io/2017/12/18/第12届d2主会场分享笔记/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="第一次参加D2，收获当然是有的，中了一支圆珠笔……只能眼睁睁地看着别人抱着键盘回去。不说了，还是大概地捋一下主会场的分享，先来一篇流水账吧。">
+<meta property="og:updated_time" content="2017-12-18T13:11:49.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第12届d2主会场分享笔记">
+<meta name="twitter:description" content="第一次参加D2，收获当然是有的，中了一支圆珠笔……只能眼睁睁地看着别人抱着键盘回去。不说了，还是大概地捋一下主会场的分享，先来一篇流水账吧。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jabbla.github.io/2017/12/18/第12届d2主会场分享笔记/"/>
+
+
+
+
+
+  <title>第12届d2主会场分享笔记 | Gloria</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gloria</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zxr's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jabbla.github.io/2017/12/18/第12届d2主会场分享笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gloria">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gloria">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第12届d2主会场分享笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T21:10:00+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第一次参加D2，收获当然是有的，中了一支圆珠笔……只能眼睁睁地看着别人抱着键盘回去。不说了，还是大概地捋一下主会场的分享，先来一篇流水账吧。<br><a id="more"></a></p>
+<h2 id="轻舟"><a href="#轻舟" class="headerlink" title="轻舟"></a>轻舟</h2><p>简单讲就是，用尽可能少的研发周期，获得更多的用户体验，把APP开发简单地分为5个步骤：</p>
+<ol>
+<li>初始化：云端一键配置，免去繁琐的手动搭建环境工作</li>
+<li>本地开发：使用轻舟的IDE，支持基于Weex和Rax的开发方式，提供了ui库，实现插件系统，达到灵活定制的目的，提供了一些使用频率较高内置插件</li>
+<li>打包：一键打包，提供相应的开发调试工具</li>
+<li>提交APP store</li>
+<li>更新</li>
+</ol>
+<h3 id="QA环节"><a href="#QA环节" class="headerlink" title="QA环节"></a>QA环节</h3><p>问：是否考虑支持RN<br>答：以后可能会提供支持，不过由于license的问题，暂时不会考虑。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>看上去很牛逼，不知道用起来怎么样，现场演示的时候出现了布局上的bug，还是比较明显的。</p>
+<h2 id="React同构解决方案-beidou"><a href="#React同构解决方案-beidou" class="headerlink" title="React同构解决方案(beidou)"></a>React同构解决方案(beidou)</h2><p>开场讲了一下SSR之于CSR，刚开始我还以为这就是嘉宾的”解决方案”，听到后面发现其实干货还是挺多的，除了SSR对比CSR的那些优势外，传言这个解决方案还通过采用下面这些策略将渲染性能提高了100倍：</p>
+<ol>
+<li>可定制SSR模块</li>
+<li>针对生产环境的优化</li>
+<li>使用Babel-preset对诸如const语句的优化</li>
+<li>定义可缓存模块</li>
+<li>升级react16，node8</li>
+</ol>
+<h3 id="QA环节-1"><a href="#QA环节-1" class="headerlink" title="QA环节"></a>QA环节</h3><p>其实没有什么印象深刻的提问。有一个是问router之间如何保存状态的，其实感觉提问者并没有搞清楚使用SSR的时机，貌似还在知乎上吐槽了嘉宾答非所问。</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>分享很棒，促使我想去了解beidou，不过有一些开发者还是得从提升自己水平的角度对待问题，而不是寄希望别人，自己水平不行并不是别人必须帮你的理由。</p>
+<h2 id="Microbenchmark-for-JS"><a href="#Microbenchmark-for-JS" class="headerlink" title="Microbenchmark for JS"></a>Microbenchmark for JS</h2><p>贺老是通过一个引子，循序渐进地引出目前benchMark.js当前存在的问题，最后抛出自己正在做针对这些优化的测试框架，具体：</p>
+<ol>
+<li>console.time 不稳定，需”提前准备”</li>
+<li>new Date().getTime和Date.now的精度问题，依赖外部日期</li>
+<li>performance.now()在Web上这种方案比较不错，精度达到5us且不依赖外部日期</li>
+<li>process.hrtime() Node端的api，有返回ns级别的精度，不过嘉宾表示怀疑</li>
+</ol>
+<p>终极的测试方案大概意思则是利用方差，置信区间等统计学方法提高测试结果的可信度</p>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p>贺老的ppt太扎眼，不过对一个问题的深挖精神真的是探为观止，忍不住蹦出一个词”极客”，而且非常符合这次D2的”匠心”。</p>
+<h2 id="从Web渲染到Web计算"><a href="#从Web渲染到Web计算" class="headerlink" title="从Web渲染到Web计算"></a>从Web渲染到Web计算</h2><p>嘉宾讲得比较快，主要就是介绍WebAR相关，自己对里面有些东西也只是稍微有点涉猎，算是外行，有以下几个印象比较深刻的点：</p>
+<ol>
+<li>webview向客户端发送图像的一些方法和其中的性能对比，偏向于使用异步的方式提升帧率。</li>
+<li>解决客户端计算结果和当前相机不同步的问题，避开了前端做跟踪计算的时掉帧严重的问题。</li>
+<li>尝试使用WebAssembly提高计算能力，实现了一个基于sobel的demo，看上去还算流畅。</li>
+</ol>
+<h3 id="QA环节-2"><a href="#QA环节-2" class="headerlink" title="QA环节"></a>QA环节</h3><p>这场没人提问，估计这个主题大部分在场前端没怎么听懂。</p>
+<h3 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h3><p>WebAssembly是个好东东，嗯。。不明觉厉。。</p>
+<h2 id="天猫超市-极致Mobile-Web"><a href="#天猫超市-极致Mobile-Web" class="headerlink" title="天猫超市 极致Mobile Web"></a>天猫超市 极致Mobile Web</h2><p>总体感觉就是对天猫超市交互上的缺陷做了一个总结，并给出了一些解决方案。最后安利了团队自己开发的原生组件库。</p>
+<p>问题和对应的解决方案：</p>
+<ol>
+<li>实现粗糙：制定静态和动态规范，使用视觉与最终完成的比对工具</li>
+<li>缺乏可靠性：预加载，利用sw+webPush实现提前更新，提供重试机制和统一异常提示，增加手势识别避免误操作</li>
+<li>操作体验差：提升响应速度，实时反馈…</li>
+<li>交互缺乏统一设计语言：统一设计语言</li>
+</ol>
+<h3 id="QA环节-3"><a href="#QA环节-3" class="headerlink" title="QA环节"></a>QA环节</h3><p>问：为什么不考虑使用weex或者RN？<br>答：1. 借助wk和u4内核体验接近native；2. 需要跨端解决方案；3. 阿里以广泛使用weex，需要探索一种差异化的道路。<br>其他两个，一个吐槽了一下猫超的交互。另外一个提问者貌似没有注意听分享，主要就是多页面切换时候状态保存的问题，嘉宾分享也有提及，这种情况uc做了内核层面的优化。</p>
+<h3 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h3><p>除了一些具体提升性能的解决方案，分享嘉宾建议在交互方面多借鉴native优点，追求对交互细节的打磨。</p>
+<h2 id="PWA-带来的极速离线APP"><a href="#PWA-带来的极速离线APP" class="headerlink" title="PWA 带来的极速离线APP"></a>PWA 带来的极速离线APP</h2><p>这场听得比较朦胧，虽然对worker比较熟悉，但是还没有实践过PWA</p>
+<p>1.serviceWorker的能力：<br>  a. 页面请求代理<br>  b. 接收后台push<br>  c. 管理离线Cache资源<br>  d. 新开或切到某个页面<br>这部分主要讲了实际开发中能遇到的坑点和sw的生命周期详解，坑点如严格同域，https，更新等问题。</p>
+<ol>
+<li>介绍了cacheStorage，和对缓存溢出情况的几种处理方式</li>
+<li>介绍了web push,提出sw模拟离线包概念，并与传统离线包进行了对比，看样子是完爆的赶脚</li>
+<li>开源计划：<br>a. 通过配置一键生成sw文件<br>b. 相关webpack plugin<br>c. 忘了…</li>
+</ol>
+<h3 id="QA环节-4"><a href="#QA环节-4" class="headerlink" title="QA环节"></a>QA环节</h3><p>这次是主会场提问最多的，不过貌似都是问的具体问题的解决方案，没有哪个提问是印象深刻的。</p>
+<h3 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h3><p>对PWA了解比较少，不过嘉宾台上比较稳。关于PWA，得抽时间做个小demo出来，体验一下SW，不然快跟不上节奏了？</p>
+<h2 id="支付宝无线效率工具建设"><a href="#支付宝无线效率工具建设" class="headerlink" title="支付宝无线效率工具建设"></a>支付宝无线效率工具建设</h2><p>这部分其实没怎么记，主要就是介绍了支付宝无线团队开发的的4个效率工具，还有嘉宾对这种工具开发的观点</p>
+<ol>
+<li>联动DNS，注册调试域名</li>
+<li>搭建IOS模拟器</li>
+<li>真机不插线调试</li>
+<li>AnyProxy</li>
+</ol>
+<h3 id="QA环节-5"><a href="#QA环节-5" class="headerlink" title="QA环节"></a>QA环节</h3><p>这场貌似没有人提问</p>
+<h3 id="总结-6"><a href="#总结-6" class="headerlink" title="总结"></a>总结</h3><p>这场分享，给我印象最深的不是这4个效率工具，因为类似的需求场景比较少。印象最深的是嘉宾提出的3个观点：</p>
+<ol>
+<li>走产品化道路：需要以产品的思维去开发，不然很难大范围使用。</li>
+<li>个人价值：业务无法满足自己的成就感，需寻找挑战，实现自我价值</li>
+<li>紧贴业务：提出了做工具最好与业务耦合，提高生产效率，不盲目追求开源</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/10/Regular基于属性映射的开发方式/" rel="next" title="Regular基于属性映射的开发方式">
+                <i class="fa fa-chevron-left"></i> Regular基于属性映射的开发方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Gloria" />
+            
+              <p class="site-author-name" itemprop="name">Gloria</p>
+              <p class="site-description motion-element" itemprop="description">FE Engineer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jabbla" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="gloria_n@yeah.net" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/zhu-xiao-ran-47-68" target="_blank" title="ZhiHu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#轻舟"><span class="nav-number">1.</span> <span class="nav-text">轻舟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QA环节"><span class="nav-number">1.1.</span> <span class="nav-text">QA环节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React同构解决方案-beidou"><span class="nav-number">2.</span> <span class="nav-text">React同构解决方案(beidou)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QA环节-1"><span class="nav-number">2.1.</span> <span class="nav-text">QA环节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">2.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Microbenchmark-for-JS"><span class="nav-number">3.</span> <span class="nav-text">Microbenchmark for JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-2"><span class="nav-number">3.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从Web渲染到Web计算"><span class="nav-number">4.</span> <span class="nav-text">从Web渲染到Web计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QA环节-2"><span class="nav-number">4.1.</span> <span class="nav-text">QA环节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-3"><span class="nav-number">4.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#天猫超市-极致Mobile-Web"><span class="nav-number">5.</span> <span class="nav-text">天猫超市 极致Mobile Web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QA环节-3"><span class="nav-number">5.1.</span> <span class="nav-text">QA环节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-4"><span class="nav-number">5.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWA-带来的极速离线APP"><span class="nav-number">6.</span> <span class="nav-text">PWA 带来的极速离线APP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QA环节-4"><span class="nav-number">6.1.</span> <span class="nav-text">QA环节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-5"><span class="nav-number">6.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支付宝无线效率工具建设"><span class="nav-number">7.</span> <span class="nav-text">支付宝无线效率工具建设</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QA环节-5"><span class="nav-number">7.1.</span> <span class="nav-text">QA环节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-6"><span class="nav-number">7.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gloria</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
