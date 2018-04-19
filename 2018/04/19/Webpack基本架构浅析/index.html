@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript,webpack,node.js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="文章webpack版本为3.6.0
+
+随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack基本架构浅析">
+<meta property="og:url" content="http://jabbla.github.io/2018/04/19/Webpack基本架构浅析/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="文章webpack版本为3.6.0
+
+随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/kt5ald3f2ukk2h58yt3qfy9d/BundleBuilder.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/btsl3o4z7kut3dho4b8ougm5/1-1.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/u3jr4l8dmmwfcmf1ff6ue5l1/1-1.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/zd9cqixgyd5uvc63pd8f41ug/1-3.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/ju4fluw2e578bi1zzldb2s4f/1-4.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/xkl7j4ggbyuzqcowqfdzvfgi/1-5.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/a4kmwmgoaffobhv9xq242bd9/2-1.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/k8m0ho1z4wsg5yarrdp10n93/2-2.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/ehtjihqoit240opsnmmpdmaf/2-3.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/bilclva2tz75wcxe6i5yyy24/2-4.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/iphdatgk752tsvup4kj2n3a8/2-5.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/gmmw617ukd7pbpko01fn7uuq/2-6.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/7vdcvdl8krqmg2n7nrfv6w51/2-7.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/oebz01o5n2or6cub43ssz1e2/2-8.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/9kj9t2hw336j0bpf30267s50/2-9.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/vykiykz0eiey3ftunaslizzx/3-1.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/s6oykfyb08v0yrf0om9c0p87/3-2.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/5sjlgwuhu95i5erozq7899bv/3-3.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/nuam8tovml28nae0f7z6qc2o/3-4.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/ooem7vsfpr2wo8jvrbl80anq/4-1.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/t7dvvffwjakcu4srcgifmsyi/4-2.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/py0rh7smgnop8664ttiyp7se/4-3.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/sorzzjgsjj31z9ikwxgety2j/4-4.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/ufrny9ad4mk68yp3lp9gi7or/4-5.JPG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/yw02ni37nfqum7sd750f0kuf/4-6.JPG">
+<meta property="og:updated_time" content="2018-04-19T13:39:42.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack基本架构浅析">
+<meta name="twitter:description" content="文章webpack版本为3.6.0
+
+随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
+<meta name="twitter:image" content="http://static.zybuluo.com/qonzon/kt5ald3f2ukk2h58yt3qfy9d/BundleBuilder.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jabbla.github.io/2018/04/19/Webpack基本架构浅析/"/>
+
+
+
+
+
+  <title>Webpack基本架构浅析 | Gloria</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gloria</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zxr's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jabbla.github.io/2018/04/19/Webpack基本架构浅析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gloria">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gloria">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Webpack基本架构浅析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T21:35:00+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术原创/" itemprop="url" rel="index">
+                    <span itemprop="name">技术原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>文章webpack版本为3.6.0</p>
+</blockquote>
+<p>随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。</p>
+<a id="more"></a>
+<p>我认为，突破这个瓶颈的关键就是学会深入理解优秀开源库背后的思路。有人可能会说，我用xxx已经很久了，能够熟练使用它解决各种棘手问题，对于它，我已经充分理解了。我想说的是，即便你对于它的使用已经达到了炉火纯青的程度，但是站在使用者角度理解再“深”能有多深呢，不过是坐井观天罢了。</p>
+<h2 id="为什么Webpack"><a href="#为什么Webpack" class="headerlink" title="为什么Webpack"></a>为什么Webpack</h2><p>目前为止，Webpack已经拥有39.9k的star，在前端代码打包器领域内应该算是无敌的存在了吧。Webpack强大的生态圈和丰富的解决方案使得我们在日常开发中很难逃脱它的魔爪。如果能学习到它背后的思路，对于技能树的完善和水平层次的提高应该是非常有好处的。</p>
+<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>如果要全面总结webpack的实现，估计写10篇文章都不一定够。为了更加清晰地get到webpack的设计思路，会隐去webpack的大部分功能实现。</p>
+<p>以实现简单的js模块打包功能为背景，文章分为4部分：</p>
+<ol>
+<li>BundleBuilder基本架构</li>
+<li>Webpack基本架构</li>
+<li>学到了些什么</li>
+</ol>
+<p>相信你在阅读完本文后会对Webpack的架构有个大概的了解，这应该会对你继续深入理解webpack其它功能的实现以及编写插件会有所帮助。</p>
+<h2 id="BundleBuilder基本架构"><a href="#BundleBuilder基本架构" class="headerlink" title="BundleBuilder基本架构"></a>BundleBuilder基本架构</h2><blockquote>
+<p>简单到不能再简单的js模块打包器</p>
+</blockquote>
+<h3 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h3><p><img src="http://static.zybuluo.com/qonzon/kt5ald3f2ukk2h58yt3qfy9d/BundleBuilder.JPG" alt="BundleBuilder.JPG-26.6kB"></p>
+<h3 id="BundleBuilder对象"><a href="#BundleBuilder对象" class="headerlink" title="BundleBuilder对象"></a>BundleBuilder对象</h3><ol>
+<li>BundleBuilder对象接收并处理外部配置</li>
+<li>根据配置选择不同的ModuleResolver</li>
+<li>使用ModuleResolver接收配置得到最终文件内容</li>
+<li>生成打包后的文件</li>
+</ol>
+<h3 id="ModuleResolver对象"><a href="#ModuleResolver对象" class="headerlink" title="ModuleResolver对象"></a>ModuleResolver对象</h3><ol>
+<li>接收从BundleBuilder传进的配置</li>
+<li>解析入口文件内容</li>
+<li>提取子模块路径，并递归地解析子模块</li>
+<li>将引用的模块路径替换为模块id最终生成模块文件</li>
+</ol>
+<h2 id="webpack基本架构"><a href="#webpack基本架构" class="headerlink" title="webpack基本架构"></a>webpack基本架构</h2><p>这个接下来依次讲解webpack中几个重要对象之间的关系，会以各自的视角描述几个重要的过程。当然，就单单这几个对象还不能完全地描述流程上的所有内容。</p>
+<h3 id="Tapable插件功能"><a href="#Tapable插件功能" class="headerlink" title="Tapable插件功能"></a>Tapable插件功能</h3><p>在正式介绍几个核心对象之前，你需要了解一下Tapable类。</p>
+<p>简单来说，Tapable为一个对象提供了插件功能。如果你用过<code>Vue.js</code>或者<code>React.js</code>之类的框架，Tapable就是为某个对象提供了相当于组件的生命周期功能，在外部你可以通过调用这些生命周期钩子监听该对象。</p>
+<p>当然，你还可以在外部手动触发对象的某个生命周期。</p>
+<p>如果你想详细了解Tapable的API可以<a href="http://blog.zxrcool.com/2017/10/22/Webpack%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">参考这里</a></p>
+<h3 id="Webpack主函数视角"><a href="#Webpack主函数视角" class="headerlink" title="Webpack主函数视角"></a>Webpack主函数视角</h3><blockquote>
+<p>最宏观的视角</p>
+</blockquote>
+<p><strong>1. 合并外部与默认配置</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/btsl3o4z7kut3dho4b8ougm5/1-1.PNG" alt="1-1.PNG-220.1kB"></p>
+<p><strong>2. 配置并创建compiler</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/u3jr4l8dmmwfcmf1ff6ue5l1/1-1.PNG" alt="1-1.PNG-125kB"></p>
+<p><strong>3. 在compiler启动前触发compiler上的若干生命周期</strong></p>
+<blockquote>
+<p>其中生命周期包括：environment，after-environment，entry-option，after-plugins，after-resolvers</p>
+</blockquote>
+<p><img src="http://static.zybuluo.com/qonzon/zd9cqixgyd5uvc63pd8f41ug/1-3.PNG" alt="1-3.PNG-122.2kB"></p>
+<p><strong>4. 启动compiler</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/ju4fluw2e578bi1zzldb2s4f/1-4.PNG" alt="1-4.PNG-107.2kB"></p>
+<p><strong>5. 将compiler运行后得到的状态信息打印出来</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/xkl7j4ggbyuzqcowqfdzvfgi/1-5.PNG" alt="1-5.PNG-201.8kB"></p>
+<h3 id="Compiler视角"><a href="#Compiler视角" class="headerlink" title="Compiler视角"></a>Compiler视角</h3><p><strong>1. 正式运行前依次触发before-run和run生命周期</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/a4kmwmgoaffobhv9xq242bd9/2-1.JPG" alt="2-1.JPG-17.1kB"></p>
+<p><strong>2. 创建params对象并触发before-compile生命周期</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/k8m0ho1z4wsg5yarrdp10n93/2-2.JPG" alt="2-2.JPG-16.2kB"></p>
+<p><strong>3. 触发compile生命周期并创建compilation对象</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/ehtjihqoit240opsnmmpdmaf/2-3.JPG" alt="2-3.JPG-17.6kB"></p>
+<p><strong>4. 触发this-compilation和compilation生命周期</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/bilclva2tz75wcxe6i5yyy24/2-4.JPG" alt="2-4.JPG-17.9kB"></p>
+<p><strong>5. 触发make生命周期并调用compilation.finish()</strong></p>
+<blockquote>
+<p>在make阶段调用了compilation.addEntry()，开始构建模块树，构建完毕后调用compilation.finish()，记录报错信息</p>
+</blockquote>
+<p><img src="http://static.zybuluo.com/qonzon/iphdatgk752tsvup4kj2n3a8/2-5.JPG" alt="2-5.JPG-20.6kB"></p>
+<p><strong>6. 调用compilation.seal()并触发after-compile生命周期</strong></p>
+<blockquote>
+<p>compilation在seal过程中做了很多工作，在compilation视角部分会讲到，现在只需知道seal过后compilation生成了assets对象以供compiler生成文件</p>
+</blockquote>
+<p><img src="http://static.zybuluo.com/qonzon/gmmw617ukd7pbpko01fn7uuq/2-6.JPG" alt="2-6.JPG-17.1kB"></p>
+<p><strong>7. 拿到assets并在生成每个assets对应的文件</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/7vdcvdl8krqmg2n7nrfv6w51/2-7.JPG" alt="2-7.JPG-22.2kB"></p>
+<p><strong>8. 将警告信息和文件大小信息合成为stats状态信息</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/oebz01o5n2or6cub43ssz1e2/2-8.JPG" alt="2-8.JPG-20kB"></p>
+<p><strong>9. 触发done生命周期并将stats状态信息交给webpack主函数</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/9kj9t2hw336j0bpf30267s50/2-9.JPG" alt="2-9.JPG-17.4kB"></p>
+<h3 id="Compilation构建模块树视角"><a href="#Compilation构建模块树视角" class="headerlink" title="Compilation构建模块树视角"></a>Compilation构建模块树视角</h3><blockquote>
+<p>当compiler命令compilation构建模块树之后compilation都做了些什么</p>
+</blockquote>
+<p><strong>1. 使用moduleFactory创建空module</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/vykiykz0eiey3ftunaslizzx/3-1.JPG" alt="3-1.JPG-16.6kB"></p>
+<p><strong>2. 命令module自行构建自身属性，比如依赖的子模块信息（dependency）</strong></p>
+<blockquote>
+<p>调用module.build()进行构建模块自身属性</p>
+</blockquote>
+<p><img src="http://static.zybuluo.com/qonzon/s6oykfyb08v0yrf0om9c0p87/3-2.JPG" alt="3-2.JPG-24.4kB"></p>
+<p><strong>3. 递归地重复1和2的操作，生成模块树</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/5sjlgwuhu95i5erozq7899bv/3-3.JPG" alt="3-3.JPG-18.8kB"></p>
+<p><strong>4. 将模块树记录到chunk中</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/nuam8tovml28nae0f7z6qc2o/3-4.JPG" alt="3-4.JPG-19.9kB"></p>
+<h3 id="Compilation的seal视角"><a href="#Compilation的seal视角" class="headerlink" title="Compilation的seal视角"></a>Compilation的seal视角</h3><p><strong>1. 配置chunk</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/ooem7vsfpr2wo8jvrbl80anq/4-1.JPG" alt="4-1.JPG-25.4kB"></p>
+<p><strong>2. 将所处模块树深度和引用顺序等信息记录在每个模块上</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/t7dvvffwjakcu4srcgifmsyi/4-2.JPG" alt="4-2.JPG-37.1kB"></p>
+<p><strong>3. 将所有模块按照引用顺序排序</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/py0rh7smgnop8664ttiyp7se/4-3.JPG" alt="4-3.JPG-27.5kB"></p>
+<p><strong>4. 触发optimize-module-order生命周期并按照排序后的模块顺序为每个模块编号</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/sorzzjgsjj31z9ikwxgety2j/4-4.JPG" alt="4-4.JPG-28.8kB"></p>
+<p><strong>5. 使用template对象渲染出chunk的内容source</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/ufrny9ad4mk68yp3lp9gi7or/4-5.JPG" alt="4-5.JPG-29.2kB"></p>
+<p><strong>6. 拿到source后生成asset，添加到assets中</strong></p>
+<p><img src="http://static.zybuluo.com/qonzon/yw02ni37nfqum7sd750f0kuf/4-6.JPG" alt="4-6.JPG-34.4kB"></p>
+<h2 id="学到了什么"><a href="#学到了什么" class="headerlink" title="学到了什么"></a>学到了什么</h2><h3 id="引入插件系统"><a href="#引入插件系统" class="headerlink" title="引入插件系统"></a>引入插件系统</h3><p><strong>1. 存在的问题</strong></p>
+<p>可以看到，BundleBuilder的架构中完全没有为第三方提供接口，后期当然也可以做成根据不同的外部配置项来实现一些有限的定制化需求。</p>
+<p>但是，这样为了保证功能的多样性，会频繁修改打包器的内部实现。这种做法会使得整个打包器的稳定性不足，最终非常臃肿，维护困难。</p>
+<p><strong>2. webpack的做法</strong></p>
+<p>反观webpack，它使用了一种非常聪明的方式。在保证基本架构的前提下，为主流程上的大部分对象都引入插件系统，使用者可以获取到这些对象，并且在一些特定的时候运行使用者提供的代码。这样一来，社区的逐渐壮大保证了功能的多样性，还把稳定性不足的风险留给用户去处理，提高了整个打包器的可维护性。</p>
+<h3 id="过程粒度细化"><a href="#过程粒度细化" class="headerlink" title="过程粒度细化"></a>过程粒度细化</h3><p><strong>1. 存在的问题</strong></p>
+<p>可以看到，BundleBuilder最终生成文件内容只有一个过程，就是调用ModuleResolver获取字符串。当这个过程中的某一阶段需要独立进行的时候，难免会要重构代码。如果内部实现是比较松耦合的，那么重构的工作会比较轻松，但是像现在BundleBuilder这种实现，显然要做的工作并不少。</p>
+<p><strong>2. webpack的做法</strong></p>
+<p>从接收配置到生成文件内容，从比较宏观的角度，分为构建，封装，生成文件内容，三部分。</p>
+<ol>
+<li>保证了内部修改的灵活性。如果要对过程再细分或者添加过程，实现起来会比较方便。</li>
+<li>丰富了对外扩展的接口。很显然，由于webpack引入了插件系统，细化过程粒度应该是必然选择，这样会有效地增加用户对整个打包过程的自定义能力。</li>
+<li>提升了代码的可维护性。当打包器在运行时出现了bug，粒度越小，越加方便定位问题。</li>
+</ol>
+<h3 id="更多类的抽象"><a href="#更多类的抽象" class="headerlink" title="更多类的抽象"></a>更多类的抽象</h3><p><strong>1. 存在的问题</strong></p>
+<p>在BundleBuilder中，对于每个模块仅仅是通过路径读取它的文件内容，然后分析其子模块的信息，最后生成处理后的模块内容。这些都是过程。如果后面迭代时需要在打包后输出一些log，如模块警告，模块路径等与模块相关的信息。以面向过程的编程方式当然也可以实现，但这样难免会增加实现难度，降低代码可读性。</p>
+<p><strong>2. webpack的做法</strong></p>
+<p>稍微搜索一下，不包括自带插件，webpack总共有200多个用<code>Class</code>声明的类。</p>
+<ol>
+<li>结构化的数据。创建一个类就意味着我们能统一很多有相同抽象含义的对象创建同样的属性，比如Module类，它可以记录很多与模块相关的信息。</li>
+<li>方便扩展不同种类的对象。比如模块类，可以通过继承的方式衍生出，普通js文件模块，css文件模块等等。</li>
+<li>多类意味着有承担不同职责的对象。明确的职责分工，比如compiler仅仅负责compilation的创建，文件的生成和信息状态的合成。ModuleFactory负责创建Module。一旦出了问题方便定位到责任人，降低了各个工作的耦合度。</li>
+<li>对象间的解耦。比如compilation和Module两个类，webpack其实也可以直接使用compilation来直接创建Module，但是一旦Module的种类增加，不可避免地需要在compilation中写一些条件语句，这样，创建Module这部分的代码会让本来就有很多事情要做的compilation变得更加庞大。所以webpack引入了ModuleFactory，compilation只需调用ModuleFactory来创建Module就好，创建部分的逻辑则被分布在了ModuleFactory中，将compilation与Module解耦，两者中一方发生变化，只需在ModuleFactory中增加逻辑即可。</li>
+</ol>
+<h2 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h2><p>由于webpack过于庞大，看源码的过程感觉是在修行。写这篇文章之初准备深入到一些技术细节，后来感觉意义不大。也尝试过列举在简单js模块打包流程上涉及到的默认插件，写出来像API手册，如果完全写完，体量可能都接近半本书了。最后，决定拿小学3年级画画水平，将最基本的架构关系画出来。</p>
+<p>最大的感受就是：当你真的准备设计一个库的时候，应该在实现之前充分列举可能的应用场景，将充分抽象出稳定的基本架构，然后将难办的部分，复杂度很高的部分，或者说定制化需求比较多的部分，采用开放插件的方式扔给使用者去解决。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/14/2018-4-14-杭州，阴/" rel="next" title="2018.4.14 杭州，阴">
+                <i class="fa fa-chevron-left"></i> 2018.4.14 杭州，阴
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Gloria" />
+            
+              <p class="site-author-name" itemprop="name">Gloria</p>
+              <p class="site-description motion-element" itemprop="description">FE Engineer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jabbla" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="gloria_n@yeah.net" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/zhu-xiao-ran-47-68" target="_blank" title="ZhiHu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么Webpack"><span class="nav-number">1.</span> <span class="nav-text">为什么Webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">2.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BundleBuilder基本架构"><span class="nav-number">3.</span> <span class="nav-text">BundleBuilder基本架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示意图"><span class="nav-number">3.1.</span> <span class="nav-text">示意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BundleBuilder对象"><span class="nav-number">3.2.</span> <span class="nav-text">BundleBuilder对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ModuleResolver对象"><span class="nav-number">3.3.</span> <span class="nav-text">ModuleResolver对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack基本架构"><span class="nav-number">4.</span> <span class="nav-text">webpack基本架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tapable插件功能"><span class="nav-number">4.1.</span> <span class="nav-text">Tapable插件功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack主函数视角"><span class="nav-number">4.2.</span> <span class="nav-text">Webpack主函数视角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compiler视角"><span class="nav-number">4.3.</span> <span class="nav-text">Compiler视角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compilation构建模块树视角"><span class="nav-number">4.4.</span> <span class="nav-text">Compilation构建模块树视角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compilation的seal视角"><span class="nav-number">4.5.</span> <span class="nav-text">Compilation的seal视角</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学到了什么"><span class="nav-number">5.</span> <span class="nav-text">学到了什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入插件系统"><span class="nav-number">5.1.</span> <span class="nav-text">引入插件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程粒度细化"><span class="nav-number">5.2.</span> <span class="nav-text">过程粒度细化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多类的抽象"><span class="nav-number">5.3.</span> <span class="nav-text">更多类的抽象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感受"><span class="nav-number">6.</span> <span class="nav-text">感受</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gloria</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
