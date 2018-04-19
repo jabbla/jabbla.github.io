@@ -114,7 +114,7 @@
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/sorzzjgsjj31z9ikwxgety2j/4-4.JPG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/ufrny9ad4mk68yp3lp9gi7or/4-5.JPG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/yw02ni37nfqum7sd750f0kuf/4-6.JPG">
-<meta property="og:updated_time" content="2018-04-19T13:39:42.202Z">
+<meta property="og:updated_time" content="2018-04-19T14:05:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webpack基本架构浅析">
 <meta name="twitter:description" content="文章webpack版本为3.6.0
@@ -404,10 +404,13 @@
 <li>将引用的模块路径替换为模块id最终生成模块文件</li>
 </ol>
 <h2 id="webpack基本架构"><a href="#webpack基本架构" class="headerlink" title="webpack基本架构"></a>webpack基本架构</h2><p>这个接下来依次讲解webpack中几个重要对象之间的关系，会以各自的视角描述几个重要的过程。当然，就单单这几个对象还不能完全地描述流程上的所有内容。</p>
-<h3 id="Tapable插件功能"><a href="#Tapable插件功能" class="headerlink" title="Tapable插件功能"></a>Tapable插件功能</h3><p>在正式介绍几个核心对象之前，你需要了解一下Tapable类。</p>
+<h3 id="Tapable插件功能"><a href="#Tapable插件功能" class="headerlink" title="Tapable插件功能"></a>Tapable插件功能</h3><blockquote>
+<p>webpack 4.0的插件系统已经完全重做并将Tapable更新到了1.0.0</p>
+</blockquote>
+<p>在正式介绍几个核心对象之前，你需要了解一下Tapable类。</p>
 <p>简单来说，Tapable为一个对象提供了插件功能。如果你用过<code>Vue.js</code>或者<code>React.js</code>之类的框架，Tapable就是为某个对象提供了相当于组件的生命周期功能，在外部你可以通过调用这些生命周期钩子监听该对象。</p>
 <p>当然，你还可以在外部手动触发对象的某个生命周期。</p>
-<p>如果你想详细了解Tapable的API可以<a href="http://blog.zxrcool.com/2017/10/22/Webpack%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">参考这里</a></p>
+<p>如果你想详细了解Tapable的API可以<a href="http://blog.zxrcool.com/2017/10/22/Webpack%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">参考这里</a>（文中版本为0.2.8）</p>
 <h3 id="Webpack主函数视角"><a href="#Webpack主函数视角" class="headerlink" title="Webpack主函数视角"></a>Webpack主函数视角</h3><blockquote>
 <p>最宏观的视角</p>
 </blockquote>
