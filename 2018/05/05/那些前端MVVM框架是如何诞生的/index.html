@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="不急，跟着文章的思路慢慢看起。。">
+<meta name="description" content="以下内容纯属扯淡，跟着文章思路慢慢看。。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="那些前端MVVM框架是如何诞生的">
 <meta property="og:url" content="http://jabbla.github.io/2018/05/05/那些前端MVVM框架是如何诞生的/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="不急，跟着文章的思路慢慢看起。。">
-<meta property="og:updated_time" content="2018-05-05T04:17:59.108Z">
+<meta property="og:description" content="以下内容纯属扯淡，跟着文章思路慢慢看。。">
+<meta property="og:updated_time" content="2018-05-05T05:14:29.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="那些前端MVVM框架是如何诞生的">
-<meta name="twitter:description" content="不急，跟着文章的思路慢慢看起。。">
+<meta name="twitter:description" content="以下内容纯属扯淡，跟着文章思路慢慢看。。">
 
 
 
@@ -340,7 +340,7 @@
       
 
       
-        <p>不急，跟着文章的思路慢慢看起。。<br><a id="more"></a></p>
+        <p>以下内容纯属扯淡，跟着文章思路慢慢看。。<br><a id="more"></a></p>
 <h2 id="刀耕火种时代"><a href="#刀耕火种时代" class="headerlink" title="刀耕火种时代"></a>刀耕火种时代</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"userInfo"</span>&gt;</span></div><div class="line">姓名:<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"name"</span>&gt;</span>Gloria<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">性别:<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"sex"</span>&gt;</span>男<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">职业:<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"job"</span>&gt;</span>前端工程师<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>有以上html片段，想将其中个人信息替换为<code>jabbla</code>的，我们的做法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'name'</span>).innerHTML = users.jabbla.name;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'sex'</span>).innerHTML = users.jabbla.sex;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'job'</span>).innerHTML = users.jabbla.job;</div></pre></td></tr></table></figure></p>
 <h3 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h3><p>仔细想一想，这种开发方式，在<code>users.jabbla</code>和对应的html结构中间，总感觉有一层膜，除了需要在模板里定义某个元素的<code>id</code>外，还要在js中经过<code>getDom</code>（获取dom元素）和<code>setDom</code>（设置dom元素）操作。</p>
