@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript,html," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="不急，跟着文章的思路慢慢看起。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="那些前端MVVM框架是如何诞生的">
+<meta property="og:url" content="http://jabbla.github.io/2018/05/05/那些前端MVVM框架是如何诞生的/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="不急，跟着文章的思路慢慢看起。。">
+<meta property="og:updated_time" content="2018-05-05T04:17:59.108Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="那些前端MVVM框架是如何诞生的">
+<meta name="twitter:description" content="不急，跟着文章的思路慢慢看起。。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jabbla.github.io/2018/05/05/那些前端MVVM框架是如何诞生的/"/>
+
+
+
+
+
+  <title>那些前端MVVM框架是如何诞生的 | Gloria</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gloria</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zxr's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jabbla.github.io/2018/05/05/那些前端MVVM框架是如何诞生的/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gloria">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gloria">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">那些前端MVVM框架是如何诞生的</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T12:16:00+08:00">
+                2018-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术原创/" itemprop="url" rel="index">
+                    <span itemprop="name">技术原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>不急，跟着文章的思路慢慢看起。。<br><a id="more"></a></p>
+<h2 id="刀耕火种时代"><a href="#刀耕火种时代" class="headerlink" title="刀耕火种时代"></a>刀耕火种时代</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"userInfo"</span>&gt;</span></div><div class="line">姓名:<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"name"</span>&gt;</span>Gloria<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">性别:<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"sex"</span>&gt;</span>男<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">职业:<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"job"</span>&gt;</span>前端工程师<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>有以上html片段，想将其中个人信息替换为<code>jabbla</code>的，我们的做法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'name'</span>).innerHTML = users.jabbla.name;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'sex'</span>).innerHTML = users.jabbla.sex;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'job'</span>).innerHTML = users.jabbla.job;</div></pre></td></tr></table></figure></p>
+<h3 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h3><p>仔细想一想，这种开发方式，在<code>users.jabbla</code>和对应的html结构中间，总感觉有一层膜，除了需要在模板里定义某个元素的<code>id</code>外，还要在js中经过<code>getDom</code>（获取dom元素）和<code>setDom</code>（设置dom元素）操作。</p>
+<p>有没有一种方法，可以帮助我们省去<code>getDom</code>和<code>setDom</code>，直接将<code>users.jabbla</code>和html结构对应起来。</p>
+<p>当然有，由于<code>innerHTML</code>这个属性，我们可以利用模板系统。</p>
+<h2 id="引入模板"><a href="#引入模板" class="headerlink" title="引入模板"></a>引入模板</h2><p>有了模板系统之后，我们可以写下这样的html片段：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"userInfoTemplate"</span>&gt;</span><span class="javascript"></span></div><div class="line">姓名:<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line">性别:<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;sex&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line">职业:<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;job&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>js中渲染模板，替换<code>userInfo</code>内容：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> userInfo = <span class="built_in">document</span>.getElementById(<span class="string">'userInfo'</span>);</div><div class="line"><span class="keyword">var</span> userInfoTemplate = <span class="built_in">document</span>.getElementById(<span class="string">'userInfoTemplate'</span>).innerHTML;</div><div class="line"></div><div class="line">userInfo.innerHTML = templateEngine.render(userInfoTemplate, users.jabbla);</div></pre></td></tr></table></figure></p>
+<p>使用这种开发方式，省去了上面<code>getDom</code>和<code>setDom</code>的过程，可以说是”一气呵成”。</p>
+<h3 id="存在的问题-1"><a href="#存在的问题-1" class="headerlink" title="存在的问题"></a>存在的问题</h3><p>现在我们只实现了初始的内容渲染，如果需要在点击某个按钮切换用户信息：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"userInfoTemplate"</span>&gt;</span><span class="xml"></span></div><div class="line">姓名:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">性别:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;sex&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">职业:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;job&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"nextUserBtn"</span>&gt;</span>下个用户<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>切换部分的逻辑：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nextUserBtn = <span class="built_in">document</span>.getElementById(<span class="string">'nextUserBtn'</span>);</div><div class="line"><span class="keyword">var</span> currentUser;</div><div class="line"></div><div class="line">nextUserBtn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    currentUser = users.Gloria;</div><div class="line">    userInfo.innerHTML = templateEngine.render(userInfoTemplate, currentUser);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>在这里，我们还是需要获取<code>nextUserBtn</code>元素，有没有不需要获取元素，在写<code>userInfoTemplate</code>的时候就指定好点击事件的方法呢？当然有，可以升级模板系统。</p>
+<h2 id="增强后的模板系统"><a href="#增强后的模板系统" class="headerlink" title="增强后的模板系统"></a>增强后的模板系统</h2><p>我们想要的效果：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"userInfoTemplate"</span>&gt;</span><span class="xml"></span></div><div class="line">姓名:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">性别:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;sex&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">职业:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;job&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">cilck</span>=<span class="string">&#123;nextUser()&#125;</span>&gt;</span>下个用户<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>js代码:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> currentUser = users.jabbla;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextUser</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    currentUser = users.Gloria;</div><div class="line">    userInfo.innerHTML = templateEngine.render(userInfoTemplate, currentUser);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h3><p>可以看到，我们现在可以将事件直接放在<code>userInfoTemplate</code>中，然后在js中直接写替换逻辑，但是这个是如何实现的呢？</p>
+<p>如果直接在html结构上绑定事件，事件处理函数无法获取到js中的作用域。所以换个思路，直接在html结构上绑定这个方式行不通。</p>
+<p>想要获取函数的作用域，必须在dom元素上绑定。只要能将<code>userInfoTemplate</code>中的html结构解析成DOM树，然后遍历元素上的属性获取事件处理函数标识，再进行绑定就可以了。</p>
+<p>于是在这一过程有很多种方案可以选择，但是思路都是先从<code>userInfoTemplate</code>生成一个类似Dom结构的<code>Tree</code>，再通过遍历<code>Tree</code>生成最终的<code>DomTree</code>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template --&gt; Tree --&gt; DomTree</div></pre></td></tr></table></figure></p>
+<p><strong>在这个阶段，现有轮子总体上可以分为以下3个派别：</strong></p>
+<ol>
+<li>特定的template语法，使用Parser解析出来的AST生成目标<code>DomTree</code>。</li>
+<li>模板语法使用html规范，借助<code>innerHTML</code>，让浏览器自己生成一个带有template字符串的<code>fakeDomTree</code>，通过<code>fakeDomTree</code>生成最终设置好的<code>DomTree</code>。</li>
+<li>直接将<code>userInfoTemplate</code>的内容写在js中，通过预处理的方式将模板字符串转换成声明<code>virtualDom</code>结构的js代码，最终使用完整的<code>virtualDom</code>生成<code>DomTree</code>。</li>
+</ol>
+<h3 id="各自特点"><a href="#各自特点" class="headerlink" title="各自特点"></a>各自特点</h3><ol>
+<li><p>生成<code>template</code>和<code>DomTree</code>中间结构的过程不依赖浏览器环境，支持丰富的模板语法，但是其中<code>Parser</code>是在浏览器环境中运行，会带来一些性能问题，理论上首屏渲染速度会比其它两种方式逊色一点。</p>
+</li>
+<li><p>直接利用浏览器构建<code>fakeDomTree</code>，可以说性能方面要比带<code>Parser</code>的方案好很多，理论上首屏渲染速度要比第1种好很多。但是这种方案强依赖于浏览器环境，而浏览器的不同实现是不稳定因素。</p>
+</li>
+<li><p>通过对模板语法的预处理，直接生成<code>virtualDom</code>结构声明的代码，理论上这种方案是3个方案中首屏渲染速度最快的，它没有从<code>template</code>到<code>virtualDom</code>这一过程。比较受争议的一点是：模板与js必须写在一起，有人说这种方案是图灵完备的，模板也具有完整的编程能力。又有声音说：html,css,js写在一起的这种方式是有悖潮流的。见仁见智吧。</p>
+</li>
+</ol>
+<h3 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h3><p>使用以上讨论的三种方式解决了事件绑定之后，还有一个问题需要我们亟待解决。</p>
+<p>可以看到，上面我们在点击<code>下一个用户</code>按钮之后，会再次调用<code>templateEngine.render()</code>这个方法。例子中还只是一个html片段，而现在我们写的template是整个页面的模板，如果再重新渲染整个页面，重复<code>template</code>到<code>DomTree</code>这一过程，一点非常小的改动都会导致整个页面的重新渲染，这样会使得页面性能会非常差。</p>
+<p>所以，我们需要局部更新功能。</p>
+<h2 id="引入局部更新"><a href="#引入局部更新" class="headerlink" title="引入局部更新"></a>引入局部更新</h2><p>什么是局部更新呢？</p>
+<p>为了避免整个页面重新渲染，使得在每次数据发生变化之后，只渲染那些需要更新的部分。</p>
+<h3 id="更新策略"><a href="#更新策略" class="headerlink" title="更新策略"></a>更新策略</h3><p>主流框架分为两个派别：</p>
+<ol>
+<li>将Dom元素与数据绑定在一起（创建观察者），当数据发生变化之后，执行更新Dom元素的操作</li>
+<li>对比数据变化前后生成的两个类Dom结构树，将改变映射到真实的Dom树</li>
+</ol>
+<p>对比：</p>
+<ol>
+<li>会创建很多观察者常驻内存，随着页面越来越复杂，性能可能是个问题</li>
+<li>每次改变都会重新生成新的Dom元素，所以数据与Dom元素无法形成绑定的关系。另外一点，diff算法的好坏直接决定了局部更新的性能。</li>
+</ol>
+<h3 id="检测变化"><a href="#检测变化" class="headerlink" title="检测变化"></a>检测变化</h3><p>三种方式：</p>
+<ol>
+<li>脏检查：遍历观察者，判断改变前后值是否发生变化，也就是脏检查，是主动的。</li>
+<li>懒检测：劫持数据的改变行为，每当行为发生，就做一次变化检测，是”懒”的，在需要的时候进行。</li>
+<li>不检测：不关心某个数据是否已经发生变化，只关心前后两个最后输出的类Dom结构的变化。</li>
+</ol>
+<h3 id="方案组合"><a href="#方案组合" class="headerlink" title="方案组合"></a>方案组合</h3><p>结合更新策略和检测变化的几种方案，得到局部更新的几个方案</p>
+<h4 id="基于脏检查"><a href="#基于脏检查" class="headerlink" title="基于脏检查"></a>基于脏检查</h4><ol>
+<li>脏检查+数据绑定Dom元素：在某些特定时刻，自动执行脏检查，更新脏数据对应的Dom元素。</li>
+<li>脏检查+类Dom结构树对比：脏检查检测的单位可以具体到每个属性，这样会让类Dom结构树对比的范围更加精确，diff算法的性能会更好。</li>
+</ol>
+<p>这两种方案都比较依赖脏检查，而脏检查最大的缺陷就是性能问题，它会遍历所有的观察者，不管这些观察者对应的数据是否已经发生变化。所以说这两种方案最大的缺陷就是脏检查的性能问题。</p>
+<h4 id="基于懒检测"><a href="#基于懒检测" class="headerlink" title="基于懒检测"></a>基于懒检测</h4><ol>
+<li>懒检测+数据绑定Dom元素：每次属性的改变行为发生，对比前后值，更新对应Dom元素</li>
+<li>懒检测+类Dom结构树对比：与脏检查的方案一致，都会让类Dom结构树的对比范围更加精确，会有比较好的diff算法效率。</li>
+</ol>
+<p>看上去这种基于懒检测的方案，比脏检查的方案好很多，其实未必，如果不进行特殊处理，频繁发生数据改变行为，Dom元素会频繁更新或者频繁运行diff算法。需要做的就是合并一定时期内的所有变化，统一进行Dom更新或者diff。</p>
+<h4 id="基于不检测"><a href="#基于不检测" class="headerlink" title="基于不检测"></a>基于不检测</h4><ol>
+<li>不检测+数据绑定Dom元素：这种方案显然行不通，不检测数据变化我怎么更新Dom。。</li>
+<li>不检测+类Dom结构树对比：手动触发数据集合到类Dom结构树的映射，对比前后两棵树，将改变映射到真实的Dom树。</li>
+</ol>
+<p>这种方案对比前两种优势是不会有很多观察者常驻内存，不会频繁触发更新。而在diff算法效率方面，前两种方案会比较有优势。</p>
+<h3 id="存在的问题-2"><a href="#存在的问题-2" class="headerlink" title="存在的问题"></a>存在的问题</h3><p>现在，貌似已经解决了大部分的问题，这么多方案已经足够解决局部更新这个问题了。</p>
+<p>又有个问题来了，如果我想复用下面这个结构片段，页面希望存在一个用户信息列表，怎么办？<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"userInfoTemplate"</span>&gt;</span><span class="xml"></span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">        姓名:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        性别:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;sex&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        职业:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;job&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">cilck</span>=<span class="string">&#123;nextUser()&#125;</span>&gt;</span>下个用户<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>按照之前的思路，我们想在构建视图的时候就需要声明式地复用这个<code>userInfoTemplate</code>片段。</p>
+<h2 id="引入可复用概念"><a href="#引入可复用概念" class="headerlink" title="引入可复用概念"></a>引入可复用概念</h2><p>声明式地复用，可以像下面这样:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">    用户信息列表：</div><div class="line">    <span class="tag">&lt;<span class="name">userInfo</span> <span class="attr">name</span>=<span class="string">&#123;gloria.name&#125;</span> <span class="attr">sex</span>=<span class="string">&#123;gloria.sex&#125;</span> <span class="attr">job</span>=<span class="string">&#123;gloria.job&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">userInfo</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">userInfo</span> <span class="attr">name</span>=<span class="string">&#123;jabbla.name&#125;</span> <span class="attr">sex</span>=<span class="string">&#123;jabbla.sex&#125;</span> <span class="attr">job</span>=<span class="string">&#123;jabbla.job&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">userInfo</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="如何实现-1"><a href="#如何实现-1" class="headerlink" title="如何实现"></a>如何实现</h3><p>在之前解决事件绑定的问题时候，已经分析出来了几种解决方案，现在回顾一下：</p>
+<blockquote>
+<ol>
+<li>特定的template语法，使用Parser解析出来的AST生成目标<code>DomTree</code>。</li>
+<li>模板语法使用html规范，借助<code>innerHTML</code>，让浏览器自己生成一个带有template字符串的<code>fakeDomTree</code>，通过<code>fakeDomTree</code>生成最终设置好的<code>DomTree</code>。</li>
+<li>直接将<code>userInfoTemplate</code>的内容写在js中，通过预处理的方式将模板字符串转换成声明<code>virtualDom</code>结构的js代码，最终使用完整的<code>virtualDom</code>生成<code>DomTree</code>。</li>
+</ol>
+</blockquote>
+<h4 id="基于前两种方案"><a href="#基于前两种方案" class="headerlink" title="基于前两种方案"></a>基于前两种方案</h4><p>从template到最终<code>DomTree</code>，中间会生成一个用于生成<code>DomTree</code>的类Dom结构，不管它是AST或者<code>fakeDomTree</code>，本质都是一样的，我们都需要walk（遍历）这个中间产物（下面的文章称之为”Tree”）。</p>
+<p>当编译器遇到类似<code>userInfoTemplate</code>这样的自定义标记时，就得将这个元素视为一个可复用单位（我们习惯称之为”组件”），然后在当前作用域内寻找该组件的定义。</p>
+<p><strong>组件定义</strong></p>
+<p>什么是组件定义呢？</p>
+<p>首先得包括几个基本元素，1. 模板，2. 状态，3. 事件处理函数 函数定义，可描述组件的这几个基本元素的可复用数据结构，目前来看只有”类”了，比如像下面这样:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//组件抽象</div><div class="line">class Component &#123;</div><div class="line">    constructor(options)&#123;</div><div class="line">        this._template = options.template;</div><div class="line">        this._state = options.state || &#123;&#125;;</div><div class="line">        ....</div><div class="line">    &#125;</div><div class="line">    ....</div><div class="line">&#125;</div><div class="line"></div><div class="line">//自定义组件</div><div class="line">class UserInfo extends Component &#123;</div><div class="line">    constructor(options)&#123;</div><div class="line">        super(options);</div><div class="line">        Object.assign(this._state, &#123;&#125;)</div><div class="line">    &#125;</div><div class="line">    nextUser()&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>像下面这样就是实例化一个组件：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">userInfo</span> <span class="attr">name</span>=<span class="string">&#123;gloria.name&#125;</span> <span class="attr">sex</span>=<span class="string">&#123;gloria.sex&#125;</span> <span class="attr">job</span>=<span class="string">&#123;gloria.job&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">userInfo</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在遍历<code>Tree</code>的时候，遇到自定义标记，然后将<code>gloria.name</code> <code>gloria.sex</code> <code>gloria.job</code>这三个值赋值给<code>options._state.name</code> <code>options._state.sex</code> <code>options._state.job</code>并且实例化这个组件，那我们如何确定<code>&lt;userInfo&gt;</code>这个标记就是<code>UserInfo</code>组件呢？接下来就要谈作用域了。</p>
+<p><strong>作用域</strong></p>
+<p>有人可能就问了，为什么还有个”作用域”呢？因为考虑到这里的组件标记会被重复定义，如果所有的组件公用一个命名空间，随着页面规模越来越大，很容易导致命名冲突的情况。</p>
+<p>在这里暂且划分为两类作用域，全局作用域和组件作用域。在全局作用域注册的组件在任何作用域内都能寻找到该组件的定义，而在组件作用域内注册的组件只能在该作用域内可以寻找到相关的组件定义。</p>
+<p>比如可以像下面这样注册组件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Component.register(<span class="string">'userInfo'</span>, UserInfo); <span class="comment">//全局注册UserInfo</span></div><div class="line">UserInfo.register(<span class="string">'xxx'</span>, SubComponent); <span class="comment">//在UserInfo组件作用域内注册SubComponent</span></div></pre></td></tr></table></figure></p>
+<h4 id="基于第3种方案"><a href="#基于第3种方案" class="headerlink" title="基于第3种方案"></a>基于第3种方案</h4><p>这种方案使得我们可以在js中写模板，而且这种模板具有完整的js编程能力，所以，除了上面说的”类”，我们还能使用”函数”达到复用目的。</p>
+<p>这种方案组件中的基本元素和上面的差不多，只不过少了”模板”，因为模板在预处理阶段已经被转化成了声明<code>virtualDom</code>的js代码。</p>
+<p>而且这种方案中没有”作用域”概念，作用域的出现只是为组件提供了一个命名空间，方便解析模板时找到相应的组件定义，现在”模板”已经写在了js中，就无需再额外定义组件名称寻找相关定义了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在引入组件化之后，其实还有很多情况需要考虑，比如生命周期，组件通信等等，不过这些都不在这篇文章的考虑范围。</p>
+<p>以上已经总结了前端MVVM框架中比较基础也是最重要的东西，其它功能其实都是围绕这些核心脉络来拓展的。</p>
+<p>从模板方案–&gt;局部更新–&gt;组件化，经历过这几个阶段的洗礼其实最后会呈现出各种方案组合，于是就看到了现在层出不穷的框架。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/html/" rel="tag"># html</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/Webpack基本架构浅析/" rel="next" title="Webpack基本架构浅析">
+                <i class="fa fa-chevron-left"></i> Webpack基本架构浅析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Gloria" />
+            
+              <p class="site-author-name" itemprop="name">Gloria</p>
+              <p class="site-description motion-element" itemprop="description">FE Engineer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jabbla" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="gloria_n@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zhu-xiao-ran-47-68" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/1783375687" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#刀耕火种时代"><span class="nav-number">1.</span> <span class="nav-text">刀耕火种时代</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存在的问题"><span class="nav-number">1.1.</span> <span class="nav-text">存在的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入模板"><span class="nav-number">2.</span> <span class="nav-text">引入模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存在的问题-1"><span class="nav-number">2.1.</span> <span class="nav-text">存在的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增强后的模板系统"><span class="nav-number">3.</span> <span class="nav-text">增强后的模板系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现"><span class="nav-number">3.1.</span> <span class="nav-text">如何实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各自特点"><span class="nav-number">3.2.</span> <span class="nav-text">各自特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存在问题"><span class="nav-number">3.3.</span> <span class="nav-text">存在问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入局部更新"><span class="nav-number">4.</span> <span class="nav-text">引入局部更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新策略"><span class="nav-number">4.1.</span> <span class="nav-text">更新策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测变化"><span class="nav-number">4.2.</span> <span class="nav-text">检测变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案组合"><span class="nav-number">4.3.</span> <span class="nav-text">方案组合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于脏检查"><span class="nav-number">4.3.1.</span> <span class="nav-text">基于脏检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于懒检测"><span class="nav-number">4.3.2.</span> <span class="nav-text">基于懒检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于不检测"><span class="nav-number">4.3.3.</span> <span class="nav-text">基于不检测</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存在的问题-2"><span class="nav-number">4.4.</span> <span class="nav-text">存在的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入可复用概念"><span class="nav-number">5.</span> <span class="nav-text">引入可复用概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现-1"><span class="nav-number">5.1.</span> <span class="nav-text">如何实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于前两种方案"><span class="nav-number">5.1.1.</span> <span class="nav-text">基于前两种方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于第3种方案"><span class="nav-number">5.1.2.</span> <span class="nav-text">基于第3种方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gloria</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
