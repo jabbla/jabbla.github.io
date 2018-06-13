@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript,redux,flux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。
+接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。
+为了深入了解Redux，不可避免地就要谈到它的前身Flux。
+概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="来聊一聊Redux的前身Flux">
+<meta property="og:url" content="http://jabbla.github.io/2018/06/13/来聊一聊Redux的前身Flux/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。
+接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。
+为了深入了解Redux，不可避免地就要谈到它的前身Flux。
+概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/t6uc5o2us9k3ldy9i44syy0j/MVVM%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5%E7%A4%BA%E6%84%8F%E5%9B%BE.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/15zctr4pdpshgemu5go4ay1x/%E7%A2%8E%E7%89%87%E5%8C%96.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/fkin1cgoa4oud3r0g18q61ty/%E9%BB%91%E4%BA%BA%E9%97%AE%E5%8F%B7.jpg">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/qxxts1oqeche9w5bi5tgudzr/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E6%B5%81.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/8s8mr2651b292lfjxmrp7p51/React%E6%95%B0%E6%8D%AE%E6%B5%81.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/juoxam1cqb3rhfqjzmtnmdzd/%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9F%BA%E7%A1%80.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/9v5cxlh316qvmi3i4001q2iq/%E5%8D%95dataBase%E6%9E%B6%E6%9E%84.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/e35ww3mc8b1o6sd7wc6uda39/%E5%A4%9AdataBase%E6%9E%B6%E6%9E%84.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/aqwpdky0xzy88opq4a0ws4lm/%E5%BC%95%E5%85%A5dispatcher.PNG">
+<meta property="og:image" content="http://static.zybuluo.com/qonzon/oztzrx1imja4mjxbwpbapfz6/store%E6%9E%B6%E6%9E%84.PNG">
+<meta property="og:updated_time" content="2018-06-13T13:57:03.934Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="来聊一聊Redux的前身Flux">
+<meta name="twitter:description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。
+接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。
+为了深入了解Redux，不可避免地就要谈到它的前身Flux。
+概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
+<meta name="twitter:image" content="http://static.zybuluo.com/qonzon/t6uc5o2us9k3ldy9i44syy0j/MVVM%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5%E7%A4%BA%E6%84%8F%E5%9B%BE.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jabbla.github.io/2018/06/13/来聊一聊Redux的前身Flux/"/>
+
+
+
+
+
+  <title>来聊一聊Redux的前身Flux | Gloria</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gloria</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zxr's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jabbla.github.io/2018/06/13/来聊一聊Redux的前身Flux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gloria">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gloria">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">来聊一聊Redux的前身Flux</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T21:50:00+08:00">
+                2018-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术原创/" itemprop="url" rel="index">
+                    <span itemprop="name">技术原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="来聊一聊Redux的前身Flux"><a href="#来聊一聊Redux的前身Flux" class="headerlink" title="来聊一聊Redux的前身Flux"></a>来聊一聊Redux的前身Flux</h1><p>现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。</p>
+<p>接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。</p>
+<p>为了深入了解Redux，不可避免地就要谈到它的前身Flux。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>在正文开始之前，我们需要理解在平时使用诸如<code>react.js</code>、<code>vue.js</code>这类MV*框架时接触到Model和View的概念。<br><img src="http://static.zybuluo.com/qonzon/t6uc5o2us9k3ldy9i44syy0j/MVVM%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5%E7%A4%BA%E6%84%8F%E5%9B%BE.PNG" alt="MVVM两个概念示意图.PNG-3.2kB"></p>
+<p>一个完整的交互流程就如上图所示。</p>
+<h3 id="View"><a href="#View" class="headerlink" title="View"></a>View</h3><p>View，意为“视图”，即最终在浏览器上看到的页面元素。</p>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>Model，翻译过来就是“模型”，那…什么是“模型”呢？且看下面这些代码。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.b&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.c&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.d&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上面这一段代码，其中<code>a.b</code>，<code>a.c</code>，<code>a.d</code>，每当这些属性值发生改变之后，框架会帮助我们生成View。</p>
+<p>如果我们再稍微宏观地看待这一问题，其实可以将<code>a</code>这个对象看作是data(数据)，而上面的html代码就是template(模板)，于是就有了这种理解：框架通过将<code>data</code>应用到<code>template</code>上，最后生成View，即<code>b</code>过程。</p>
+<p>在这里<code>data</code>+<code>template</code>就是<code>Model</code>，即所谓的“模型”，而通常意义上<code>template</code>是固定不变的，不会动态发生变化（这种动态变化已经被涵盖在模板本身的语法中了），所以大多数时候我们实现的各种交互就是改变<code>data</code>上属性的过程，示意图中的<code>a</code>过程。</p>
+<h2 id="目前开发中存在的问题"><a href="#目前开发中存在的问题" class="headerlink" title="目前开发中存在的问题"></a>目前开发中存在的问题</h2><p>ok，介绍完Model和View这两个概念后，在这两个抽象层面上谈一谈平时开发过程中遇到的问题。</p>
+<h3 id="碎片化修改"><a href="#碎片化修改" class="headerlink" title="碎片化修改"></a>碎片化修改</h3><p>我们实现交互基础就是操作Model，就拿上面那个代码片段来说，操作Model就是修改<code>a.b</code>，<code>a.c</code>，<code>a.d</code>，于是操作这个Model就会像下图所展示的情况一样，修改操作会“碎片化”地存在于整个组件文件的各个角落。<br><img src="http://static.zybuluo.com/qonzon/15zctr4pdpshgemu5go4ay1x/%E7%A2%8E%E7%89%87%E5%8C%96.PNG" alt="碎片化.PNG-24.6kB"></p>
+<p>对于没有严格开发模式限制的工程，一旦页面复杂度上去了，如果多人维护这样的代码，添加feature的时候可以说会比较刺激了。</p>
+<p>大多数情况的表情应该是这样的<br><img src="http://static.zybuluo.com/qonzon/fkin1cgoa4oud3r0g18q61ty/%E9%BB%91%E4%BA%BA%E9%97%AE%E5%8F%B7.jpg" alt="黑人问号.jpg-5.4kB"></p>
+<h3 id="数据流捉摸不定"><a href="#数据流捉摸不定" class="headerlink" title="数据流捉摸不定"></a>数据流捉摸不定</h3><p><strong>1. 复杂的数据流</strong></p>
+<p>先来谈一谈<code>vue.js</code>之类基于检测数据变动实现局部更新的MVVM框架，这些框架提供了多种多样影响Model的方式。</p>
+<p>看一看这张图<br><img src="http://static.zybuluo.com/qonzon/qxxts1oqeche9w5bi5tgudzr/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E6%B5%81.PNG" alt="复杂数据流.PNG-13.7kB"></p>
+<p>最明显的，跟上面那张图相比，增加了从View到Model这一个方向，这种改变自然是框架“双向数据绑定”所带来的。毫无疑问，这种feature给我们带来了一定的便利，但与此同时，它会使得最终生成View的逻辑更加扑朔迷离，为什么这么说呢？</p>
+<p>从另外一个角度看待这个问题，最终到View的不同路径数越多，就代表生成View的方式越多，生成View的方式越多，代码的可预测性就越弱。</p>
+<p>很显然，在这张图当中，以View做为终点的路径还是不少的，以碎片化修改为起点的路径有2条，以View作为起点的路径有3条。</p>
+<p>从路径数量这个角度，很直观地就可以得出这类框架设计对于代码可维护性是不友好的。</p>
+<p><strong>2. 简单的数据流</strong></p>
+<p>但是，也有一些框架数据流是比较简单的（比如React），改变Model的方式仅限于手动调用setState，或者View触发setState，在代码的predicatable（可预测性）方面有比较大的优势。<br><img src="http://static.zybuluo.com/qonzon/8s8mr2651b292lfjxmrp7p51/React%E6%95%B0%E6%8D%AE%E6%B5%81.PNG" alt="React数据流.PNG-12.3kB"></p>
+<p>OK，以上这些与这次的主题有什么关系呢？</p>
+<h2 id="Flux"><a href="#Flux" class="headerlink" title="Flux"></a>Flux</h2><p>上面已经谈到了现在MV*框架中存在的问题，比如vue，react等都仅仅是视图层框架，也就是说，它们只负责渲染View，而对于Model的变化没有统一的管理方案。</p>
+<p>Flux的出现其实就是为了管理Model的变化，使得应用的可伸缩性，和代码的可预测性更强。</p>
+<h3 id="单向数据流基础"><a href="#单向数据流基础" class="headerlink" title="单向数据流基础"></a>单向数据流基础</h3><p>Flux其实就是在React单向数据流的基础上做了一层对Model的管理，那就看一看它是如何借鉴的。<br><img src="http://static.zybuluo.com/qonzon/juoxam1cqb3rhfqjzmtnmdzd/%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9F%BA%E7%A1%80.PNG" alt="单向数据流基础.PNG-17.9kB"></p>
+<p>相比其它框架设计，最大的不同之处就是：React没有<code>View--&gt;Model</code>这个方向。就拿上面复杂数据流方案来说，以View为起点的数据流路径就可以减少两条，保证了最终生成View的逻辑是相对清晰的。</p>
+<h3 id="如何看待Flux架构"><a href="#如何看待Flux架构" class="headerlink" title="如何看待Flux架构"></a>如何看待Flux架构</h3><p>Flux其实提供了一整套Model修改模式。这种模式的初衷，在我看来，就是为了提高代码的可预测性，再通俗一点就是，当你看到了一段代码时，让你更清晰地知道它会做什么。</p>
+<p>为什么这么说呢？我们在维护工程时无外乎就是扮演两个角色：使用者和定义者。而往往我们在代码中确很少体现这两种角色抽象，最多也只是在文档和代码规范层面，任你玩出花来，也很难做到比较高的通用性。</p>
+<p>再具体一点，Flux将使用者和定义者的抽象引入了Model的修改过程。类似Clent-Service架构，如果使用者（客户端）想要修改数据库，必须通过调用定义者（服务端）提供的接口实现。</p>
+<p><strong>1. 请求</strong></p>
+<p>在Flux中，request（请求）等价于action，触发一个action相当调用一次接口，action的type字段相当于接口地址，其它字段相当于payLoad（请求参数）。</p>
+<p>action应该是一个对象：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    type: <span class="string">'delete-todo'</span>,   <span class="comment">//接口地址</span></div><div class="line">    todoID: <span class="string">'1234'</span>      <span class="comment">//payLoad</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>既然将action当作了request，那么我们应该如何实现server（服务器）呢？</p>
+<p><strong>2. 路由</strong></p>
+<p>就像Clent-Service中一样，server接收请求并将不同的请求映射为相应的数据库修改操作。将server中接收请求的部分称为router（路由）。</p>
+<p>一个router应该长这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> router = (<span class="function"><span class="keyword">function</span> <span class="title">router</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> dataBase = &#123;todos: []&#125;; <span class="comment">//模拟数据库的对象</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">request</span>)</span>&#123;</div><div class="line">        <span class="keyword">switch</span>(request.type)&#123;</div><div class="line">            <span class="keyword">case</span> <span class="string">'ADD_TODO'</span>: deleteToDo(request, dataBase); <span class="keyword">break</span>;</div><div class="line">            ...</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>发送一个请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">router(&#123;type: <span class="string">'delete-todo'</span>, todoID: <span class="string">'1234'</span>&#125;);</div></pre></td></tr></table></figure></p>
+<p><code>deleteToDo()</code>其实就是相应修改数据库的操作，里面的具体逻辑需要我们自己写，显然，删除一个”待办事项”，<code>deleteToDo()</code>应该长下面这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteToDo</span>(<span class="params">request, dataBase</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> todos = dataBase.todos;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; todos; i++)&#123;</div><div class="line">        <span class="keyword">if</span>(todos[i].id === request.todoID)&#123;</div><div class="line">            todos.splice(i, <span class="number">1</span>);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ok，到目前为止，整个流程已经跑通了。定义一个request，使用router发送这个request，router根据request地址分配相应的数据库处理逻辑，于是就得到了下面这种抽象：<br><img src="http://static.zybuluo.com/qonzon/9v5cxlh316qvmi3i4001q2iq/%E5%8D%95dataBase%E6%9E%B6%E6%9E%84.PNG" alt="单dataBase架构.PNG-7kB"></p>
+<p>用上面这种架构已经可以勉强驾驭一些比较简单的应用场景，而面对稍微复杂一点的应用场景就捉襟见肘了，为什么这么说呢？</p>
+<p>这种架构最基本的应用单元就是组件，每个组件的Model其实就是对应的dataBase，如果我们想在某个组件内修改其它组件的dataBase，就需要拿到这个组件的router，而”拿router”这件事可并没有那么简单。。大体上根据组件之间的关系，分为3种情况：父子关系、爷孙关系和兄弟关系，于是就会出现下面这种情况。<br><img src="http://static.zybuluo.com/qonzon/e35ww3mc8b1o6sd7wc6uda39/%E5%A4%9AdataBase%E6%9E%B6%E6%9E%84.PNG" alt="多dataBase架构.PNG-23.1kB"></p>
+<p>为了解决这一问题，Flux的另一个概念就来了，dispatcher。</p>
+<p><strong>3. 请求分发器</strong></p>
+<p>Flux的dispatcher（请求分发器），其实解决了上述问题。</p>
+<p>dispatcher相对各个组件而言是全局性的，它可以将请求发送到所有的router，用户无需知道他需要请求的router，让每个router自行处理进来的request，这种抽象其实是将request视为全局性请求，一个request可以同时操作多个dataBase。<br><img src="http://static.zybuluo.com/qonzon/aqwpdky0xzy88opq4a0ws4lm/%E5%BC%95%E5%85%A5dispatcher.PNG" alt="引入dispatcher.PNG-16.7kB"></p>
+<p>当然，dispatcher不会自己寻找它需要分发到的router，我们需要调用<code>register()</code>方法手动注册router<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatcher.register(router);</div></pre></td></tr></table></figure></p>
+<p>在注册好router后，直接调用dispatcher的<code>dispatch()</code>方法即可，可以像下面这样发送一个request:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatcher.dispatch(&#123;type: <span class="string">'delete-todo'</span>, todoID: <span class="string">'1234'</span>&#125;);</div></pre></td></tr></table></figure></p>
+<p>默认情况下，Flux会按照注册顺序依次将request放进router。如果我们希望自定义发送request后，部分router的执行顺序怎么办？Flux提供了<code>waitFor()</code>方法。</p>
+<p>举个例子：routerA接收到请求之后，希望依次经过routerB，和routerC，可以像下面伪代码这样实现：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> tokenB = dispatcher.register(routerB);</div><div class="line"><span class="keyword">let</span> tokenC = dispatcher.register(routerC);</div><div class="line"></div><div class="line"><span class="keyword">let</span> routerA = <span class="function"><span class="keyword">function</span>(<span class="params">request</span>)</span>&#123;</div><div class="line">    <span class="keyword">switch</span>(request.type)&#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">'ADD_TODO'</span>: dispatcher.waitFor(tokenB, tokenC); <span class="keyword">break</span>;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>OK，你必须提前拿到routerB和routerC的<code>token</code>，然后按照顺序传入<code>waitFor()</code>方法(个人认为这种”拿token”，无异于上面提到的”拿router”，是一个设计缺陷)。</p>
+<p><strong>4. 数据库</strong></p>
+<p>dataBase（数据库）其实就代表了组件的state（状态）。</p>
+<p>而Flux将router和dataBase视为一体，将请求的解析和数据库的修改统一交给store来处理。</p>
+<p><code>store.reduce()</code>相当于router，而<code>store._state</code>则相当于dataBase，于是就有了下面这种架构<br><img src="http://static.zybuluo.com/qonzon/oztzrx1imja4mjxbwpbapfz6/store%E6%9E%B6%E6%9E%84.PNG" alt="store架构.PNG-19kB"></p>
+<p>最后，Flux采用了向外抛事件的方式，将<code>_state</code>映射到Model的工作交给用户去解决。</p>
+<p>你可以调用<code>store.addListener()</code>方法，传入回调函数即可监听到<code>_state</code>的变化。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">store.addListener(() =&gt; &#123;</div><div class="line">    <span class="keyword">let</span> state = store.getState();</div><div class="line">    ...映射到Model的操作...</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Flux的一整套抽象（action，dispatcher，store），在单向数据流的基础上可以提高应用的可维护性和代码的可预测性。然而，全局action+多store的架构面对复杂的应用依然不能很好地解决复杂数据流的问题，<code>waitFor()</code>虽然可以满足自定义多store接收action的顺序，但是它会让数据流变得复杂，难以维护。</p>
+<p>Redux作为Flux的继承者，单store的架构其实就很好地避免了上述问题，之后的文章会深入分析Redux是如何在Flux的基础上改进自身架构的。</p>
+<p>参考：</p>
+<p><a href="https://facebook.github.io/flux/docs/in-depth-overview.html#content" target="_blank" rel="external">Flux官方介绍：In Depth Overview</a></p>
+<p><a href="https://github.com/facebook/flux" target="_blank" rel="external">Flux官方仓库：github.com/facebook/flux</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/redux/" rel="tag"># redux</a>
+          
+            <a href="/tags/flux/" rel="tag"># flux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/05/那些前端MVVM框架是如何诞生的/" rel="next" title="那些前端MVVM框架是如何诞生的">
+                <i class="fa fa-chevron-left"></i> 那些前端MVVM框架是如何诞生的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Gloria" />
+            
+              <p class="site-author-name" itemprop="name">Gloria</p>
+              <p class="site-description motion-element" itemprop="description">FE Engineer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jabbla" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="gloria_n@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zhu-xiao-ran-47-68" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/1783375687" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#来聊一聊Redux的前身Flux"><span class="nav-number">1.</span> <span class="nav-text">来聊一聊Redux的前身Flux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#View"><span class="nav-number">1.1.1.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model"><span class="nav-number">1.1.2.</span> <span class="nav-text">Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目前开发中存在的问题"><span class="nav-number">1.2.</span> <span class="nav-text">目前开发中存在的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#碎片化修改"><span class="nav-number">1.2.1.</span> <span class="nav-text">碎片化修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据流捉摸不定"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据流捉摸不定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flux"><span class="nav-number">1.3.</span> <span class="nav-text">Flux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单向数据流基础"><span class="nav-number">1.3.1.</span> <span class="nav-text">单向数据流基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何看待Flux架构"><span class="nav-number">1.3.2.</span> <span class="nav-text">如何看待Flux架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">1.4.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gloria</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
