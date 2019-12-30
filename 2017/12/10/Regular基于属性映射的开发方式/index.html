@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript,regular," />
+  <meta name="keywords" content="javascript,regular,">
 
 
 
@@ -79,23 +79,19 @@
 
 
 
-<meta name="description" content="水平有限，算是抛砖引玉吧
-
-本文主要从几个方面展开介绍:1.什么是基于属性映射的开发方式2.如何实现属性的映射3.rwatch在实际开发中的实践4.对比传统开发方式">
+<meta name="description" content="水平有限，算是抛砖引玉吧  本文主要从几个方面展开介绍:1.什么是基于属性映射的开发方式2.如何实现属性的映射3.rwatch在实际开发中的实践4.对比传统开发方式">
+<meta name="keywords" content="javascript,regular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Regular基于属性映射的开发方式">
 <meta property="og:url" content="http://jabbla.github.io/2017/12/10/Regular基于属性映射的开发方式/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="水平有限，算是抛砖引玉吧
-
-本文主要从几个方面展开介绍:1.什么是基于属性映射的开发方式2.如何实现属性的映射3.rwatch在实际开发中的实践4.对比传统开发方式">
+<meta property="og:description" content="水平有限，算是抛砖引玉吧  本文主要从几个方面展开介绍:1.什么是基于属性映射的开发方式2.如何实现属性的映射3.rwatch在实际开发中的实践4.对比传统开发方式">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/di9vs0t0jwrfng4cywo7irxq/IMG20171208_204625.png">
-<meta property="og:updated_time" content="2017-12-20T11:11:40.117Z">
+<meta property="og:updated_time" content="2019-12-29T14:09:26.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Regular基于属性映射的开发方式">
-<meta name="twitter:description" content="水平有限，算是抛砖引玉吧
-
-本文主要从几个方面展开介绍:1.什么是基于属性映射的开发方式2.如何实现属性的映射3.rwatch在实际开发中的实践4.对比传统开发方式">
+<meta name="twitter:description" content="水平有限，算是抛砖引玉吧  本文主要从几个方面展开介绍:1.什么是基于属性映射的开发方式2.如何实现属性的映射3.rwatch在实际开发中的实践4.对比传统开发方式">
 <meta name="twitter:image" content="http://static.zybuluo.com/qonzon/di9vs0t0jwrfng4cywo7irxq/IMG20171208_204625.png">
 
 
@@ -126,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://jabbla.github.io/2017/12/10/Regular基于属性映射的开发方式/"/>
+  <link rel="canonical" href="http://jabbla.github.io/2017/12/10/Regular基于属性映射的开发方式/">
 
 
 
@@ -160,7 +156,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Gloria</span>
         <span class="logo-line-after"><i></i></span>
@@ -190,7 +186,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -200,7 +196,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -210,7 +206,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -220,7 +216,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -263,7 +259,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gloria">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -299,7 +295,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -354,7 +350,7 @@
 <p>本文主要从几个方面展开介绍:<br>1.什么是基于属性映射的开发方式<br>2.如何实现属性的映射<br>3.rwatch在实际开发中的实践<br>4.对比传统开发方式</p>
 <a id="more"></a>
 <h2 id="什么是基于属性映射的开发方式"><a href="#什么是基于属性映射的开发方式" class="headerlink" title="什么是基于属性映射的开发方式"></a>什么是基于属性映射的开发方式</h2><p>页面由许多组件组成，每个组件当前所处的状态其实就是对象的属性值，于是组件间的关系可以看作是属性之间的关系，从而整个页面的功能可以看作是一个属性关系网。</p>
-<p>假设有组件A、B、C<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A.b-&gt;B.b-&gt;C.b</div><div class="line">A.a-&gt;B.b-&gt;C.c</div></pre></td></tr></table></figure></p>
+<p>假设有组件A、B、C<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A.b-&gt;B.b-&gt;C.b</span><br><span class="line">A.a-&gt;B.b-&gt;C.c</span><br></pre></td></tr></table></figure></p>
 <p>上图虽简单，但就已经包括了所有属性映射的情况。</p>
 <p>影响<code>B.b</code>的属性有<code>A.b</code>，<code>A.a</code>，多对一。</p>
 <p><code>B.b</code>又会影响到<code>C.b</code>，<code>C.c</code>，一对多（多个1对1）。</p>
@@ -363,8 +359,8 @@
 <p><code>dropDown</code> 下拉列表组件<br><code>dropDown.selected</code> 当前选中项的索引<br><code>dropDown.source</code> 下拉框的所有选项数组</p>
 <p><code>search</code> 搜索框组件<br><code>search.value</code> 当前搜索框中的文字</p>
 <p><code>title</code> 页面标题<br><code>subTitle</code> 页面副标题</p>
-<p>映射关系：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dorpDown.selected + dropDown.source -&gt; search.value</div><div class="line">search.value -&gt; title</div><div class="line">search.value -&gt; subTitle</div></pre></td></tr></table></figure></p>
-<p>生成规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">search.value = dropDown.source[dorpDown.selected].text</div><div class="line">title = search.value</div><div class="line">subTitle = search.value</div></pre></td></tr></table></figure></p>
+<p>映射关系：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dorpDown.selected + dropDown.source -&gt; search.value</span><br><span class="line">search.value -&gt; title</span><br><span class="line">search.value -&gt; subTitle</span><br></pre></td></tr></table></figure></p>
+<p>生成规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">search.value = dropDown.source[dorpDown.selected].text</span><br><span class="line">title = search.value</span><br><span class="line">subTitle = search.value</span><br></pre></td></tr></table></figure></p>
 <p><strong>一个完整的功能点</strong></p>
 <p>下面是一个接口相关的属性映射关系图</p>
 <p><img src="http://static.zybuluo.com/qonzon/di9vs0t0jwrfng4cywo7irxq/IMG20171208_204625.png" alt="IMG20171208_204625.png-67.8kB"></p>
@@ -377,22 +373,22 @@
 <p><strong>data.xxx.xxx</strong></p>
 <p>状态</p>
 <p>上面所说的映射关系则是从箭头的起点到箭头终点的过程，其中某个属性的改变会影响它所指向属性的改变，开发过程中只需要关注前后属性之间的关系即可，当某个属性发生变动的时候，与它相关的属性就会像一根锁链一样一环扣一环地根据各自的映射关系发生相应的改变。</p>
-<h2 id="如何实现属性映射"><a href="#如何实现属性映射" class="headerlink" title="如何实现属性映射"></a>如何实现属性映射</h2><p>在这里使用本人开发的<a href="https://github.com/jabbla/rwatch" target="_blank" rel="external">rwatch</a>实现属性的映射</p>
+<h2 id="如何实现属性映射"><a href="#如何实现属性映射" class="headerlink" title="如何实现属性映射"></a>如何实现属性映射</h2><p>在这里使用本人开发的<a href="https://github.com/jabbla/rwatch" target="_blank" rel="noopener">rwatch</a>实现属性的映射</p>
 <p><code>rwatch</code>中的属性映射其实是对Regular的<code>$watch</code>方法进行的封装，你可以像下面这样实现上面例子中的属性映射。</p>
-<p>dorpDown.selected + dropDown.source -&gt; search.value<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">watcher.watch([<span class="string">'dorpDown.selected'</span>, <span class="string">'dropDown.source'</span>], <span class="string">'search.value'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">sources, target</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> selected = sources[<span class="number">0</span>],</div><div class="line">        source = sources[<span class="number">1</span>];</div><div class="line">    <span class="keyword">return</span> source[selected].text;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>search.value -&gt; title<br>search.value -&gt; subTitle<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">watcher.watch(<span class="string">'search.value'</span>, [<span class="string">'title'</span>, <span class="string">'subTitle'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">source, target</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> source;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>dorpDown.selected + dropDown.source -&gt; search.value<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watcher.watch([<span class="string">'dorpDown.selected'</span>, <span class="string">'dropDown.source'</span>], <span class="string">'search.value'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">sources, target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> selected = sources[<span class="number">0</span>],</span><br><span class="line">        source = sources[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> source[selected].text;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>search.value -&gt; title<br>search.value -&gt; subTitle<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">watcher.watch(<span class="string">'search.value'</span>, [<span class="string">'title'</span>, <span class="string">'subTitle'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">source, target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> source;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <h2 id="rwatch在实际开发中的实践"><a href="#rwatch在实际开发中的实践" class="headerlink" title="rwatch在实际开发中的实践"></a>rwatch在实际开发中的实践</h2><p>由于<code>rwatch</code>基于<code>$watch</code>方法，所以所有的映射规则的执行都是依赖于regular的脏检查机制。</p>
 <p>如果你想在事件中同步地获取到通过生成规则改变后的属性是不现实的，所以一切和获取属性相关的操作都应在生成规则中，<code>$watch</code>方法中，或者rwatch提供的<code>then()</code>中。</p>
 <p>下面通过一个真实的需求来介绍使用<code>rwatch</code>过程中可能遇到的坑和本人的解决方案</p>
-<h3 id="1-映射关系书写不全面"><a href="#1-映射关系书写不全面" class="headerlink" title="1. 映射关系书写不全面"></a>1. 映射关系书写不全面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">watcher.watch(<span class="string">'dorpDown.selected'</span>, <span class="string">'search.value'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">source</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.dorpDown.source[source].text;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="1-映射关系书写不全面"><a href="#1-映射关系书写不全面" class="headerlink" title="1. 映射关系书写不全面"></a>1. 映射关系书写不全面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">watcher.watch(<span class="string">'dorpDown.selected'</span>, <span class="string">'search.value'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">source</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.dorpDown.source[source].text;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>这种代码，当下拉框的列表数据发生改变的时候<code>search.value</code>并不会得到相应的更新，应修改为如代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">watcher.watch([<span class="string">'dorpDown.selected'</span>, <span class="string">'dropDown.source'</span>], <span class="string">'search.value'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">sources, target</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> selected = sources[<span class="number">0</span>],</div><div class="line">        source = sources[<span class="number">1</span>];</div><div class="line">    <span class="keyword">return</span> source[selected].text;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="2-组件的当前属性不支持双向数据绑定"><a href="#2-组件的当前属性不支持双向数据绑定" class="headerlink" title="2.组件的当前属性不支持双向数据绑定"></a>2.组件的当前属性不支持双向数据绑定</h3><p>比如上述下拉框的<code>dorpDown.selected</code>这个属性不支持双向数据绑定，则需在事件中手动更新<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">onSelected: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.data.dorpDown.selected = e.selected;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watcher.watch([<span class="string">'dorpDown.selected'</span>, <span class="string">'dropDown.source'</span>], <span class="string">'search.value'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">sources, target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> selected = sources[<span class="number">0</span>],</span><br><span class="line">        source = sources[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> source[selected].text;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2-组件的当前属性不支持双向数据绑定"><a href="#2-组件的当前属性不支持双向数据绑定" class="headerlink" title="2.组件的当前属性不支持双向数据绑定"></a>2.组件的当前属性不支持双向数据绑定</h3><p>比如上述下拉框的<code>dorpDown.selected</code>这个属性不支持双向数据绑定，则需在事件中手动更新<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onSelected: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data.dorpDown.selected = e.selected;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="3-频繁触发请求"><a href="#3-频繁触发请求" class="headerlink" title="3.频繁触发请求"></a>3.频繁触发请求</h3><p>由于页面中所有组件状态的改变都是基于<code>rwatch</code>的，于是获取接口的请求参数在事件中无法获取到组件的最新状态，所以发送请求的行为必须放在<code>$watch</code>中。像下面这样:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.$watch(<span class="string">'params.a'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.request();</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">this</span>.$watch(<span class="string">'params.b'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.request();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$watch(<span class="string">'params.a'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.request();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.$watch(<span class="string">'params.b'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.request();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>上述代码解决了发送请求的问题，但是引进了一个新问题：当<code>params.a</code>，<code>params.b</code>同时发生改变时，会发送2次请求，如果<code>params</code>有很多属性同时改变，那么就会发送N次请求，如何解决呢？</p>
-<p>利用节流函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">request: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> ut.throttle(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> option = &#123;...&#125;;</div><div class="line">        </div><div class="line">        <span class="keyword">this</span>.fetchData(option);</div><div class="line">    &#125;.bind(<span class="keyword">this</span>), <span class="number">500</span>);</div><div class="line">&#125;)()；</div></pre></td></tr></table></figure></p>
-<h2 id="对比传统开发方式"><a href="#对比传统开发方式" class="headerlink" title="对比传统开发方式"></a>对比传统开发方式</h2><p>试着使用传统开发方式完成上面的例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">onDorpDownSelected: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> data = <span class="keyword">this</span>.data,</div><div class="line">        dropDownSource = data.dropDown.source,</div><div class="line">        text = dropDownSource[e.selected].text</div><div class="line">    </div><div class="line">    data.search.value = text;</div><div class="line">    data.title = text;</div><div class="line">    data.subtitle = text;</div><div class="line">&#125;,</div><div class="line">onSearchChange: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> data = <span class="keyword">this</span>.data;</div><div class="line">    </div><div class="line">    data.title = e.value;</div><div class="line">    data.subTitle = e.value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>利用节流函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">request: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ut.throttle(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> option = &#123;...&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">this</span>.fetchData(option);</span><br><span class="line">    &#125;.bind(<span class="keyword">this</span>), <span class="number">500</span>);</span><br><span class="line">&#125;)()；</span><br></pre></td></tr></table></figure></p>
+<h2 id="对比传统开发方式"><a href="#对比传统开发方式" class="headerlink" title="对比传统开发方式"></a>对比传统开发方式</h2><p>试着使用传统开发方式完成上面的例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">onDorpDownSelected: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">this</span>.data,</span><br><span class="line">        dropDownSource = data.dropDown.source,</span><br><span class="line">        text = dropDownSource[e.selected].text</span><br><span class="line">    </span><br><span class="line">    data.search.value = text;</span><br><span class="line">    data.title = text;</span><br><span class="line">    data.subtitle = text;</span><br><span class="line">&#125;,</span><br><span class="line">onSearchChange: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">this</span>.data;</span><br><span class="line">    </span><br><span class="line">    data.title = e.value;</span><br><span class="line">    data.subTitle = e.value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>传统开发方式，起点往往是某个事件，专注于处理流程，而不是属性间的映射关系。</p>
 <p>个人认为当页面的交互逻辑比较复杂的时候，使用属性映射的方式开发会使得组件的逻辑相较传统开发方式更加清晰、易懂。</p>
 <p>不过这种开发方式的缺点也是明显的：</p>
@@ -513,9 +509,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Gloria" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
             
               <p class="site-author-name" itemprop="name">Gloria</p>
               <p class="site-description motion-element" itemprop="description">FE Engineer</p>
@@ -528,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -539,7 +533,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -550,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -631,7 +625,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

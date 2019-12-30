@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="node.js,webpack," />
+  <meta name="keywords" content="webpack,node.js,">
 
 
 
@@ -79,42 +79,20 @@
 
 
 
-<meta name="description" content="Webpack原理分享，这一小节主要介绍一下webpack中重要的基类Tapable
-Webpack原理分享（一）Tapable详解什么是Tapable?
-提供事件订阅，发布功能的小型库
-Webpack中重要对象的基类，为compiler，compilation等      对象提供插件系统
-
-Tapable接口列表
-Tapable.prototype.plugin 注册事件
-
-Tapable.p">
+<meta name="description" content="Webpack原理分享，这一小节主要介绍一下webpack中重要的基类Tapable Webpack原理分享（一）Tapable详解什么是Tapable? 提供事件订阅，发布功能的小型库 Webpack中重要对象的基类，为compiler，compilation等      对象提供插件系统  Tapable接口列表 Tapable.prototype.plugin 注册事件  Tapable.p">
+<meta name="keywords" content="webpack,node.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack原理分享（一）">
 <meta property="og:url" content="http://jabbla.github.io/2017/10/22/Webpack原理分享（一）/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="Webpack原理分享，这一小节主要介绍一下webpack中重要的基类Tapable
-Webpack原理分享（一）Tapable详解什么是Tapable?
-提供事件订阅，发布功能的小型库
-Webpack中重要对象的基类，为compiler，compilation等      对象提供插件系统
-
-Tapable接口列表
-Tapable.prototype.plugin 注册事件
-
-Tapable.p">
+<meta property="og:description" content="Webpack原理分享，这一小节主要介绍一下webpack中重要的基类Tapable Webpack原理分享（一）Tapable详解什么是Tapable? 提供事件订阅，发布功能的小型库 Webpack中重要对象的基类，为compiler，compilation等      对象提供插件系统  Tapable接口列表 Tapable.prototype.plugin 注册事件  Tapable.p">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/t0153462869ec9c504f.png">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/t01d15187da43cf6c6d.png">
-<meta property="og:updated_time" content="2017-12-20T11:12:24.403Z">
+<meta property="og:updated_time" content="2019-12-29T14:09:26.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webpack原理分享（一）">
-<meta name="twitter:description" content="Webpack原理分享，这一小节主要介绍一下webpack中重要的基类Tapable
-Webpack原理分享（一）Tapable详解什么是Tapable?
-提供事件订阅，发布功能的小型库
-Webpack中重要对象的基类，为compiler，compilation等      对象提供插件系统
-
-Tapable接口列表
-Tapable.prototype.plugin 注册事件
-
-Tapable.p">
+<meta name="twitter:description" content="Webpack原理分享，这一小节主要介绍一下webpack中重要的基类Tapable Webpack原理分享（一）Tapable详解什么是Tapable? 提供事件订阅，发布功能的小型库 Webpack中重要对象的基类，为compiler，compilation等      对象提供插件系统  Tapable接口列表 Tapable.prototype.plugin 注册事件  Tapable.p">
 <meta name="twitter:image" content="http://oc3wui92y.bkt.clouddn.com/t0153462869ec9c504f.png">
 
 
@@ -145,7 +123,7 @@ Tapable.p">
 
 
 
-  <link rel="canonical" href="http://jabbla.github.io/2017/10/22/Webpack原理分享（一）/"/>
+  <link rel="canonical" href="http://jabbla.github.io/2017/10/22/Webpack原理分享（一）/">
 
 
 
@@ -179,7 +157,7 @@ Tapable.p">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Gloria</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +187,7 @@ Tapable.p">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -219,7 +197,7 @@ Tapable.p">
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -229,7 +207,7 @@ Tapable.p">
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -239,7 +217,7 @@ Tapable.p">
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -282,7 +260,7 @@ Tapable.p">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gloria">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -318,7 +296,7 @@ Tapable.p">
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -385,7 +363,7 @@ Tapable.p">
 <h4 id="Tapable-prototype-plugin"><a href="#Tapable-prototype-plugin" class="headerlink" title="Tapable.prototype.plugin"></a>Tapable.prototype.plugin</h4><blockquote>
 <p>事件注册方法</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> plugin(names: string|string[], handler: <span class="built_in">Function</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> plugin(names: string|string[], <span class="attr">handler</span>: <span class="built_in">Function</span>)</span><br></pre></td></tr></table></figure>
 <p>name：事件名称<br>handler: 触发事件后运行的回调函数</p>
 <h4 id="Tapable-prototype-applyPlugin…"><a href="#Tapable-prototype-applyPlugin…" class="headerlink" title="Tapable.prototype.applyPlugin…"></a>Tapable.prototype.applyPlugin…</h4><blockquote>
 <p>事件触发方法</p>
@@ -409,49 +387,49 @@ Tapable.p">
 <blockquote>
 <p>同步地按照注册顺序，依次调用Task</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> applyPlugins(name: string, args: any...)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> applyPlugins(name: string, <span class="attr">args</span>: any...)</span><br></pre></td></tr></table></figure>
 <p>name：事件名称<br>args  ：Task实参，可为多个</p>
 <p>applyPluginsBailResult</p>
 <blockquote>
 <p>同步地按照注册顺序，依次调用Task，一旦有Task的return值!==undefined，则不会执行剩下的Task，且applyPluginsBailResult的返回值为该Task的返回值</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">any applyPluginsBailResult(name: string, args: any...)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">any applyPluginsBailResult(name: string, <span class="attr">args</span>: any...)</span><br></pre></td></tr></table></figure>
 <p>name：事件名称<br>args  ：Task实参，可为多个</p>
 <p>applyPluginsAsync</p>
 <blockquote>
 <p>默认Task为异步执行，Task中最后一个形参为callback，Task中手动调用callback执行下一个Task，如为callback传入！=undefined实参，则不会执行下一个Task，并且调用callback</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> applyPluginsAsync(</div><div class="line">name: string,</div><div class="line">  args: any...,</div><div class="line">  callback: (err?: <span class="built_in">Error</span>) -&gt; <span class="keyword">void</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> applyPluginsAsync(</span><br><span class="line">name: string,</span><br><span class="line">  args: any...,</span><br><span class="line">  callback: (err?: <span class="built_in">Error</span>) -&gt; <span class="keyword">void</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>name：事件名称<br>args：Task实参，可为多个<br>callback：当所有Task全部执行完毕后调用的回调函数</p>
 <p><strong>2. Task之间可传递值</strong></p>
 <p>applyPluginsWaterfall</p>
 <blockquote>
 <p>同步地按照注册顺序调用Task，每个Task的return值将作为下一个Task的第一个实参传入</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">any applyPluginsWaterfall(</div><div class="line">  name: string,</div><div class="line">  init: any,</div><div class="line">  args: any...</div><div class="line"> )</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">any applyPluginsWaterfall(</span><br><span class="line">  name: string,</span><br><span class="line">  init: any,</span><br><span class="line">  args: any...</span><br><span class="line"> )</span><br></pre></td></tr></table></figure>
 <p>name：事件名称<br>init：第一个Task的第一个实参<br>args：Task除第一个实参外剩下的实参</p>
 <p>applyPluginsAsyncWaterfall​​​​​​​</p>
 <blockquote>
 <p>默认Task为异步执行，Task第一个形参为上一个Task调用callback传下来的第二个实参，第一个Task为init，第二个实参为callback，Task中手动调用callback执行下一个Task，如callback第一个实参为！=undefined则不会调用下一个Task，并且调用callback</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">applyPluginsAsyncWaterfall(</div><div class="line">  name: string,</div><div class="line">  init: any,</div><div class="line">callback: (err: <span class="built_in">Error</span>, result: any) -&gt; <span class="keyword">void</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">applyPluginsAsyncWaterfall(</span><br><span class="line">  name: string,</span><br><span class="line">  init: any,</span><br><span class="line">callback: (err: <span class="built_in">Error</span>, <span class="attr">result</span>: any) -&gt; <span class="keyword">void</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>name：事件名称<br>init：第一个Task的第一个实参<br>args：Task除第一个实参外剩下的实参<br>callback：所有Task调用结束后的回调</p>
 <h3 id="并行调用"><a href="#并行调用" class="headerlink" title="并行调用"></a>并行调用</h3><p><img src="http://oc3wui92y.bkt.clouddn.com/t01d15187da43cf6c6d.png" alt="示意图"></p>
 <h4 id="applyPluginsParallel"><a href="#applyPluginsParallel" class="headerlink" title="applyPluginsParallel"></a>applyPluginsParallel</h4><blockquote>
 <p>Task默认为异步执行，Task中手动调用callback表明该Task已结束，当Task全部结束时，会最终调用callback，如某个Task为callback传入实参!=undefined，则会提前执行callback</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">applyPluginsParallel(</div><div class="line">  name: string,</div><div class="line">  args: any...,</div><div class="line">callback: (err?: <span class="built_in">Error</span>) -&gt; <span class="keyword">void</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">applyPluginsParallel(</span><br><span class="line">  name: string,</span><br><span class="line">  args: any...,</span><br><span class="line">callback: (err?: <span class="built_in">Error</span>) -&gt; <span class="keyword">void</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>name：事件名称<br>args：Task实参，可多个<br>callback：所有Task结束后的回调函数</p>
 <h4 id="applyPluginsParallelBailResult"><a href="#applyPluginsParallelBailResult" class="headerlink" title="applyPluginsParallelBailResult"></a>applyPluginsParallelBailResult</h4><blockquote>
 <p>Task默认为异步执行，Task中手动调用callback表明该Task已结束，当Task全部结束时，会最终调用callback，最终callback的实参根据Task的注册顺序，寻找第一个为callback传递的实参</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">applyPluginsParallelBailResult(</div><div class="line">  name: string,</div><div class="line">  args: any...,</div><div class="line">callback: (err?: <span class="built_in">Error</span>) -&gt; <span class="keyword">void</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">applyPluginsParallelBailResult(</span><br><span class="line">  name: string,</span><br><span class="line">  args: any...,</span><br><span class="line">callback: (err?: <span class="built_in">Error</span>) -&gt; <span class="keyword">void</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>name：事件名称<br>args：Task实参，可多个<br>callback：所有Task结束后的回调函数</p>
 <h3 id="应用插件"><a href="#应用插件" class="headerlink" title="应用插件"></a>应用插件</h3><p>Tapable.prototype.apply</p>
 <blockquote>
 <p>调用该方法会触发传入构造函数所有实例的apply方法</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Plugin</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"></div><div class="line">Plugin.prototype.apply = <span class="function"><span class="keyword">function</span>(<span class="params">instance</span>)</span>&#123;</div><div class="line">  instance.plugin(<span class="string">'test'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Tapable(<span class="keyword">new</span> Plugin());</div><div class="line"></div><div class="line">a.apply();</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Plugin</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Plugin.prototype.apply = <span class="function"><span class="keyword">function</span>(<span class="params">instance</span>)</span>&#123;</span><br><span class="line">  instance.plugin(<span class="string">'test'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Tapable(<span class="keyword">new</span> Plugin());</span><br><span class="line"></span><br><span class="line">a.apply();</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -469,9 +447,9 @@ Tapable.p">
       
         <div class="post-tags">
           
-            <a href="/tags/node-js/" rel="tag"># node.js</a>
-          
             <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
           
         </div>
       
@@ -562,9 +540,7 @@ Tapable.p">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Gloria" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
             
               <p class="site-author-name" itemprop="name">Gloria</p>
               <p class="site-description motion-element" itemprop="description">FE Engineer</p>
@@ -577,7 +553,7 @@ Tapable.p">
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +564,7 @@ Tapable.p">
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -599,7 +575,7 @@ Tapable.p">
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -680,7 +656,7 @@ Tapable.p">
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

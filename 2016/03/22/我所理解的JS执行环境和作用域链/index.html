@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="javascript,">
 
 
 
@@ -80,12 +80,14 @@
 
 
 <meta name="description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我所理解的JS执行环境和作用域链">
 <meta property="og:url" content="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/index.html">
 <meta property="og:site_name" content="Gloria">
 <meta property="og:description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
-<meta property="og:updated_time" content="2017-12-20T11:23:23.813Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-29T14:09:27.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我所理解的JS执行环境和作用域链">
 <meta name="twitter:description" content="看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直">
@@ -118,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/"/>
+  <link rel="canonical" href="http://jabbla.github.io/2016/03/22/我所理解的JS执行环境和作用域链/">
 
 
 
@@ -152,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Gloria</span>
         <span class="logo-line-after"><i></i></span>
@@ -182,7 +184,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -192,7 +194,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -202,7 +204,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -212,7 +214,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -255,7 +257,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gloria">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -291,7 +293,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -342,9 +344,9 @@
       
         <p>看了一些网上的关于JS机制的文章,结合自己在书上看的和自己的理解,把吸收到的捋捋直<br><a id="more"></a><br><strong>执行流</strong></p>
 <blockquote>
-<p>JS包含在HTML文件里的外部文件里或者内嵌script中,每个文件或者代码块都是单独扫描的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    fn1()   <span class="comment">//fn1</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'fn1'</span>);&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p>JS包含在HTML文件里的外部文件里或者内嵌script中,每个文件或者代码块都是单独扫描的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    fn1()   <span class="comment">//fn1</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'fn1'</span>);&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    fn1()   //error</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    function fn1()&#123;alert('fn1');&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    fn1()   <span class="comment">//error</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function fn1()&#123;alert('fn1');&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>浏览器扫描此代码块 然后将具名函数的声明做预处理,然后代码按顺序执行</p>
 </blockquote>
@@ -354,12 +356,16 @@
 </blockquote>
 <p><strong>执行环境</strong><br>每个函数都有自己的执行环境,当执行流进入函数时,会为函数生成一个<strong>执行环境</strong>和执行环境关联的<strong>变量对象</strong>,<strong>变量对象</strong>中存着定义在执行环境中的所有变量和函数,JS的全局环境是window对象<br><strong>执行环境栈</strong></p>
 <blockquote>
-<p>为保证代码有序地执行,通过执行流流过的顺序,执行环境依次入栈出栈<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    a = a+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">hello()</div></pre></td></tr></table></figure></p>
+<p>为保证代码有序地执行,通过执行流流过的顺序,执行环境依次入栈出栈<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    a = a+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">hello()</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
 <p>全局环境入栈-&gt;执行到第5行把hello()执行环境推到栈顶-&gt;hello()出栈,执行流重新回到上一层环境</p>
 </blockquote>
-<p><strong>作用域链</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    a = a+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">hello()</div></pre></td></tr></table></figure></p>
+<p><strong>作用域链</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    a = a+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">hello()</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>当执行流到达第2行时,它不会进入hello()因为它还没有被调用,只是把hello()函数上的作用域链的钩子指向全局函数的变量对象</p>
+</blockquote>
+<blockquote>
 <p>当执行流到达第5行时,创建hello()的执行环境,生成自己的变量对象,并将作用域链的钩子挂到此时的 全局变量对象上</p>
 </blockquote>
 <p>其实也就这么点东西,还是得多做做题,加深对这些概念的理解,深入学习,下午看的主要结论就是,概念看了谁都懂,主要还是得做一些不那么常规的题巩固记忆,和加深对概念的认识,OK.</p>
@@ -462,9 +468,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Gloria" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
             
               <p class="site-author-name" itemprop="name">Gloria</p>
               <p class="site-description motion-element" itemprop="description">FE Engineer</p>
@@ -477,7 +481,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -488,7 +492,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -499,7 +503,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -564,7 +568,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

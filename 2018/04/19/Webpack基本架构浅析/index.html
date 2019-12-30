@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript,node.js,webpack," />
+  <meta name="keywords" content="javascript,webpack,node.js,">
 
 
 
@@ -79,16 +79,14 @@
 
 
 
-<meta name="description" content="文章webpack版本为3.6.0
-
-随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
+<meta name="description" content="文章webpack版本为3.6.0  随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
+<meta name="keywords" content="javascript,webpack,node.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack基本架构浅析">
 <meta property="og:url" content="http://jabbla.github.io/2018/04/19/Webpack基本架构浅析/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="文章webpack版本为3.6.0
-
-随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
+<meta property="og:description" content="文章webpack版本为3.6.0  随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/kt5ald3f2ukk2h58yt3qfy9d/BundleBuilder.JPG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/btsl3o4z7kut3dho4b8ougm5/1-1.PNG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/u3jr4l8dmmwfcmf1ff6ue5l1/1-1.PNG">
@@ -114,12 +112,10 @@
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/sorzzjgsjj31z9ikwxgety2j/4-4.JPG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/ufrny9ad4mk68yp3lp9gi7or/4-5.JPG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/yw02ni37nfqum7sd750f0kuf/4-6.JPG">
-<meta property="og:updated_time" content="2018-04-19T14:09:37.900Z">
+<meta property="og:updated_time" content="2019-12-29T14:09:27.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webpack基本架构浅析">
-<meta name="twitter:description" content="文章webpack版本为3.6.0
-
-随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
+<meta name="twitter:description" content="文章webpack版本为3.6.0  随着掌握的前端基础知识越来越多，对技术的要求逐渐不满足于实现即可，技术到了瓶颈期，自己也曾尝试写过一些开源库，不过很少有满意的作品，通常没迭代几个版本就没有耐心继续维护了。通常是面临的情形是前期设计思路太过简单导致后期扩展的时候需要重构大量的代码（GG吧~），就好比一坨屎，再怎么装点，都很难把它当成蛋糕吃下去。">
 <meta name="twitter:image" content="http://static.zybuluo.com/qonzon/kt5ald3f2ukk2h58yt3qfy9d/BundleBuilder.JPG">
 
 
@@ -150,7 +146,7 @@
 
 
 
-  <link rel="canonical" href="http://jabbla.github.io/2018/04/19/Webpack基本架构浅析/"/>
+  <link rel="canonical" href="http://jabbla.github.io/2018/04/19/Webpack基本架构浅析/">
 
 
 
@@ -184,7 +180,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Gloria</span>
         <span class="logo-line-after"><i></i></span>
@@ -214,7 +210,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -224,7 +220,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -234,7 +230,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -244,7 +240,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -287,7 +283,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gloria">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -323,7 +319,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -410,7 +406,7 @@
 <p>在正式介绍几个核心对象之前，你需要了解一下Tapable类。</p>
 <p>简单来说，Tapable为一个对象提供了插件功能。如果你用过<code>Vue.js</code>或者<code>React.js</code>之类的框架，Tapable就是为某个对象提供了相当于组件的生命周期功能，在外部你可以通过调用这些生命周期钩子监听该对象。</p>
 <p>当然，你还可以在外部手动触发对象的某个生命周期。</p>
-<p>如果你想详细了解Tapable的API可以<a href="http://blog.zxrcool.com/2017/10/22/Webpack%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">参考这里</a>（文中版本为0.2.8）</p>
+<p>如果你想详细了解Tapable的API可以<a href="http://blog.zxrcool.com/2017/10/22/Webpack%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="noopener">参考这里</a>（文中版本为0.2.8）</p>
 <h3 id="Webpack主函数视角"><a href="#Webpack主函数视角" class="headerlink" title="Webpack主函数视角"></a>Webpack主函数视角</h3><blockquote>
 <p>最宏观的视角</p>
 </blockquote>
@@ -522,9 +518,9 @@
           
             <a href="/tags/javascript/" rel="tag"># javascript</a>
           
-            <a href="/tags/node-js/" rel="tag"># node.js</a>
-          
             <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
           
         </div>
       
@@ -615,9 +611,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Gloria" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
             
               <p class="site-author-name" itemprop="name">Gloria</p>
               <p class="site-description motion-element" itemprop="description">FE Engineer</p>
@@ -630,7 +624,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -641,7 +635,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -652,7 +646,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -733,7 +727,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

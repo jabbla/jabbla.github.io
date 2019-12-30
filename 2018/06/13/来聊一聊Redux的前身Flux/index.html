@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript,redux,flux," />
+  <meta name="keywords" content="javascript,redux,flux,">
 
 
 
@@ -79,18 +79,14 @@
 
 
 
-<meta name="description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。
-接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。
-为了深入了解Redux，不可避免地就要谈到它的前身Flux。
-概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
+<meta name="description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。 接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。 为了深入了解Redux，不可避免地就要谈到它的前身Flux。 概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
+<meta name="keywords" content="javascript,redux,flux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="来聊一聊Redux的前身Flux">
 <meta property="og:url" content="http://jabbla.github.io/2018/06/13/来聊一聊Redux的前身Flux/index.html">
 <meta property="og:site_name" content="Gloria">
-<meta property="og:description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。
-接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。
-为了深入了解Redux，不可避免地就要谈到它的前身Flux。
-概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
+<meta property="og:description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。 接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。 为了深入了解Redux，不可避免地就要谈到它的前身Flux。 概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/t6uc5o2us9k3ldy9i44syy0j/MVVM%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5%E7%A4%BA%E6%84%8F%E5%9B%BE.PNG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/15zctr4pdpshgemu5go4ay1x/%E7%A2%8E%E7%89%87%E5%8C%96.PNG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/fkin1cgoa4oud3r0g18q61ty/%E9%BB%91%E4%BA%BA%E9%97%AE%E5%8F%B7.jpg">
@@ -101,13 +97,10 @@
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/e35ww3mc8b1o6sd7wc6uda39/%E5%A4%9AdataBase%E6%9E%B6%E6%9E%84.PNG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/aqwpdky0xzy88opq4a0ws4lm/%E5%BC%95%E5%85%A5dispatcher.PNG">
 <meta property="og:image" content="http://static.zybuluo.com/qonzon/oztzrx1imja4mjxbwpbapfz6/store%E6%9E%B6%E6%9E%84.PNG">
-<meta property="og:updated_time" content="2018-06-13T13:57:03.934Z">
+<meta property="og:updated_time" content="2019-12-29T14:09:27.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="来聊一聊Redux的前身Flux">
-<meta name="twitter:description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。
-接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。
-为了深入了解Redux，不可避免地就要谈到它的前身Flux。
-概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
+<meta name="twitter:description" content="来聊一聊Redux的前身Flux现在诸多状态管理方案涌现，每种方案的背后都有支撑其实现的思想，而这些思想并不是“空穴来风”，都是为了解决开发中出现的各种问题而诞生。 接下来的几篇文章会深入探讨时下比较流行的两种状态管理方案，Redux，Mobx。 为了深入了解Redux，不可避免地就要谈到它的前身Flux。 概念在正文开始之前，我们需要理解在平时使用诸如react.js、vue.js这类MV*框架">
 <meta name="twitter:image" content="http://static.zybuluo.com/qonzon/t6uc5o2us9k3ldy9i44syy0j/MVVM%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5%E7%A4%BA%E6%84%8F%E5%9B%BE.PNG">
 
 
@@ -138,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://jabbla.github.io/2018/06/13/来聊一聊Redux的前身Flux/"/>
+  <link rel="canonical" href="http://jabbla.github.io/2018/06/13/来聊一聊Redux的前身Flux/">
 
 
 
@@ -172,7 +165,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Gloria</span>
         <span class="logo-line-after"><i></i></span>
@@ -202,7 +195,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -212,7 +205,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -222,7 +215,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -232,7 +225,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -275,7 +268,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gloria">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -311,7 +304,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -366,7 +359,7 @@
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>在正文开始之前，我们需要理解在平时使用诸如<code>react.js</code>、<code>vue.js</code>这类MV*框架时接触到Model和View的概念。<br><img src="http://static.zybuluo.com/qonzon/t6uc5o2us9k3ldy9i44syy0j/MVVM%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5%E7%A4%BA%E6%84%8F%E5%9B%BE.PNG" alt="MVVM两个概念示意图.PNG-3.2kB"></p>
 <p>一个完整的交互流程就如上图所示。</p>
 <h3 id="View"><a href="#View" class="headerlink" title="View"></a>View</h3><p>View，意为“视图”，即最终在浏览器上看到的页面元素。</p>
-<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>Model，翻译过来就是“模型”，那…什么是“模型”呢？且看下面这些代码。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.b&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.c&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.d&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>Model，翻译过来就是“模型”，那…什么是“模型”呢？且看下面这些代码。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.b&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.c&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;a.d&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>上面这一段代码，其中<code>a.b</code>，<code>a.c</code>，<code>a.d</code>，每当这些属性值发生改变之后，框架会帮助我们生成View。</p>
 <p>如果我们再稍微宏观地看待这一问题，其实可以将<code>a</code>这个对象看作是data(数据)，而上面的html代码就是template(模板)，于是就有了这种理解：框架通过将<code>data</code>应用到<code>template</code>上，最后生成View，即<code>b</code>过程。</p>
 <p>在这里<code>data</code>+<code>template</code>就是<code>Model</code>，即所谓的“模型”，而通常意义上<code>template</code>是固定不变的，不会动态发生变化（这种动态变化已经被涵盖在模板本身的语法中了），所以大多数时候我们实现的各种交互就是改变<code>data</code>上属性的过程，示意图中的<code>a</code>过程。</p>
@@ -393,13 +386,13 @@
 <p>再具体一点，Flux将使用者和定义者的抽象引入了Model的修改过程。类似Clent-Service架构，如果使用者（客户端）想要修改数据库，必须通过调用定义者（服务端）提供的接口实现。</p>
 <p><strong>1. 请求</strong></p>
 <p>在Flux中，request（请求）等价于action，触发一个action相当调用一次接口，action的type字段相当于接口地址，其它字段相当于payLoad（请求参数）。</p>
-<p>action应该是一个对象：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    type: <span class="string">'delete-todo'</span>,   <span class="comment">//接口地址</span></div><div class="line">    todoID: <span class="string">'1234'</span>      <span class="comment">//payLoad</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>action应该是一个对象：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    type: <span class="string">'delete-todo'</span>,   <span class="comment">//接口地址</span></span><br><span class="line">    todoID: <span class="string">'1234'</span>      <span class="comment">//payLoad</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>既然将action当作了request，那么我们应该如何实现server（服务器）呢？</p>
 <p><strong>2. 路由</strong></p>
 <p>就像Clent-Service中一样，server接收请求并将不同的请求映射为相应的数据库修改操作。将server中接收请求的部分称为router（路由）。</p>
-<p>一个router应该长这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> router = (<span class="function"><span class="keyword">function</span> <span class="title">router</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> dataBase = &#123;todos: []&#125;; <span class="comment">//模拟数据库的对象</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">request</span>)</span>&#123;</div><div class="line">        <span class="keyword">switch</span>(request.type)&#123;</div><div class="line">            <span class="keyword">case</span> <span class="string">'ADD_TODO'</span>: deleteToDo(request, dataBase); <span class="keyword">break</span>;</div><div class="line">            ...</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
-<p>发送一个请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">router(&#123;type: <span class="string">'delete-todo'</span>, todoID: <span class="string">'1234'</span>&#125;);</div></pre></td></tr></table></figure></p>
-<p><code>deleteToDo()</code>其实就是相应修改数据库的操作，里面的具体逻辑需要我们自己写，显然，删除一个”待办事项”，<code>deleteToDo()</code>应该长下面这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteToDo</span>(<span class="params">request, dataBase</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> todos = dataBase.todos;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; todos; i++)&#123;</div><div class="line">        <span class="keyword">if</span>(todos[i].id === request.todoID)&#123;</div><div class="line">            todos.splice(i, <span class="number">1</span>);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一个router应该长这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> router = (<span class="function"><span class="keyword">function</span> <span class="title">router</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dataBase = &#123;<span class="attr">todos</span>: []&#125;; <span class="comment">//模拟数据库的对象</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">request</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">switch</span>(request.type)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'ADD_TODO'</span>: deleteToDo(request, dataBase); <span class="keyword">break</span>;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>发送一个请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router(&#123;<span class="attr">type</span>: <span class="string">'delete-todo'</span>, <span class="attr">todoID</span>: <span class="string">'1234'</span>&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><code>deleteToDo()</code>其实就是相应修改数据库的操作，里面的具体逻辑需要我们自己写，显然，删除一个”待办事项”，<code>deleteToDo()</code>应该长下面这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteToDo</span>(<span class="params">request, dataBase</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> todos = dataBase.todos;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; todos; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(todos[i].id === request.todoID)&#123;</span><br><span class="line">            todos.splice(i, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>ok，到目前为止，整个流程已经跑通了。定义一个request，使用router发送这个request，router根据request地址分配相应的数据库处理逻辑，于是就得到了下面这种抽象：<br><img src="http://static.zybuluo.com/qonzon/9v5cxlh316qvmi3i4001q2iq/%E5%8D%95dataBase%E6%9E%B6%E6%9E%84.PNG" alt="单dataBase架构.PNG-7kB"></p>
 <p>用上面这种架构已经可以勉强驾驭一些比较简单的应用场景，而面对稍微复杂一点的应用场景就捉襟见肘了，为什么这么说呢？</p>
 <p>这种架构最基本的应用单元就是组件，每个组件的Model其实就是对应的dataBase，如果我们想在某个组件内修改其它组件的dataBase，就需要拿到这个组件的router，而”拿router”这件事可并没有那么简单。。大体上根据组件之间的关系，分为3种情况：父子关系、爷孙关系和兄弟关系，于是就会出现下面这种情况。<br><img src="http://static.zybuluo.com/qonzon/e35ww3mc8b1o6sd7wc6uda39/%E5%A4%9AdataBase%E6%9E%B6%E6%9E%84.PNG" alt="多dataBase架构.PNG-23.1kB"></p>
@@ -407,22 +400,22 @@
 <p><strong>3. 请求分发器</strong></p>
 <p>Flux的dispatcher（请求分发器），其实解决了上述问题。</p>
 <p>dispatcher相对各个组件而言是全局性的，它可以将请求发送到所有的router，用户无需知道他需要请求的router，让每个router自行处理进来的request，这种抽象其实是将request视为全局性请求，一个request可以同时操作多个dataBase。<br><img src="http://static.zybuluo.com/qonzon/aqwpdky0xzy88opq4a0ws4lm/%E5%BC%95%E5%85%A5dispatcher.PNG" alt="引入dispatcher.PNG-16.7kB"></p>
-<p>当然，dispatcher不会自己寻找它需要分发到的router，我们需要调用<code>register()</code>方法手动注册router<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatcher.register(router);</div></pre></td></tr></table></figure></p>
-<p>在注册好router后，直接调用dispatcher的<code>dispatch()</code>方法即可，可以像下面这样发送一个request:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatcher.dispatch(&#123;type: <span class="string">'delete-todo'</span>, todoID: <span class="string">'1234'</span>&#125;);</div></pre></td></tr></table></figure></p>
+<p>当然，dispatcher不会自己寻找它需要分发到的router，我们需要调用<code>register()</code>方法手动注册router<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatcher.register(router);</span><br></pre></td></tr></table></figure></p>
+<p>在注册好router后，直接调用dispatcher的<code>dispatch()</code>方法即可，可以像下面这样发送一个request:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatcher.dispatch(&#123;<span class="attr">type</span>: <span class="string">'delete-todo'</span>, <span class="attr">todoID</span>: <span class="string">'1234'</span>&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>默认情况下，Flux会按照注册顺序依次将request放进router。如果我们希望自定义发送request后，部分router的执行顺序怎么办？Flux提供了<code>waitFor()</code>方法。</p>
-<p>举个例子：routerA接收到请求之后，希望依次经过routerB，和routerC，可以像下面伪代码这样实现：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> tokenB = dispatcher.register(routerB);</div><div class="line"><span class="keyword">let</span> tokenC = dispatcher.register(routerC);</div><div class="line"></div><div class="line"><span class="keyword">let</span> routerA = <span class="function"><span class="keyword">function</span>(<span class="params">request</span>)</span>&#123;</div><div class="line">    <span class="keyword">switch</span>(request.type)&#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">'ADD_TODO'</span>: dispatcher.waitFor(tokenB, tokenC); <span class="keyword">break</span>;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>举个例子：routerA接收到请求之后，希望依次经过routerB，和routerC，可以像下面伪代码这样实现：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tokenB = dispatcher.register(routerB);</span><br><span class="line"><span class="keyword">let</span> tokenC = dispatcher.register(routerC);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> routerA = <span class="function"><span class="keyword">function</span>(<span class="params">request</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(request.type)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'ADD_TODO'</span>: dispatcher.waitFor(tokenB, tokenC); <span class="keyword">break</span>;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>OK，你必须提前拿到routerB和routerC的<code>token</code>，然后按照顺序传入<code>waitFor()</code>方法(个人认为这种”拿token”，无异于上面提到的”拿router”，是一个设计缺陷)。</p>
 <p><strong>4. 数据库</strong></p>
 <p>dataBase（数据库）其实就代表了组件的state（状态）。</p>
 <p>而Flux将router和dataBase视为一体，将请求的解析和数据库的修改统一交给store来处理。</p>
 <p><code>store.reduce()</code>相当于router，而<code>store._state</code>则相当于dataBase，于是就有了下面这种架构<br><img src="http://static.zybuluo.com/qonzon/oztzrx1imja4mjxbwpbapfz6/store%E6%9E%B6%E6%9E%84.PNG" alt="store架构.PNG-19kB"></p>
 <p>最后，Flux采用了向外抛事件的方式，将<code>_state</code>映射到Model的工作交给用户去解决。</p>
-<p>你可以调用<code>store.addListener()</code>方法，传入回调函数即可监听到<code>_state</code>的变化。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">store.addListener(() =&gt; &#123;</div><div class="line">    <span class="keyword">let</span> state = store.getState();</div><div class="line">    ...映射到Model的操作...</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>你可以调用<code>store.addListener()</code>方法，传入回调函数即可监听到<code>_state</code>的变化。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">store.addListener(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> state = store.getState();</span><br><span class="line">    ...映射到Model的操作...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Flux的一整套抽象（action，dispatcher，store），在单向数据流的基础上可以提高应用的可维护性和代码的可预测性。然而，全局action+多store的架构面对复杂的应用依然不能很好地解决复杂数据流的问题，<code>waitFor()</code>虽然可以满足自定义多store接收action的顺序，但是它会让数据流变得复杂，难以维护。</p>
 <p>Redux作为Flux的继承者，单store的架构其实就很好地避免了上述问题，之后的文章会深入分析Redux是如何在Flux的基础上改进自身架构的。</p>
 <p>参考：</p>
-<p><a href="https://facebook.github.io/flux/docs/in-depth-overview.html#content" target="_blank" rel="external">Flux官方介绍：In Depth Overview</a></p>
-<p><a href="https://github.com/facebook/flux" target="_blank" rel="external">Flux官方仓库：github.com/facebook/flux</a></p>
+<p><a href="https://facebook.github.io/flux/docs/in-depth-overview.html#content" target="_blank" rel="noopener">Flux官方介绍：In Depth Overview</a></p>
+<p><a href="https://github.com/facebook/flux" target="_blank" rel="noopener">Flux官方仓库：github.com/facebook/flux</a></p>
 
       
     </div>
@@ -466,6 +459,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/29/一个前端的-functor，applicative-functor，monad-初探/" rel="prev" title="一个前端的 Functor，applicative Functor，monad 初探">
+                一个前端的 Functor，applicative Functor，monad 初探 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -531,9 +528,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Gloria" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
             
               <p class="site-author-name" itemprop="name">Gloria</p>
               <p class="site-description motion-element" itemprop="description">FE Engineer</p>
@@ -546,7 +541,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -557,7 +552,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -568,7 +563,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -649,7 +644,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

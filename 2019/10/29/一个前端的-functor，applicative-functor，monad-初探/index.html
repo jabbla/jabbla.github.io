@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="函数式编程,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一个前端的 functor，applicative functor，monad 初探前言在使用 ramda 的时候，经常会在文档中出现一些概念性的名词，比如 functor，applicative functor，monad。这些“高端词汇”都是啥意思，宝宝很好奇，索性就来探一探。 其实解释这些概念，更接近本质方式是数学形式的推导，但是由于水平和精力有限，这篇文章会结合 haskell 中的定义，">
+<meta name="keywords" content="函数式编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个前端的 Functor，applicative Functor，monad 初探">
+<meta property="og:url" content="http://jabbla.github.io/2019/10/29/一个前端的-functor，applicative-functor，monad-初探/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="一个前端的 functor，applicative functor，monad 初探前言在使用 ramda 的时候，经常会在文档中出现一些概念性的名词，比如 functor，applicative functor，monad。这些“高端词汇”都是啥意思，宝宝很好奇，索性就来探一探。 其实解释这些概念，更接近本质方式是数学形式的推导，但是由于水平和精力有限，这篇文章会结合 haskell 中的定义，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-30T04:31:30.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个前端的 Functor，applicative Functor，monad 初探">
+<meta name="twitter:description" content="一个前端的 functor，applicative functor，monad 初探前言在使用 ramda 的时候，经常会在文档中出现一些概念性的名词，比如 functor，applicative functor，monad。这些“高端词汇”都是啥意思，宝宝很好奇，索性就来探一探。 其实解释这些概念，更接近本质方式是数学形式的推导，但是由于水平和精力有限，这篇文章会结合 haskell 中的定义，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jabbla.github.io/2019/10/29/一个前端的-functor，applicative-functor，monad-初探/">
+
+
+
+
+
+  <title>一个前端的 Functor，applicative Functor，monad 初探 | Gloria</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gloria</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zxr's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jabbla.github.io/2019/10/29/一个前端的-functor，applicative-functor，monad-初探/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gloria">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gloria">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个前端的 Functor，applicative Functor，monad 初探</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-29T12:29:00+08:00">
+                2019-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术原创/" itemprop="url" rel="index">
+                    <span itemprop="name">技术原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一个前端的-functor，applicative-functor，monad-初探"><a href="#一个前端的-functor，applicative-functor，monad-初探" class="headerlink" title="一个前端的 functor，applicative functor，monad 初探"></a>一个前端的 functor，applicative functor，monad 初探</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在使用 ramda 的时候，经常会在文档中出现一些概念性的名词，比如 functor，applicative functor，monad。这些“高端词汇”都是啥意思，宝宝很好奇，索性就来探一探。</p>
+<p>其实解释这些概念，更接近本质方式是数学形式的推导，但是由于水平和精力有限，这篇文章会结合 haskell 中的定义，探索它们在 javascript 和 ramda 库中的体现。</p>
+<h2 id="Functor"><a href="#Functor" class="headerlink" title="Functor"></a>Functor</h2><p>先来看一看在 haskell 中是如何定义一个函子的，任何可以被 <code>fmap (a -&gt; b)</code>映射的类型实例，该类型就是函子。（其实看不懂也无所谓~）<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Functor</span> f <span class="keyword">where</span></span></span><br><span class="line">    fmap :: (a -&gt; b) -&gt; f a -&gt; f b</span><br></pre></td></tr></table></figure></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>先来个简单的例子，在 ramda 中如何实现 <code>Array.prototype.map</code> 的功能。</p>
+<p>可以使用 <code>R.map</code> ，像下面这样<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> b = R.map(<span class="built_in">String</span>, a); <span class="comment">// ['1', '2', '3']</span></span><br></pre></td></tr></table></figure></p>
+<p>换一个角度想这个过程：a 是一个容器，里面有3个值，通过函数 R.map(String) 映射出了另外一个同样有3个值的容器 b。</p>
+<p>a容器和b容器其实就是 <strong>函子</strong>，简单地说就是可被映射的容器就是 <strong>函子</strong> ，函子是可包含值的容器。</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>其实函数也是 <strong>函子</strong>，可将函数视为<strong>包裹着值的容器</strong>。</p>
+<h4 id="恒值函数"><a href="#恒值函数" class="headerlink" title="恒值函数"></a>恒值函数</h4><p>先看一个比较简单的函数，<code>() =&gt; 1</code>，这个是一个包裹着值<code>1</code> 的容器，我们可以将这个容器映射为一个包裹着<code>2</code>的容器：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> b = R.map(<span class="function"><span class="params">x</span> =&gt;</span> x+<span class="number">1</span>, a);   <span class="comment">// () =&gt; 2</span></span><br></pre></td></tr></table></figure></p>
+<p>恒值函数是一个包裹着恒定值的函数，利用 ramda 我们可以像下面一样创建这样一个容器：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R.always(<span class="number">2</span>);    <span class="comment">// () =&gt;  2;</span></span><br></pre></td></tr></table></figure></p>
+<p>在日常开发中，我们接触到的大多数函数都不是恒值函数，而是普通函数，接下来说一说普通函数。</p>
+<h4 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h4><p>普通函数也是函子，可以想象 <code>x =&gt; x + 1</code> , 我们可以把这个函数视为一个容器，这个容器的值就是 <strong>参数 + 1</strong> ，一个不确定的值而已。</p>
+<p>既然我们可以把函数视为一个 <strong>包含不确定值的容器</strong></p>
+<p>思考一个问题：如何将 <code>x =&gt; x + 1</code> 这样一个容器，映射成 <code>x =&gt; (x + 1) * 2</code> ？</p>
+<p>你可能会写出下面这样的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="function"><span class="params">x</span> =&gt;</span> a(x) * <span class="number">2</span>;</span><br><span class="line">b(<span class="number">1</span>); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
+<p>换成 ramda 的写法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> b = R.map(<span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>, a);</span><br><span class="line">b(<span class="number">1</span>); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
+<p>容器 a 映射成了 b ，映射过程：生成了一个 b 容器，它的值是<code>a中不确定的值*2</code>。</p>
+<p>接下来我们来看一看 functor 的升级版 applicative functor。</p>
+<h2 id="Applicative-Functor"><a href="#Applicative-Functor" class="headerlink" title="Applicative Functor"></a>Applicative Functor</h2><p>先看一看 haskell 中的定义，<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Functor</span> <span class="title">f</span> </span>=&gt; Applicative f where</span><br><span class="line">    pure :: a -&gt; f a</span><br><span class="line">    (<span class="xml"><span class="tag">&lt;<span class="name">*</span>&gt;</span>) :: f (a -&gt; b) -&gt; f a -&gt; f b</span></span><br></pre></td></tr></table></figure></p>
+<p>首先 Applicative Functor 必须是 Functor ，另外存在 pure 方法接收一个值 a ，返回一个包裹了 a 的容器。</p>
+<p>其次，支持<code>&lt;*&gt;</code>函数，在 haskell 中可以像下面这样操作 applicative functor ：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pure</span> (+<span class="number">10</span>) &lt;*&gt; <span class="type">Just</span> <span class="number">9</span>  <span class="comment">--&gt; Just 19</span></span><br><span class="line"> <span class="comment">--&gt; 或者使用 applicative 风格</span></span><br><span class="line"> (+<span class="number">10</span>) &lt;$&gt; &lt;*&gt; <span class="type">Just</span> <span class="number">9</span>  <span class="comment">--&gt; Just 19</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="R-ap"><a href="#R-ap" class="headerlink" title="R.ap"></a>R.ap</h3><p>在 ramda 中数组和函数同样也都是 applicative functor，我们可以利用<code>R.ap</code>函数充当 haskell 中<code>&lt;*&gt;</code>的角色。</p>
+<p>先来看一看<code>R.ap</code>函数的通用定义，是不是和 applicative functor 的 <code>&lt;*&gt;</code> 函数一样：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Apply</span> f =&gt; f (a → b) → f a → f b</span><br></pre></td></tr></table></figure></p>
+<h4 id="函数-1"><a href="#函数-1" class="headerlink" title="函数"></a>函数</h4><p>有一个包裹着映射规则 <code>x =&gt; x + 1</code> 的容器 a 和包裹着值<code>2</code>的容器 b。</p>
+<p>思考：如何将 a 中的映射规则应用到容器 b 的值上，并将产生的新值放到一个新的容器里。</p>
+<p>我们可以利用<code>R.ap</code>函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = R.always(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>); <span class="comment">// 容器 a</span></span><br><span class="line"><span class="keyword">const</span> b = R.always(<span class="number">2</span>);  <span class="comment">// 容器 b</span></span><br><span class="line"><span class="keyword">const</span> c = R.ap(a, b); <span class="comment">// 容器 c：() =&gt; 3</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h4><p>数组也是类似，在数组中包裹一个函数<code>x =&gt; x + 1</code>，然后在另一个数组上应用这个数组。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> b = [<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">R.ap(b, a); <span class="comment">// [2]</span></span><br></pre></td></tr></table></figure></p>
+<p>如果数组 a 中有 a 个元素，数组 b 中有 b 个元素，那么最终会生成 a*b 个元素的数组<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> b = [<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>, x =&gt; x * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">R.ap(b, a); <span class="comment">// [2, 2, 3, 4]</span></span><br></pre></td></tr></table></figure></p>
+<p>见识到 applicative functor 之后，接下来感受一下 Monad 是什么。</p>
+<h2 id="Monad"><a href="#Monad" class="headerlink" title="Monad"></a>Monad</h2><p>haskell 中 Monad 定义：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Monad</span> m <span class="keyword">where</span></span></span><br><span class="line">    return :: a -&gt; m a</span><br><span class="line">    (&gt;&gt;=) :: m a -&gt; (a -&gt; m b) -&gt; m b</span><br></pre></td></tr></table></figure></p>
+<p>简单来说，首先 return 函数接收一个值，返回一个包裹这个值的容器。其次对于 <code>&gt;&gt;=</code> 函数来说，接收一个容器和对其中值的映射规则，返回一个新的容器，这个容器就是映射规则返回的容器。</p>
+<p>换一种角度，其实 Monad 就是在说某种特殊的函数满足结合率这件事，&gt;&gt;= 函数描述了 m 这种容器在 &gt;&gt;= 下满足结合率的这一特性，然后 return 在其中扮演单位元的角色，任何容器通过 &gt;&gt;= 函数与 return 组合，返回的一定是自身。</p>
+<p>在 javascript 中，最典型的 monad 就是 Promise。</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>先创建一个 Promise：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getUser = <span class="keyword">new</span> <span class="built_in">Promise</span>(...);</span><br></pre></td></tr></table></figure></p>
+<p>我们创建了一个 Promise 实例。那么如何去消费这个实例产出的值呢？大家都知道，可以用 then 方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> consumer = <span class="function"><span class="params">user</span> =&gt;</span> &#123;...&#125;;</span><br><span class="line">getUser.then(consumer);</span><br></pre></td></tr></table></figure></p>
+<p>在 consumer 函数中去消费 user。如果我们想在拿到 user 之后再去进行异步操作怎么办？改写上面的例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getDetailByUser = <span class="function"><span class="params">user</span> =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(...);</span><br><span class="line">getUser.then(getDetailByUser).then(...);</span><br></pre></td></tr></table></figure></p>
+<p>我们再来简化地描述这个过程：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getUser :: <span class="built_in">Promise</span>&lt;user&gt;</span><br><span class="line">getDetailByUser :: user -&gt; <span class="built_in">Promise</span>&lt;detail&gt;</span><br></pre></td></tr></table></figure></p>
+<p>把 Promise 看做一个包裹着未来值的容器 m，把 user 用 a 代替，detail 用 b 代替，省去 &lt;&gt; ：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getUser :: m a</span><br><span class="line">getDetailByUser :: a -&gt; m b</span><br></pre></td></tr></table></figure></p>
+<p>其中 then 方法是不是就有些类似 &gt;&gt;= 函数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">then :: m a -&gt;（a -&gt; m b）-&gt; m b</span><br></pre></td></tr></table></figure></p>
+<p>在 then 函数的作用下类似 a -&gt; m b 这样的过程满足结合率，那么 return 的单位元的职责是由谁来承担的呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getUser.then(<span class="built_in">Promise</span>.resolve).then(getDetailByUser)</span><br><span class="line">getUser.then(getDetailByUser).then(<span class="built_in">Promise</span>.resolve)</span><br></pre></td></tr></table></figure></p>
+<p>这两行代码的效果都是一样的，Promise.resolve 承担着单位元的作用，任何过程 a -&gt; Promise<b> 与 Promise.resolve 通过 then 组合（左结合或右结合），其结果都是 a -&gt; Promise<b> 。</b></b></p>
+<p>通过对比在 haskell 中的定义， Promise 符合 Monad 的形式。</p>
+<p>通常 monad 模式会用来封装一些副作用，使得这部分”不纯”的逻辑与外部“纯洁”的逻辑隔离开，比如在 haskell 中的 IO 类型。</p>
+<p>这篇文章算是给前段时间的困惑画上了一个句号吧，如果有些地方理解有误，还请多多指出。</p>
+<p>参考资料：<br>《 Haskell 趣学指南 》<br>IO and monads<br><a href="https://www.seas.upenn.edu/~cis194/fall16/lectures/06-io-and-monads.html" target="_blank" rel="noopener">https://www.seas.upenn.edu/~cis194/fall16/lectures/06-io-and-monads.html</a><br>写给小白的Monad指北<br><a href="https://zhuanlan.zhihu.com/p/65449477" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/65449477</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/来聊一聊Redux的前身Flux/" rel="next" title="来聊一聊Redux的前身Flux">
+                <i class="fa fa-chevron-left"></i> 来聊一聊Redux的前身Flux
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/19/Untitled/" rel="prev" title="函数式编程起源-Lambda演算">
+                函数式编程起源-Lambda演算 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
+            
+              <p class="site-author-name" itemprop="name">Gloria</p>
+              <p class="site-description motion-element" itemprop="description">FE Engineer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jabbla" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="gloria_n@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zhu-xiao-ran-47-68" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/1783375687" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一个前端的-functor，applicative-functor，monad-初探"><span class="nav-number">1.</span> <span class="nav-text">一个前端的 functor，applicative functor，monad 初探</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functor"><span class="nav-number">1.2.</span> <span class="nav-text">Functor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.2.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">1.2.2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#恒值函数"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">恒值函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#普通函数"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">普通函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applicative-Functor"><span class="nav-number">1.3.</span> <span class="nav-text">Applicative Functor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R-ap"><span class="nav-number">1.3.1.</span> <span class="nav-text">R.ap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数-1"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组-1"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monad"><span class="nav-number">1.4.</span> <span class="nav-text">Monad</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise"><span class="nav-number">1.4.1.</span> <span class="nav-text">Promise</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gloria</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

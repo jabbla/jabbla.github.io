@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="SVG,CSS," />
+  <meta name="keywords" content="SVG,CSS,">
 
 
 
@@ -80,15 +80,17 @@
 
 
 <meta name="description" content="上周看到有一篇关于CSS滤镜效果函数的文章，其中的效果函数相对来说比较容易理解，而且上手难度低。但是，这种方式仅仅是添加CSS滤镜效果众多方式中最弱的一种。今天让我们来看一看滤镜基元，这是为图片和元素添加滤镜效果另外一种更加强大的方法。">
+<meta name="keywords" content="SVG,CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML元素上的SVG滤镜">
 <meta property="og:url" content="http://jabbla.github.io/2016/08/30/HTML元素上的SVG滤镜/index.html">
 <meta property="og:site_name" content="Gloria">
 <meta property="og:description" content="上周看到有一篇关于CSS滤镜效果函数的文章，其中的效果函数相对来说比较容易理解，而且上手难度低。但是，这种方式仅仅是添加CSS滤镜效果众多方式中最弱的一种。今天让我们来看一看滤镜基元，这是为图片和元素添加滤镜效果另外一种更加强大的方法。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/strawberry-fields.jpg">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/filter-primitives.jpg">
 <meta property="og:image" content="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/firefox-clipped.jpg">
-<meta property="og:updated_time" content="2017-12-20T11:18:08.548Z">
+<meta property="og:updated_time" content="2019-12-29T14:09:26.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML元素上的SVG滤镜">
 <meta name="twitter:description" content="上周看到有一篇关于CSS滤镜效果函数的文章，其中的效果函数相对来说比较容易理解，而且上手难度低。但是，这种方式仅仅是添加CSS滤镜效果众多方式中最弱的一种。今天让我们来看一看滤镜基元，这是为图片和元素添加滤镜效果另外一种更加强大的方法。">
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://jabbla.github.io/2016/08/30/HTML元素上的SVG滤镜/"/>
+  <link rel="canonical" href="http://jabbla.github.io/2016/08/30/HTML元素上的SVG滤镜/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Gloria</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +188,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -196,7 +198,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -206,7 +208,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -216,7 +218,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gloria">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -348,42 +350,42 @@
 <p>滤镜基元其实比较复杂，很难在一篇文章中展现它的全貌，在这里需要说一声抱歉。</p>
 <p>我发现官方文档的描述比较模糊，而且缺乏一些帮助我们理解的例子。我也查过一些资料，但是大多数都是在讨论SVG滤镜本身。不过，高兴的是，我可以轻松地让例子跑起来了，这个例子会在下面给出。有一点不太满意的地方是，它不是在所有的浏览器中都能运行。但是我相信，未来这些浏览器都会支持。</p>
 <h2 id="什么是CSS滤镜基元？"><a href="#什么是CSS滤镜基元？" class="headerlink" title="什么是CSS滤镜基元？"></a>什么是CSS滤镜基元？</h2><p>滤镜基元和效果函数并没有多么不同。在许多方面，他们只是用不同方式做着同样的事情。基元最初是被作为SVG滤镜开发的，之后被扩展到不仅仅支持SVG图片。</p>
-<p>像效果函数一样，滤镜基元是一种不需要图片编辑器就可以添加滤镜效果的一种方法。这使得它更加灵活，并且不具破坏性。它被写在SVG标记中，然后可以通过CSS filter属性的url值应用到图片或者元素上。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.filtered</span> &#123;</div><div class="line">    <span class="attribute">filter</span>: url(path-to-filter-primitives);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>像效果函数一样，滤镜基元是一种不需要图片编辑器就可以添加滤镜效果的一种方法。这使得它更加灵活，并且不具破坏性。它被写在SVG标记中，然后可以通过CSS filter属性的url值应用到图片或者元素上。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.filtered</span> &#123;</span><br><span class="line">    <span class="attribute">filter</span>: url(path-to-filter-primitives);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>滤镜基元的概念不再像以前那样复杂。它只是与效果函数的书写方式不一样，它还提供了更多的选项，然后以不同的方式将滤镜应用于目标元素。例子或许是帮你弄清它是什么及其工作方式的最佳方法。</p>
 <blockquote>
-<p>如果您从未接触过CSS滤镜相关的内容，建议您可以<a href="http://www.w3cplus.com/blog/tags/119.html" target="_blank" rel="external">点击这里</a>进行了解</p>
+<p>如果您从未接触过CSS滤镜相关的内容，建议您可以<a href="http://www.w3cplus.com/blog/tags/119.html" target="_blank" rel="noopener">点击这里</a>进行了解</p>
 </blockquote>
-<h2 id="使用SVG滤镜基元"><a href="#使用SVG滤镜基元" class="headerlink" title="使用SVG滤镜基元"></a>使用SVG滤镜基元</h2><p><code>hue-rotate</code>是一个效果函数，你可以像下面这样使用它：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">filter</span>: hue-rotate(<span class="number">60deg</span>);</div></pre></td></tr></table></figure></p>
-<p>等价的滤镜基元会是下面这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"hueRotate"</span> <span class="attr">values</span>=<span class="string">"60"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="使用SVG滤镜基元"><a href="#使用SVG滤镜基元" class="headerlink" title="使用SVG滤镜基元"></a>使用SVG滤镜基元</h2><p><code>hue-rotate</code>是一个效果函数，你可以像下面这样使用它：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">filter</span>: hue-rotate(<span class="number">60deg</span>);</span><br></pre></td></tr></table></figure></p>
+<p>等价的滤镜基元会是下面这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"hueRotate"</span> <span class="attr">values</span>=<span class="string">"60"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>这是一个标记，而不是CSS，它有一个新名字，你可以看到type属性有一个和效果函数的函数名相似的值，我们还需要更多的代码来让上面的基元工作，但是我想你已经知道了基元和效果函数的关联。</p>
-<p>HTML结构很简单：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"filtered"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/strawberry-fields.jpg"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>CSS同样很简单：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">filter</span>: url(filters.svg<span class="number">#f</span>ilter-primitives);</div></pre></td></tr></table></figure></p>
+<p>HTML结构很简单：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"filtered"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/strawberry-fields.jpg"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>CSS同样很简单：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">filter</span>: url(filters.svg<span class="number">#f</span>ilter-primitives);</span><br></pre></td></tr></table></figure></p>
 <p>我使用了<code>filter</code>属性的<code>url</code>值，并且将<code>url</code>指向<code>filters.svg</code>文件。在这个文件中，我通过<code>id</code>名为<code>filter-primitives</code>调用了具体的滤镜。</p>
-<p>到目前为止，步骤都很简单，现在我们需要定义相应的滤镜。这里是完整的<code>filters.svg</code>文件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" </span></div><div class="line"> "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">filter</span> <span class="attr">id</span>=<span class="string">"filter-primitives"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">feGaussianBlur</span> <span class="attr">stdDeviation</span>=<span class="string">"3"</span> /&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"hueRotate"</span> <span class="attr">values</span>=<span class="string">"270"</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"saturate"</span> <span class="attr">values</span>=<span class="string">"0.75"</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">feBlend</span> <span class="attr">mode</span>=<span class="string">"multiply"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>到目前为止，步骤都很简单，现在我们需要定义相应的滤镜。这里是完整的<code>filters.svg</code>文件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">svg</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//W3C//DTD SVG 1.1//EN"</span> </span></span><br><span class="line"><span class="meta"> <span class="meta-string">"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">filter</span> <span class="attr">id</span>=<span class="string">"filter-primitives"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">feGaussianBlur</span> <span class="attr">stdDeviation</span>=<span class="string">"3"</span> /&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"hueRotate"</span> <span class="attr">values</span>=<span class="string">"270"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"saturate"</span> <span class="attr">values</span>=<span class="string">"0.75"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">feBlend</span> <span class="attr">mode</span>=<span class="string">"multiply"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>这个文件首先定义了自己是用xml语言书写的SVG文档。接下来是SVG对象。滤镜定义在<code>defs</code>元素中。它的<code>id</code>就是我们刚才在CSS中引用的那个。这里我应用了4个滤镜基元。我希望各自都可以最大化发挥各自的作用。</p>
-<p>还有一些需要注意的事情，就是同时使用了<code>hue-rotate</code>和<code>saturate</code>，每一个都是独一无二的滤镜，但是不仅仅局限于<a href="http://www.vanseodesign.com/web-design/hue-saturation-and-lightness/" target="_blank" rel="external"><code>hue</code> 和 <code>saturation</code></a>，它还有一个<code>luminanceToAlpha</code>值，你也可以直接将一个矩阵赋值给它。</p>
+<p>还有一些需要注意的事情，就是同时使用了<code>hue-rotate</code>和<code>saturate</code>，每一个都是独一无二的滤镜，但是不仅仅局限于<a href="http://www.vanseodesign.com/web-design/hue-saturation-and-lightness/" target="_blank" rel="noopener"><code>hue</code> 和 <code>saturation</code></a>，它还有一个<code>luminanceToAlpha</code>值，你也可以直接将一个矩阵赋值给它。</p>
 <p>我知道你已经习惯使用ps或者其它图片编辑器，同样需要注意的是，这里虽然没有所有的混合滤镜，但是我们有 <code>normal</code>、 <code>multiply</code>、 <code>screen</code>、 <code>darken</code>和 <code>lighten</code>。</p>
 <p>让我们来看一个例子。我会将滤镜应用在下面这张图片：<br><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/strawberry-fields.jpg" alt="示例图片"></p>
-<p>HTML结构很简单：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class="filtered"&gt;</div><div class="line">    &lt;img src="images/strawberry-fields.jpg" /&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>CSS同样很简单：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">filter</span>: url(filters.svg<span class="number">#f</span>ilter-primitives);</div></pre></td></tr></table></figure></p>
+<p>HTML结构很简单：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="filtered"&gt;</span><br><span class="line">    &lt;img src="images/strawberry-fields.jpg" /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>CSS同样很简单：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">filter</span>: url(filters.svg<span class="number">#f</span>ilter-primitives);</span><br></pre></td></tr></table></figure></p>
 <p>我使用了<code>filter</code>属性的<code>url</code>值，并且将<code>url</code>指向<code>filters.svg</code>文件。在这个文件中，我通过<code>id</code>名为<code>filter-primitives</code>调用了具体的滤镜。</p>
-<p>到目前为止，步骤都很简单，现在我们需要定义相应的滤镜。这里是完整的<code>filters.svg</code>文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" </div><div class="line"> "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;</div><div class="line"></div><div class="line">&lt;svg xmlns="http://www.w3.org/2000/svg"&gt;</div><div class="line">&lt;defs&gt;</div><div class="line">   &lt;filter id="filter-primitives"&gt;</div><div class="line">     &lt;feGaussianBlur stdDeviation="3" /&gt;</div><div class="line">     &lt;feColorMatrix type="hueRotate" values="270"/&gt;</div><div class="line">     &lt;feColorMatrix type="saturate" values="0.75"/&gt;</div><div class="line">     &lt;feBlend mode="multiply"/&gt;</div><div class="line">   &lt;/filter&gt;</div><div class="line">&lt;/defs&gt;</div><div class="line">&lt;/svg&gt;</div></pre></td></tr></table></figure></p>
+<p>到目前为止，步骤都很简单，现在我们需要定义相应的滤镜。这里是完整的<code>filters.svg</code>文件<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line">&lt;!DOCTYPE svg PUBLIC "-<span class="comment">//W3C//DTD SVG 1.1//EN" </span></span><br><span class="line"> "http://www.w3.org/Graphics/SVG/<span class="number">1.1</span>/DTD/svg11.dtd<span class="string">"&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;svg xmlns="</span>http://www.w3.org/<span class="number">2000</span>/svg<span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;defs&gt;</span></span><br><span class="line"><span class="string">   &lt;filter id="</span>filter-primitives<span class="string">"&gt;</span></span><br><span class="line"><span class="string">     &lt;feGaussianBlur stdDeviation="</span><span class="number">3</span><span class="string">" /&gt;</span></span><br><span class="line"><span class="string">     &lt;feColorMatrix type="</span>hueRotate<span class="string">" values="</span><span class="number">270</span><span class="string">"/&gt;</span></span><br><span class="line"><span class="string">     &lt;feColorMatrix type="</span>saturate<span class="string">" values="</span><span class="number">0.75</span><span class="string">"/&gt;</span></span><br><span class="line"><span class="string">     &lt;feBlend mode="</span>multiply<span class="string">"/&gt;</span></span><br><span class="line"><span class="string">   &lt;/filter&gt;</span></span><br><span class="line"><span class="string">&lt;/defs&gt;</span></span><br><span class="line"><span class="string">&lt;/svg&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>这个文件首先定义了自己是用xml语言书写的SVG文档。接下来是SVG对象。滤镜定义在<code>defs</code>元素中。它的<code>id</code>就是我们刚才在CSS中引用的那个。这里我应用了4个滤镜基元。我希望各自都可以最大化发挥各自的作用。</p>
-<p>还有一些需要注意的事情，就是同时使用了<code>hue-rotate</code>和<code>saturate</code>，每一个都是独一无二的滤镜，但是不仅仅局限于<a href="http://www.vanseodesign.com/web-design/hue-saturation-and-lightness/" target="_blank" rel="external"><code>hue</code> 和 <code>saturation</code></a>，它还有一个<code>luminanceToAlpha</code>值，你也可以直接将一个矩阵赋值给它。</p>
+<p>还有一些需要注意的事情，就是同时使用了<code>hue-rotate</code>和<code>saturate</code>，每一个都是独一无二的滤镜，但是不仅仅局限于<a href="http://www.vanseodesign.com/web-design/hue-saturation-and-lightness/" target="_blank" rel="noopener"><code>hue</code> 和 <code>saturation</code></a>，它还有一个<code>luminanceToAlpha</code>值，你也可以直接将一个矩阵赋值给它。</p>
 <p>我知道你已经习惯使用ps或者其它图片编辑器，同样需要注意的是，这里虽然没有所有的混合滤镜，但是我们有 <code>normal</code>、 <code>multiply</code>、 <code>screen</code>、 <code>darken</code>和 <code>lighten</code>。</p>
 <p>应用上面的滤镜会得到下面这张图片：<br><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/filter-primitives.jpg" alt="应用滤镜后的图片"></p>
-<p>上面的例子能完美地在Firefox运行，但是在Chrome Canary和Safari中就悲剧了。为了让上面的例子也能在这两个浏览器中正常运行，于是，我将所有的代码都写在了<code>index.html</code>中。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">image</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"800"</span> <span class="attr">height</span>=<span class="string">"600"</span> <span class="attr">xlink:href</span>=<span class="string">"images/strawberry-fields.jpg"</span> <span class="attr">filter</span>=<span class="string">"url(#filter-primitives)"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">defs</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">filter</span> <span class="attr">id</span>=<span class="string">"filter-primitives"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">feGaussianBlur</span> <span class="attr">stdDeviation</span>=<span class="string">"0"</span> /&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"hueRotate"</span> <span class="attr">values</span>=<span class="string">"270"</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"saturate"</span> <span class="attr">values</span>=<span class="string">"0.75"</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">feBlend</span> <span class="attr">mode</span>=<span class="string">"multiply"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上面的例子能完美地在Firefox运行，但是在Chrome Canary和Safari中就悲剧了。为了让上面的例子也能在这两个浏览器中正常运行，于是，我将所有的代码都写在了<code>index.html</code>中。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">image</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"800"</span> <span class="attr">height</span>=<span class="string">"600"</span> <span class="attr">xlink:href</span>=<span class="string">"images/strawberry-fields.jpg"</span> <span class="attr">filter</span>=<span class="string">"url(#filter-primitives)"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">filter</span> <span class="attr">id</span>=<span class="string">"filter-primitives"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">feGaussianBlur</span> <span class="attr">stdDeviation</span>=<span class="string">"0"</span> /&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"hueRotate"</span> <span class="attr">values</span>=<span class="string">"270"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">feColorMatrix</span> <span class="attr">type</span>=<span class="string">"saturate"</span> <span class="attr">values</span>=<span class="string">"0.75"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">feBlend</span> <span class="attr">mode</span>=<span class="string">"multiply"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>所有的东西都在同一个文件中，而不是通过CSS链接外部文件。滤镜没有变。图片元素由原始的HTML图片变为SVG图片。</p>
-<p>有趣的是，这个例子在Firefox里居然是。。。。滤镜确实应用在了图片上，但是Firefox只会显示<a href="http://www.vanseodesign.com/css/clipping-and-masking/" target="_blank" rel="external">裁切过的图片</a>，就像下面这样：<br><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/firefox-clipped.jpg" alt="裁切过的图片"></p>
+<p>有趣的是，这个例子在Firefox里居然是。。。。滤镜确实应用在了图片上，但是Firefox只会显示<a href="http://www.vanseodesign.com/css/clipping-and-masking/" target="_blank" rel="noopener">裁切过的图片</a>，就像下面这样：<br><img src="http://oc3wui92y.bkt.clouddn.com/image/W3CPlus/firefox-clipped.jpg" alt="裁切过的图片"></p>
 <p>图片和<code>div</code>容器已经被全尺寸渲染，但是图片会被裁切成宽高为<code>300px</code>和<code>150px</code>的区域。我现在还不知道这是为什么。。</p>
 <p>如果有人知道，可以在这里分享一下。</p>
 <h2 id="其它例子"><a href="#其它例子" class="headerlink" title="其它例子"></a>其它例子</h2><p>这里有一些我查阅资料时候碰到的其它例子。</p>
 <ul>
-<li><a href="http://blogs.msdn.com/b/ie/archive/2011/10/14/svg-filter-effects-in-ie10.aspx" target="_blank" rel="external">SVG Filter Effects in IE10</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Applying_SVG_effects_to_HTML_content" target="_blank" rel="external">Applying SVG effects to HTML content</a></li>
-<li><a href="http://css-plus.com/2012/03/gaussian-blur/" target="_blank" rel="external">Gaussian Blur and CSS3/SVG</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="external">Filters</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="external">SVG-Wow</a></li>
+<li><a href="http://blogs.msdn.com/b/ie/archive/2011/10/14/svg-filter-effects-in-ie10.aspx" target="_blank" rel="noopener">SVG Filter Effects in IE10</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Applying_SVG_effects_to_HTML_content" target="_blank" rel="noopener">Applying SVG effects to HTML content</a></li>
+<li><a href="http://css-plus.com/2012/03/gaussian-blur/" target="_blank" rel="noopener">Gaussian Blur and CSS3/SVG</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="noopener">Filters</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="noopener">SVG-Wow</a></li>
 </ul>
 <p>可以从每一个的标题看出来，它们可以汇总成三方面，SVG滤镜，CSS和SVG运用相同滤镜时使用上的细微差别，和不同浏览器对不同方式的支持程度。</p>
 <h2 id="滤镜基元清单"><a href="#滤镜基元清单" class="headerlink" title="滤镜基元清单"></a>滤镜基元清单</h2><p>有许多我没有在上面使用到的滤镜基元都和效果函数很相似，或者说相似到能够让我们很容易理解它们到底是做什么的。还有不少的更加复杂一些的滤镜基元，但是我已经没有机会再去研究他们了</p>
@@ -536,9 +538,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Gloria" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
             
               <p class="site-author-name" itemprop="name">Gloria</p>
               <p class="site-description motion-element" itemprop="description">FE Engineer</p>
@@ -551,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -562,7 +562,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -573,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -654,7 +654,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

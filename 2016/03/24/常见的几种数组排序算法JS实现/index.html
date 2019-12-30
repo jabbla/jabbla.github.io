@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript,算法," />
+  <meta name="keywords" content="javascript,算法,">
 
 
 
@@ -80,12 +80,14 @@
 
 
 <meta name="description" content="常见的几种数组排序算法JS实现一些简单的排序js实现(小菜一只，大神勿喷)">
+<meta name="keywords" content="javascript,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见的几种数组排序算法JS实现">
 <meta property="og:url" content="http://jabbla.github.io/2016/03/24/常见的几种数组排序算法JS实现/index.html">
 <meta property="og:site_name" content="Gloria">
 <meta property="og:description" content="常见的几种数组排序算法JS实现一些简单的排序js实现(小菜一只，大神勿喷)">
-<meta property="og:updated_time" content="2017-12-20T11:23:07.522Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-29T14:09:27.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见的几种数组排序算法JS实现">
 <meta name="twitter:description" content="常见的几种数组排序算法JS实现一些简单的排序js实现(小菜一只，大神勿喷)">
@@ -118,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://jabbla.github.io/2016/03/24/常见的几种数组排序算法JS实现/"/>
+  <link rel="canonical" href="http://jabbla.github.io/2016/03/24/常见的几种数组排序算法JS实现/">
 
 
 
@@ -152,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Gloria</span>
         <span class="logo-line-after"><i></i></span>
@@ -182,7 +184,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -192,7 +194,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -202,7 +204,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -212,7 +214,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -255,7 +257,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gloria">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -291,7 +293,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -344,19 +346,19 @@
 <h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
 <p>　从给定的数据中，随机抽出一项，这项的左边放所有比它小的，右边放比它大的，然后再分别这两边执行上述操作，采用的是递归的思想，总结出来就是　实现一层，分别给两边递归，设置好出口</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fastSort</span>(<span class="params">array,head,tail</span>)</span>&#123;</div><div class="line">    <span class="comment">//考虑到给每个分区操作的时候都是在原有的数组中进行操作的，所以这里head,tail来确定分片的位置</span></div><div class="line">    <span class="comment">/*生成随机项*/</span></div><div class="line">    <span class="keyword">var</span> randomnum = <span class="built_in">Math</span>.floor(ranDom(head,tail));</div><div class="line">    <span class="keyword">var</span> random = array[randomnum];</div><div class="line">    <span class="comment">/*将小于random的项放置在其左边  策略就是通过一个临时的数组来储存分好区的结果，再到原数组中替换*/</span></div><div class="line">    <span class="keyword">var</span> arrayTemp = [];</div><div class="line">    <span class="keyword">var</span> unshiftHead = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = head;i &lt;= tail;i++)&#123;</div><div class="line">      <span class="keyword">if</span>(array[i]&lt;random)&#123;</div><div class="line">        arrayTemp.unshift(array[i]);</div><div class="line">        unshiftHead++;</div><div class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(array[i]&gt;random)&#123;</div><div class="line">        arrayTemp.push(array[i]);</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/*当它等于的时候放哪，这里我想选择放到队列的前面，也就是从unshift后的第一个位置放置*/</span></div><div class="line">      <span class="keyword">if</span>(array[i]===random)&#123;</div><div class="line">        arrayTemp.splice(unshiftHead,<span class="number">0</span>,array[i]);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*将对应项覆盖原来的记录*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j = head , u=<span class="number">0</span>;j &lt;= tail;j++,u++)&#123;</div><div class="line">      array.splice(j,<span class="number">1</span>,arrayTemp[u]);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*寻找中间项所在的index*/</span></div><div class="line">    <span class="keyword">var</span> nowIndex = array.indexOf(random);</div><div class="line"></div><div class="line">    <span class="comment">/*设置出口，当要放进去的片段只有2项的时候就可以收工了*/</span></div><div class="line">    <span class="keyword">if</span>(arrayTemp.length &lt;= <span class="number">2</span>)&#123;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*递归，同时应用其左右两个区域*/</span></div><div class="line">    fastSort(array,head,nowIndex);</div><div class="line">    fastSort(array,nowIndex+<span class="number">1</span>,tail);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fastSort</span>(<span class="params">array,head,tail</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//考虑到给每个分区操作的时候都是在原有的数组中进行操作的，所以这里head,tail来确定分片的位置</span></span><br><span class="line">    <span class="comment">/*生成随机项*/</span></span><br><span class="line">    <span class="keyword">var</span> randomnum = <span class="built_in">Math</span>.floor(ranDom(head,tail));</span><br><span class="line">    <span class="keyword">var</span> random = array[randomnum];</span><br><span class="line">    <span class="comment">/*将小于random的项放置在其左边  策略就是通过一个临时的数组来储存分好区的结果，再到原数组中替换*/</span></span><br><span class="line">    <span class="keyword">var</span> arrayTemp = [];</span><br><span class="line">    <span class="keyword">var</span> unshiftHead = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = head;i &lt;= tail;i++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(array[i]&lt;random)&#123;</span><br><span class="line">        arrayTemp.unshift(array[i]);</span><br><span class="line">        unshiftHead++;</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(array[i]&gt;random)&#123;</span><br><span class="line">        arrayTemp.push(array[i]);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/*当它等于的时候放哪，这里我想选择放到队列的前面，也就是从unshift后的第一个位置放置*/</span></span><br><span class="line">      <span class="keyword">if</span>(array[i]===random)&#123;</span><br><span class="line">        arrayTemp.splice(unshiftHead,<span class="number">0</span>,array[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*将对应项覆盖原来的记录*/</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j = head , u=<span class="number">0</span>;j &lt;= tail;j++,u++)&#123;</span><br><span class="line">      array.splice(j,<span class="number">1</span>,arrayTemp[u]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*寻找中间项所在的index*/</span></span><br><span class="line">    <span class="keyword">var</span> nowIndex = array.indexOf(random);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*设置出口，当要放进去的片段只有2项的时候就可以收工了*/</span></span><br><span class="line">    <span class="keyword">if</span>(arrayTemp.length &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*递归，同时应用其左右两个区域*/</span></span><br><span class="line">    fastSort(array,head,nowIndex);</span><br><span class="line">    fastSort(array,nowIndex+<span class="number">1</span>,tail);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><blockquote>
 <p>思想就是在已经排好序的数组中插入到相应的位置，以从小到大排序为例，扫描已经排好序的片段的每一项，如大于，则继续往后，直到他小于一项时，将其插入到这项的前面</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*start根据已排列好的项数决定*/</span></div><div class="line">    <span class="keyword">var</span> start=<span class="number">1</span>;</div><div class="line">    <span class="comment">/*按顺序，每一项检查已排列好的序列*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=start; i&lt;array.length; start++,i++)&#123;</div><div class="line">      <span class="comment">/*跟已排好序的序列做对比，并插入到合适的位置*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>; j&lt;start; j++)&#123;</div><div class="line">        <span class="comment">/*小于或者等于时（我们是升序）插入到该项前面*/</span></div><div class="line">        <span class="keyword">if</span>(array[i]&lt;=array[j])&#123;</div><div class="line">          <span class="built_in">console</span>.log(array[i]+<span class="string">' '</span>+array[j]);</div><div class="line">          array.splice(j,<span class="number">0</span>,array[i]);</div><div class="line">          <span class="comment">/*删除原有项*/</span></div><div class="line">          array.splice(i+<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="comment">/*start根据已排列好的项数决定*/</span></span><br><span class="line">    <span class="keyword">var</span> start=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">/*按顺序，每一项检查已排列好的序列*/</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=start; i&lt;array.length; start++,i++)&#123;</span><br><span class="line">      <span class="comment">/*跟已排好序的序列做对比，并插入到合适的位置*/</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>; j&lt;start; j++)&#123;</span><br><span class="line">        <span class="comment">/*小于或者等于时（我们是升序）插入到该项前面*/</span></span><br><span class="line">        <span class="keyword">if</span>(array[i]&lt;=array[j])&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(array[i]+<span class="string">' '</span>+array[j]);</span><br><span class="line">          array.splice(j,<span class="number">0</span>,array[i]);</span><br><span class="line">          <span class="comment">/*删除原有项*/</span></span><br><span class="line">          array.splice(i+<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><blockquote>
 <p>故名思意 ，就是一个个冒泡到最前端或者最后端，主要是通过两两依次比较，以升序为例，如果前一项比后一项大则交换顺序，一直比到最后一对</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*给每个未确定的位置做循环*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> unfix=array.length<span class="number">-1</span>; unfix&gt;<span class="number">0</span>; unfix--)&#123;</div><div class="line">      <span class="comment">/*给进度做个记录，比到未确定位置*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;unfix;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(array[i]&gt;array[i+<span class="number">1</span>])&#123;</div><div class="line">          <span class="keyword">var</span> temp = array[i];</div><div class="line">          array.splice(i,<span class="number">1</span>,array[i+<span class="number">1</span>]);</div><div class="line">          array.splice(i+<span class="number">1</span>,<span class="number">1</span>,temp);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="comment">/*给每个未确定的位置做循环*/</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> unfix=array.length<span class="number">-1</span>; unfix&gt;<span class="number">0</span>; unfix--)&#123;</span><br><span class="line">      <span class="comment">/*给进度做个记录，比到未确定位置*/</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;unfix;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[i]&gt;array[i+<span class="number">1</span>])&#123;</span><br><span class="line">          <span class="keyword">var</span> temp = array[i];</span><br><span class="line">          array.splice(i,<span class="number">1</span>,array[i+<span class="number">1</span>]);</span><br><span class="line">          array.splice(i+<span class="number">1</span>,<span class="number">1</span>,temp);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><blockquote>
 <p>将当前未确定块的min或者max取出来插到最前面或者后面</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="comment">/*给每个插入后的未确定的范围循环，初始是从0开始*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> unfixed=<span class="number">0</span>; unfixed&lt;array.length; unfixed++)&#123;</div><div class="line">      <span class="comment">/*设置当前范围的最小值和其索引*/</span></div><div class="line">      <span class="keyword">var</span> min = array[unfixed];</div><div class="line">      <span class="keyword">var</span> minIndex = unfixed;</div><div class="line">      <span class="comment">/*在该范围内选出最小值*/</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=unfixed+<span class="number">1</span>; j&lt;array.length; j++)&#123;</div><div class="line">        <span class="keyword">if</span>(min&gt;array[j])&#123;</div><div class="line">          min = array[j];</div><div class="line">          minIndex = j;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">/*将最小值插入到unfixed，并且把它所在的原有项替换成*/</span></div><div class="line">      array.splice(unfixed,<span class="number">0</span>,min);</div><div class="line">      array.splice(minIndex+<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="comment">/*给每个插入后的未确定的范围循环，初始是从0开始*/</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> unfixed=<span class="number">0</span>; unfixed&lt;array.length; unfixed++)&#123;</span><br><span class="line">      <span class="comment">/*设置当前范围的最小值和其索引*/</span></span><br><span class="line">      <span class="keyword">var</span> min = array[unfixed];</span><br><span class="line">      <span class="keyword">var</span> minIndex = unfixed;</span><br><span class="line">      <span class="comment">/*在该范围内选出最小值*/</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=unfixed+<span class="number">1</span>; j&lt;array.length; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(min&gt;array[j])&#123;</span><br><span class="line">          min = array[j];</span><br><span class="line">          minIndex = j;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/*将最小值插入到unfixed，并且把它所在的原有项替换成*/</span></span><br><span class="line">      array.splice(unfixed,<span class="number">0</span>,min);</span><br><span class="line">      array.splice(minIndex+<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p><strong>总结一下，实现思想是很简单的,难点在于如何创造思想，还有就是个人的测试能力，和编程习惯，做注释其实不是仅仅为了别人看得更方便，而是自己思路的记录，有些人编着编着容易断片，注释起到了很好的引导作用</strong></p>
 
       
@@ -468,9 +470,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Gloria" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
             
               <p class="site-author-name" itemprop="name">Gloria</p>
               <p class="site-description motion-element" itemprop="description">FE Engineer</p>
@@ -483,7 +483,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -494,7 +494,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -505,7 +505,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -586,7 +586,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
