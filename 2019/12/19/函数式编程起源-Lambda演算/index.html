@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="函数式编程,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="函数式编程起源-Lambda演算前言 翻译自：Lambda Calculus with JavaScript  判定性问题和可计算性：  在形式化语言中，如何有效地接收并且验证一个命题的正确性？  简单来说，这是早在1928年提出的一个重要的数学问题：“判定性问题” （decision problem）。在数年之后的1936年，Alonzo Church 和 Alan Turing 证明了：为“判">
+<meta name="keywords" content="函数式编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数式编程起源-Lambda演算">
+<meta property="og:url" content="http://jabbla.github.io/2019/12/19/函数式编程起源-Lambda演算/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="函数式编程起源-Lambda演算前言 翻译自：Lambda Calculus with JavaScript  判定性问题和可计算性：  在形式化语言中，如何有效地接收并且验证一个命题的正确性？  简单来说，这是早在1928年提出的一个重要的数学问题：“判定性问题” （decision problem）。在数年之后的1936年，Alonzo Church 和 Alan Turing 证明了：为“判">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-30T05:32:17.914Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数式编程起源-Lambda演算">
+<meta name="twitter:description" content="函数式编程起源-Lambda演算前言 翻译自：Lambda Calculus with JavaScript  判定性问题和可计算性：  在形式化语言中，如何有效地接收并且验证一个命题的正确性？  简单来说，这是早在1928年提出的一个重要的数学问题：“判定性问题” （decision problem）。在数年之后的1936年，Alonzo Church 和 Alan Turing 证明了：为“判">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jabbla.github.io/2019/12/19/函数式编程起源-Lambda演算/">
+
+
+
+
+
+  <title>函数式编程起源-Lambda演算 | Gloria</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gloria</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zxr's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jabbla.github.io/2019/12/19/函数式编程起源-Lambda演算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gloria">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gloria">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">函数式编程起源-Lambda演算</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-19T13:28:00+08:00">
+                2019-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译计划/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译计划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="函数式编程起源-Lambda演算"><a href="#函数式编程起源-Lambda演算" class="headerlink" title="函数式编程起源-Lambda演算"></a>函数式编程起源-Lambda演算</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>翻译自：<a href="https://medium.com/@ahlechandre/lambda-calculus-with-javascript-897f7e81f259" target="_blank" rel="noopener">Lambda Calculus with JavaScript</a></p>
+</blockquote>
+<p><strong>判定性问题和可计算性</strong>：</p>
+<blockquote>
+<p>在形式化语言中，如何有效地接收并且验证一个命题的正确性？</p>
+</blockquote>
+<p>简单来说，这是早在1928年提出的一个重要的数学问题：“判定性问题” （decision problem）。在数年之后的1936年，<strong>Alonzo Church</strong> 和 <strong>Alan Turing</strong> <a href="https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis" target="_blank" rel="noopener">证明了</a>：为“判定性问题”设计一个通用算法这件事是不可能的。</p>
+<p>与此同时，他们各自详细阐述了两个计算模型：Alonzo Church的Lambda演算（后文都称λ演算），Alan Turing的<a href="https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf" target="_blank" rel="noopener">理论机器</a>（之后被称作图灵机）。</p>
+<p>冯.诺依曼结构实现了理论上的图灵机，并且用在了如今的电脑上。而Alonzo Church的计算模型，其实与图灵机一样强大，但由于一些历史原因，走了上了一条更加学术化，更不商业化的道路。</p>
+<p>本文会借助javascript的语法（es2015）来介绍λ演算中的一些重要概念，展现λ演算对现代语言的影响和对未来编程的重要性。</p>
+<h2 id="Lambda演算"><a href="#Lambda演算" class="headerlink" title="Lambda演算"></a>Lambda演算</h2><p><a href="http://plato.stanford.edu/entries/lambda-calculus/" target="_blank" rel="noopener">λ演算</a>是一个为了表达和计算函数的形式化系统，有着自己的化简规则和语法。整个系统是基于表达式的（也叫λ项）。</p>
+<p>一个表达式可以是一个<strong>变量</strong>（variable），一个<strong>抽象体</strong>（abstraction）或者一个<strong>应用</strong>（application）。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expression = variable || abstraction || application</span><br></pre></td></tr></table></figure></p>
+<p>下面是所有的表达式类型：</p>
+<ul>
+<li><p><strong>变量</strong> X 就是一个表达式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">variable = expression</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果 X 是<strong>变量</strong>，E 是表达式，则λx.E是一个<strong>抽象体</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abstraction = λ(variable).(expression)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果 E 和 A 都是表达式，则 EA 是一个<strong>应用</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">application = (expression)(expression)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="函数抽象体"><a href="#函数抽象体" class="headerlink" title="函数抽象体"></a>函数抽象体</h3><p>在λ演算中，函数是用λ表示的匿名函数。一个匿名函数中只存在标识符和他自己的抽象体（这里翻译得有问题）。下面的表达式定义了一个函数（也叫做λ抽象体）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">λx.x</span><br></pre></td></tr></table></figure></p>
+<p>紧跟在λ后面的名字是参数标识符，点（.）后面的表达式是函数体。我们用javascript表示它：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> x </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>改写成箭头函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x =&gt; x</span><br></pre></td></tr></table></figure></p>
+<p>现在定义一个抽象体，它接收一个变量y，然后返回y的平方，我们可以这么写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">λy.y^2</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数应用"><a href="#函数应用" class="headerlink" title="函数应用"></a>函数应用</h3><p>函数可以被应用在表达式上。在表达式 EA 中，E 是一个函数，它被应用到了表达式 A 上。换句话来说，表达式 A 就是表达式 E 的输入，然后输出 E(A) 。</p>
+<p>把 E 替换成抽象体 <code>λy.y^2</code>，然后得到下面的式子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EA = E(A)</span><br><span class="line">EA = (λy.y^2)(A)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> E = <span class="function"><span class="params">y</span> =&gt;</span> (y ** <span class="number">2</span>) <span class="comment">// Abstraction</span></span><br><span class="line">E(A)                  <span class="comment">// Application</span></span><br></pre></td></tr></table></figure>
+<p>通过将函数体中的 y 替换成参数 y 的值，来计算这个函数应用的结果。比如：把表达式 A 替换成整数“5”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EA = (λy.y^2)(A)=y[y:=A]=A^2=5^2=25</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>y[y:=A]意思是：在函数体中，所有出现变量 y 的地方必须都被替换成表达式 A 。</p>
+</blockquote>
+<h3 id="多参函数"><a href="#多参函数" class="headerlink" title="多参函数"></a>多参函数</h3><p>λ 演算中的所有抽象体都只接收一个参数。如果要实现获取多个参数，就要借助多重应用了。如果有下面这样的函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(x,y) = x + y</span><br></pre></td></tr></table></figure></p>
+<p>我们其实习惯像下面这样定义和应用它：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> F = <span class="function">(<span class="params">x,y</span>) =&gt;</span> (x + y)</span><br><span class="line">F(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure></p>
+<p>用不同的方式，我们可以先定义一个函数，这个函数接收一个参数 x ，返回一个新的函数，这个新的函数接收一个参数 y ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">λx(λy.x+y)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> F = <span class="function"><span class="params">x</span> =&gt;</span> (<span class="function"><span class="params">y</span> =&gt;</span> (x + y))</span><br></pre></td></tr></table></figure>
+<p>可以通过下面两步，应用这个接收两个参数的函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(λx.(λy.x+y))(5)=x[x:5]=λy.5+y</span><br><span class="line">(λy.5+y)(10) = y[y := 10] = 5+10 = 15</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> F = <span class="function"><span class="params">x</span> =&gt;</span> (<span class="function"><span class="params">y</span> =&gt;</span> (x + y))</span><br><span class="line">F(<span class="number">5</span>)(<span class="number">10</span>)</span><br><span class="line"><span class="comment">// "x =&gt; (y =&gt; 5 + y)"</span></span><br><span class="line"><span class="comment">// "x =&gt; (y =&gt; 5 + 10)"</span></span><br><span class="line"><span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+<p>这个策略就是传说中的“柯里化”（Currying），在<a href="https://en.wikipedia.org/wiki/Haskell_Curry" target="_blank" rel="noopener">Haskell Curry</a>中有介绍。</p>
+<p>为了便于理解，想象一个计算矩形面积（A=base * height）的抽象体：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">λb. (λh.b * h)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RectangleArea = <span class="function"><span class="params">base</span> =&gt;</span> (<span class="function"><span class="params">height</span> =&gt;</span> (base * height))</span><br><span class="line">RectangleArea(<span class="number">2</span>)(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>将<code>2</code>传进第一个函数的参数<code>base</code>，然后返回一个新的函数。将<code>4</code>传进第二个函数，作为<code>height</code>的值，最终返回这个矩形的面积。</p>
+<h3 id="定义数据类型"><a href="#定义数据类型" class="headerlink" title="定义数据类型"></a>定义数据类型</h3><p>在无类型λ演算中，函数是唯一的基础类型。所以，如果要使用布尔类型，数字类型以及算数运算，就需要定义一些抽象体去表示它们。接下来我们定义一些比较简单的类型及它们的运算：布尔类型，and 与 or 操作。</p>
+<blockquote>
+<p>如果你想深入了解，推荐看一看 <a href="https://www21.in.tum.de/~eberlm//lambda_paper.pdf" target="_blank" rel="noopener">The untyped Lambda Calculus</a></p>
+</blockquote>
+<p>Alonzo Church 这样定义布尔类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">true = λa. (λb.a) \quad</span><br><span class="line">false = λa. (λb.b)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> True = <span class="function"><span class="params">a</span> =&gt;</span> <span class="function"><span class="params">b</span> =&gt;</span> a</span><br><span class="line"><span class="keyword">const</span> False = <span class="function"><span class="params">a</span> =&gt;</span> <span class="function"><span class="params">b</span> =&gt;</span> b</span><br></pre></td></tr></table></figure>
+<p>可以把布尔值的逻辑运算看作是一种“抉择行为”。上面两个函数中，都有2个参数，最终返回其中一个参数。不同的是，函数<code>True</code>选择返回第一个参数，而函数<code>False</code>选择返回第二个。</p>
+<p>基于上面的定义，可以得出<code>If-then-else</code>的结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if = λp.(λa. (λb. p a b))</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> If = <span class="function"><span class="params">Condition</span> =&gt;</span> <span class="function"><span class="params">Then</span> =&gt;</span> <span class="function"><span class="params">Else</span> =&gt;</span> Condition(Then)(Else)</span><br></pre></td></tr></table></figure>
+<p>如果<code>Condition</code>的位置接收到的是<code>True</code>，那么就会返回<code>Then</code>作为结果，因为<code>True</code>总是返回第一个参数。如果<code>Condition</code>的位置接收到的是<code>False</code>，那么就会返回<code>Else</code>作为结果，因为<code>False</code>总是返回第二个参数。</p>
+<blockquote>
+<p>定义下面两个log函数，帮助我们查看运行结果</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isTrue = <span class="function"><span class="params">()</span> =&gt;</span> <span class="string">"it's true!"</span></span><br><span class="line"><span class="keyword">const</span> isFalse = <span class="function"><span class="params">()</span> =&gt;</span> <span class="string">"it's false!"</span></span><br></pre></td></tr></table></figure>
+<p>将布尔值传进<code>If</code>：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> First = If(True)(isTrue)(isFalse)</span><br><span class="line"><span class="keyword">const</span> Second = If(False)(isTrue)(isFalse)</span><br><span class="line">First() <span class="comment">// "it's true!"</span></span><br><span class="line">Second() <span class="comment">// "it's false!"</span></span><br></pre></td></tr></table></figure></p>
+<p>现在我们通过化简的过程解释这个结果。我们可以发现<code>a</code>其实就是<code>Then</code>，<code>b</code>就是<code>Else</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if true = λp.(λa.(λb. p a b)) true = p[p := true] = true a b = λa.(λb.a) a b = a</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if false = λp.(λa.(λb. p a b)) false = p[p := false] = false a b = λa.(λb.b) a b = b</span><br></pre></td></tr></table></figure>
+<p>在了解了<code>If</code>的定义之后，再看看<code>and</code>和<code>or</code>的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">and = λp.(λq. p q p)</span><br><span class="line">or = λp.(λq. p p q)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> And = <span class="function"><span class="params">Exp1</span> =&gt;</span> <span class="function"><span class="params">Exp2</span> =&gt;</span> Exp1(Exp2)(Exp1)</span><br><span class="line"><span class="keyword">const</span> Or = <span class="function"><span class="params">Exp1</span> =&gt;</span> <span class="function"><span class="params">Exp2</span> =&gt;</span> Exp1(Exp1)(Exp2)</span><br></pre></td></tr></table></figure>
+<p>在数学逻辑运算中，只有当两个表达式都是<code>true</code>的时候，<code>and</code>操作符才会返回<code>true</code>。<code>or</code>操作符只有当两个表达式都是<code>false</code>的时候，才会返回<code>false</code>。基于上面的结论，函数<code>And</code>始终会返回<code>False</code>，除非<code>And(True)(True)</code>这样调用它。函数<code>Or</code>始终会返回<code>True</code>，除非<code>Or(False)(False)</code>这样调用它。</p>
+<p>只需要通过置换操作符应用中的变量，就能检验上面所定义的式子。比如像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and true false = λp.(λq. p q p) true false = p[p := true] = q[q := false] = true false true = λa.(λb. a) false true = false</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">or true false = λp.(λq. p p q) true false = p[p := true] = q[q := false] = true true false = λa.(λb. a) true false = true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>下面是所有可能的化简过程：</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Reduction</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>And(True)(True)</td>
+<td>True(True)(True)</td>
+<td>True</td>
+</tr>
+<tr>
+<td>And(True)(False)</td>
+<td>True(False)(True)</td>
+<td>False</td>
+</tr>
+<tr>
+<td>And(False)(True)</td>
+<td>False(True)(False)</td>
+<td>False</td>
+</tr>
+<tr>
+<td>And(False)(False)</td>
+<td>False(False)(False)</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Or(True)(True)</td>
+<td>True(True)(True)</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Or(True)(False)</td>
+<td>True(True)(False)</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Or(False)(True)</td>
+<td>False(False)(True)</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Or(False)(False)</td>
+<td>False(False)(False)</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<p>到目前为止，我们已经定义了很多结构，如：<code>True</code>，<code>False</code>，<code>If</code>，<code>And</code>，<code>Or</code>，接下来通过比较简单和直观的方式检验一下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Result1 = If(And(True)(True))(isTrue)(isFalse)</span><br><span class="line"><span class="keyword">const</span> Result2 = If(And(True)(False))(isTrue)(isFalse)</span><br><span class="line"><span class="keyword">const</span> Result3 = If(Or(False)(True))(isTrue)(isFalse)</span><br><span class="line"><span class="keyword">const</span> Result4 = If(Or(False)(False))(isTrue)(isFalse)</span><br><span class="line">Result1() <span class="comment">// "it's true"</span></span><br><span class="line">Result2() <span class="comment">// "it's false"</span></span><br><span class="line">Result3() <span class="comment">// "it's true"</span></span><br><span class="line">Result4() <span class="comment">// "it's false"</span></span><br></pre></td></tr></table></figure></p>
+<p>最后，你需要记住的是，λ演算并不是数据类型的具体实现，只是一个形式化的系统，它并不需要代表任何计算过程，因为都可以使用函数去模拟它们。</p>
+<h3 id="λ演算和函数式编程"><a href="#λ演算和函数式编程" class="headerlink" title="λ演算和函数式编程"></a>λ演算和函数式编程</h3><blockquote>
+<p>通过图灵机描述的可计算性，引出了命令式编程。通过λ演算描述的可计算性，引出了函数式编程 – Cooper &amp; Leeuwen（2013）</p>
+</blockquote>
+<p>早在电子计算机诞生之前，Alonzo Church 就创造了λ演算。但它对现代编程语言却有着深远的影响。作为第二个高级编程语言的<a href="https://en.wikipedia.org/wiki/Lisp_%28programming_language%29" target="_blank" rel="noopener">Lisp</a>，它就是启发自λ演算。再比如说，所有支持<a href="https://en.wikipedia.org/wiki/Anonymous_function" target="_blank" rel="noopener">匿名函数</a>的语言里（像Haskell，JavaScript，Python，Ruby等等）都会有几分Alonzo Church的影子。</p>
+<p>函数式的模式催生表达能力强的代码，因为这些模式与数学模型有着更加直接的对应关系，因此也更加合理。正因为在数学的世界里，函数式的代码具备<a href="https://en.wikipedia.org/wiki/Referential_transparency_%28computer_science%29" target="_blank" rel="noopener">引用透明性</a>（给定相同的输入，始终会有相同的输出），这让它可以在多个处理器中同时运行。</p>
+<p>λ演算影响着多种多样的现代编程语言，这不仅仅是因为它的形式化系统是<a href="https://en.wikipedia.org/wiki/Turing_completeness" target="_blank" rel="noopener">图灵完备</a>的，也是因为它的简洁性和表达能力，这些层面上的能力是对未来的编程是非常重要的。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>Henk Barendregt, Erik Barendsen (2000). <a href="https://pdfs.semanticscholar.org/322c/b8734965d5e7693248919f5d887e019f05b2.pdf" target="_blank" rel="noopener">Introduction to Lambda Calculus</a>.</p>
+<p>Raúl Rojas (1998). <a href="http://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank" rel="noopener">A Tutorial Introduction to the Lambda Calculus</a>.</p>
+<p>Manuel Eberl (2011). <a href="https://www21.in.tum.de/~eberlm//lambda_paper.pdf" target="_blank" rel="noopener">The untyped Lambda Calculus</a>.</p>
+<p>Barry Cooper, J. van Leeuwen (2013). <a href="https://www.elsevier.com/books/alan-turing-his-work-and-impact/cooper/978-0-12-386980-7" target="_blank" rel="noopener">Alan Turing: His Work and Impact .</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/09/不简单的R.map/" rel="next" title="不简单的R.map">
+                <i class="fa fa-chevron-left"></i> 不简单的R.map
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
+            
+              <p class="site-author-name" itemprop="name">Gloria</p>
+              <p class="site-description motion-element" itemprop="description">FE Engineer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jabbla" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="gloria_n@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zhu-xiao-ran-47-68" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/1783375687" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式编程起源-Lambda演算"><span class="nav-number">1.</span> <span class="nav-text">函数式编程起源-Lambda演算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda演算"><span class="nav-number">1.2.</span> <span class="nav-text">Lambda演算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数抽象体"><span class="nav-number">1.2.1.</span> <span class="nav-text">函数抽象体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数应用"><span class="nav-number">1.2.2.</span> <span class="nav-text">函数应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多参函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">多参函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义数据类型"><span class="nav-number">1.2.4.</span> <span class="nav-text">定义数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#λ演算和函数式编程"><span class="nav-number">1.2.5.</span> <span class="nav-text">λ演算和函数式编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">1.2.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gloria</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
