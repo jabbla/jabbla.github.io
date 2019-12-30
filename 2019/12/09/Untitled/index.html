@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="函数式编程,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="不简单的R.map作为前端工程师，你肯定用过Array.prototype.map方法。 如果你听说过Ramda，它也提供了和Array.prototype.map方法类似的map方法。 但是这个map背后的东西可以让你看到另外一个世界，我相信，如果你不想了解Ramda，也能从这篇文章中有所收获。 下面我们进入到例子。 简单的使用像下面这样使用这个函数。1R.map(x =&amp;gt; x + 1,">
+<meta name="keywords" content="函数式编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不简单的R.map">
+<meta property="og:url" content="http://jabbla.github.io/2019/12/09/Untitled/index.html">
+<meta property="og:site_name" content="Gloria">
+<meta property="og:description" content="不简单的R.map作为前端工程师，你肯定用过Array.prototype.map方法。 如果你听说过Ramda，它也提供了和Array.prototype.map方法类似的map方法。 但是这个map背后的东西可以让你看到另外一个世界，我相信，如果你不想了解Ramda，也能从这篇文章中有所收获。 下面我们进入到例子。 简单的使用像下面这样使用这个函数。1R.map(x =&amp;gt; x + 1,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-84874d6ffb552bf86edba8f656c7491c_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-b0976a68172c7afe68c8f9f2f39beb4c_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-5e2eb48666ee35a8459a5cb006bc1592_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-67a98a2190440f213e504fa2ceeac3d3_hd.jpg">
+<meta property="og:updated_time" content="2019-12-30T05:23:22.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不简单的R.map">
+<meta name="twitter:description" content="不简单的R.map作为前端工程师，你肯定用过Array.prototype.map方法。 如果你听说过Ramda，它也提供了和Array.prototype.map方法类似的map方法。 但是这个map背后的东西可以让你看到另外一个世界，我相信，如果你不想了解Ramda，也能从这篇文章中有所收获。 下面我们进入到例子。 简单的使用像下面这样使用这个函数。1R.map(x =&amp;gt; x + 1,">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-84874d6ffb552bf86edba8f656c7491c_hd.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jabbla.github.io/2019/12/09/Untitled/">
+
+
+
+
+
+  <title>不简单的R.map | Gloria</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gloria</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zxr's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jabbla.github.io/2019/12/09/Untitled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gloria">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gloria">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">不简单的R.map</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-09T13:22:00+08:00">
+                2019-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术原创/" itemprop="url" rel="index">
+                    <span itemprop="name">技术原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="不简单的R-map"><a href="#不简单的R-map" class="headerlink" title="不简单的R.map"></a>不简单的R.map</h1><p>作为前端工程师，你肯定用过<code>Array.prototype.map</code>方法。</p>
+<p>如果你听说过<em>Ramda</em>，它也提供了和<code>Array.prototype.map</code>方法类似的<code>map</code>方法。</p>
+<p>但是这个<code>map</code>背后的东西可以让你看到另外一个世界，我相信，如果你不想了解Ramda，也能从这篇文章中有所收获。</p>
+<p>下面我们进入到例子。</p>
+<h2 id="简单的使用"><a href="#简单的使用" class="headerlink" title="简单的使用"></a>简单的使用</h2><p>像下面这样使用这个函数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R.map(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]); <span class="comment">// [2, 3, 4]</span></span><br></pre></td></tr></table></figure></p>
+<p>除了数组外它还可以作用于<em>Object</em>：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R.map(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>, &#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span>&#125;);  <span class="comment">// &#123;a: 2, b: 3, c: 4&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>你以为就完了吗？它还能作用于函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R.map(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">1</span>, a =&gt; a + <span class="number">1</span>); <span class="comment">// a =&gt; (a+1)+1</span></span><br></pre></td></tr></table></figure></p>
+<p>哇，作用于函数真的是没想到，那还能作用于其它奇奇怪怪的东西吗？</p>
+<p>当然可以，有很多东西从某种维度上讲都是同一类东西，关键<code>R.map</code>的维度是什么呢？</p>
+<p>先别讲什么乱七八糟的，接下来咱们来看一看官方文档上都有哪些描述.</p>
+<p><strong>文档上都说了啥</strong></p>
+<ol>
+<li>接收一个函数和一个 functor, 将该函数应用到 functor 的每个值上，返回一个具有相同形态的 functor。</li>
+<li>Ramda 为 Array 和 Object 提供了合适的 map 实现，因此 R.map 适用于 [1, 2, 3] 或 {x: 1, y: 2, z: 3}。</li>
+<li>若第二个参数自身存在 map 方法，则调用自身的 map 方法。</li>
+<li>若在列表位置中给出 transfomer，则用作 transducer 。</li>
+<li>函数也是 functors，map 会将它们组合起来（相当于 R.compose）。</li>
+</ol>
+<p>行了，除了<code>2，3</code>能看懂，其它都是啥？？！！<code>functor</code>？？<code>transfomer</code>？？<code>transducer</code>？？</p>
+<p>我们找到Ramda的源码，看看这个<code>map</code>究竟都有哪些魔法？</p>
+<h2 id="看看ramda源码"><a href="#看看ramda源码" class="headerlink" title="看看ramda源码"></a>看看ramda源码</h2><p>隐去了一些不需要了解的逻辑，下面是代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = _dispatchable([<span class="string">'fantasy-land/map'</span>, <span class="string">'map'</span>], _xmap, <span class="function"><span class="keyword">function</span> <span class="title">map</span>(<span class="params">fn, functor</span>) </span>&#123;</span><br><span class="line">   <span class="comment">/*ramda默认处理逻辑*/</span></span><br><span class="line">  <span class="keyword">switch</span> (<span class="built_in">Object</span>.prototype.toString.call(functor)) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'[object Function]'</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fn.call(<span class="keyword">this</span>, functor.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>));</span><br><span class="line">      &#125;;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'[object Object]'</span>:</span><br><span class="line">      <span class="keyword">return</span> _reduce(<span class="function"><span class="keyword">function</span>(<span class="params">acc, key</span>) </span>&#123;</span><br><span class="line">        acc[key] = fn(functor[key]);</span><br><span class="line">        <span class="keyword">return</span> acc;</span><br><span class="line">      &#125;, &#123;&#125;, keys(functor));</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> _map(fn, functor);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>先说说<code>_dispatchable</code>的逻辑：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_dispatchable</span>(<span class="params">methodNames, xf, fn</span>): <span class="title">Function</span></span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><code>_dispatchable</code>返回的函数作为<code>R.map</code>的处理过程</li>
+<li>接收 3 个参数：methodNames(方法名数组)，xf(transformer)，fn(默认的ramda实现)</li>
+<li>如果<code>methodNames</code>中的方法名存在于传进<code>R.map</code>方法的最后一个参数<code>f</code>上，则将该方法作为处理过程</li>
+<li>如果最后一个参数<code>f</code>是<code>transformer</code>，处理结果则是：一个新的<code>transformer</code></li>
+<li>如果以上<code>3，4</code>说的情况都没有，则使用ramda的默认处理过程（第一个代码块注释处）</li>
+</ol>
+<p>总体看下来<code>R.map</code>有3种处理策略（按照优先级从上到下）：</p>
+<ol>
+<li>最后一个参数<code>f</code>上出现在<code>methodNames</code>中的方法</li>
+<li>根据最后一个参数<code>f</code>返回新的<code>transformer</code></li>
+<li>ramda默认处理逻辑</li>
+</ol>
+<p>默认的处理逻辑就不再展开了，比较容易明白，先说说<code>2</code>，<code>1</code>放在后面讲。</p>
+<h3 id="transduce"><a href="#transduce" class="headerlink" title="transduce"></a>transduce</h3><p>进入正题之前，抛开<code>ramda</code>，看一个简单的栗子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b; </span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>].reduce(add, <span class="number">0</span>); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure></p>
+<p>计算出一个数组中所有数字的和。</p>
+<p>现在如果要对每个数字<code>+1</code>，再求和：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b; </span><br><span class="line"><span class="keyword">const</span> plusOne = <span class="function"><span class="params">a</span> =&gt;</span> a + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>].map(plusOne).reduce(add, <span class="number">0</span>);  <span class="comment">// 14</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的代码会遍历数组两次，虽然代码写起来省事了，如果数据量比较大，这个做法看起来就有些笨拙了。但是又不能改写<code>add</code>方法，万一别的地方也用到了<code>add</code>。</p>
+<p>想办法只遍历一次：结合<code>add</code>和<code>plusOne</code>生成一个新的函数<code>addNPlusOne</code>：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> addNPlusOne = <span class="function">(<span class="params">acc, value</span>) =&gt;</span> add(acc, plusOne(value));</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>].reduce(addNPlusOne, <span class="number">0</span>);   <span class="comment">// 14</span></span><br></pre></td></tr></table></figure></p>
+<p>嗯，解决了。但是还不够通用，将<code>add</code>视为<code>reducer</code>，<code>plusOne</code>视为对<code>value</code>的预处理函数<code>fn</code>，通过结合<code>fn</code>和<code>reducer</code>生成一个新的<code>reducer</code>提供给reduce<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> makeMapRecuder = <span class="function"><span class="params">fn</span> =&gt;</span> <span class="function"><span class="params">reducer</span> =&gt;</span> <span class="function">(<span class="params">acc, value</span>) =&gt;</span> reducer(acc, fn(value));</span><br><span class="line"><span class="keyword">const</span> addNPlusOne = makeMapRecuder(plusOne)(add);</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>].reduce(addNPlusOne);  <span class="comment">// 14</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="transducer"><a href="#transducer" class="headerlink" title="transducer"></a>transducer</h4><p><code>makeMapRecuder(plusOne)</code>就是一个transducer。</p>
+<p>在之前的基础上：如果需要先筛选出小于等于<code>2</code>的数值，然后再给每一项<code>+1</code>，最后统计出数组中所有数的和。</p>
+<p>需要再添加一个<code>filterTransducer</code>：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> makeFilterReducer = <span class="function"><span class="params">fn</span> =&gt;</span> <span class="function"><span class="params">reducer</span> =&gt;</span> <span class="function">(<span class="params">acc, value</span>) =&gt;</span> fn(value)? reducer(acc, value) : acc;</span><br><span class="line"><span class="keyword">const</span> filterTransducer = makeFilterReducer(<span class="function"><span class="params">a</span> =&gt;</span> a &lt;= <span class="number">2</span>);</span><br><span class="line"><span class="keyword">const</span> addNPlusltTwo = filterTransducer(addNPlusOne);</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>].reduce(addNPlusltTwo); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure></p>
+<p>好了，也就是说如果你不使用任何第三方库，这个生成<code>transducer</code>的函数需要你自己去实现。</p>
+<h5 id="在Ramda中"><a href="#在Ramda中" class="headerlink" title="在Ramda中"></a>在Ramda中</h5><p>在Ramda中你可以这样实现上面的栗子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R.transduce(R.map(<span class="function"><span class="params">a</span> =&gt;</span> a+<span class="number">1</span>), (acc, value) =&gt; acc + value, <span class="number">0</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);  <span class="comment">// 14</span></span><br><span class="line">R.transduce(R.pipe(</span><br><span class="line">    R.map(<span class="function"><span class="params">a</span> =&gt;</span> a+<span class="number">1</span>),</span><br><span class="line">    R.filter(<span class="function"><span class="params">a</span> =&gt;</span> a &lt;= <span class="number">2</span>),</span><br><span class="line">), (acc, value) =&gt; acc+value, <span class="number">0</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);    <span class="comment">// 5</span></span><br></pre></td></tr></table></figure></p>
+<p>再简化一点：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R.transduce(R.map(R.inc), R.add, <span class="number">0</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]); <span class="comment">// 14</span></span><br><span class="line">R.transduce(R.pipe(</span><br><span class="line">    R.map(R.inc),</span><br><span class="line">    R.filter(R.gte(<span class="number">2</span>)),</span><br><span class="line">), R.add, <span class="number">0</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure></p>
+<p>之前的例子，我们自己实现了<code>transducer</code>。</p>
+<p>而对于ramda来说，很多作用于数组的api都会有默认的生成<code>transducer</code>的实现，比如<code>map</code>，<code>filter</code>，<code>find</code>等等api。</p>
+<p>好了，好像扯远了，我们再回到<code>R.map</code>上，看一看这里的<code>transformer</code>是啥意思。</p>
+<blockquote>
+<ol start="2">
+<li>根据最后一个参数<code>f</code>返回新的<code>transformer</code></li>
+</ol>
+</blockquote>
+<h5 id="回到开始的话题"><a href="#回到开始的话题" class="headerlink" title="回到开始的话题"></a>回到开始的话题</h5><p>当你调用<code>R.transduce</code>的时候，它会把第二个参数<code>R.add</code>，转化为一个对象，这个对象上存在方法<code>@@transducer/step</code>，这个方法返回的是<code>R.add(acc, value)</code>。存在方法<code>@@transducer/step</code>的对象就叫做<code>transformer</code>。</p>
+<p>其实你可以这样理解：<code>transformer</code>是一个函数的载体，<code>transformer[&#39;@@transducer/step&#39;]</code>就是这个函数。</p>
+<p>好了，如果当<code>R.map</code>的第二个参数是一个<code>transformer</code>的时候：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _xwrap是ramda内部函数，用于将函数转为transformer</span></span><br><span class="line">R.map(R.inc)(_xwrap(R.add))</span><br><span class="line"><span class="comment">// 跟下面是等价的</span></span><br><span class="line">R.map(R.inc, _xwrap(R.add))</span><br></pre></td></tr></table></figure></p>
+<p><code>R.map(R.inc)</code>其实就是上面我们说的<code>transducer</code>（transducer还能组合起来，不再展开了，有兴趣的同学可以加群讨论）</p>
+<p><code>transducer</code>+<code>transformer</code> = <code>transformer</code>，所以上面两行代码返回的结果依然是一个<code>transformer</code>，这个<code>transformer</code>的<code>@@transducer/step</code>方法最终效果是下面这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XMap.prototype[<span class="string">'@@transducer/step'</span>] = <span class="function"><span class="keyword">function</span>(<span class="params">acc, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> R.add(acc, R.inc(value));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这个<code>transformer</code>代表的就是最终的reducer函数的容器，<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R.transduce(R.map(R.inc), R.add, <span class="number">0</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);</span><br><span class="line"><span class="comment">// 与下面是等价的</span></span><br><span class="line"><span class="keyword">const</span> xf = R.map(R.inc)(_xwrap(R.add));</span><br><span class="line">R.reduce(xf[<span class="string">'@@transducer/step'</span>], <span class="number">0</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);</span><br></pre></td></tr></table></figure></p>
+<h5 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h5><p>为了减少遍历次数，用transduce替代reduce，把之前reduce过程的前置操作比如map，filter，find等操作在一次遍历中完成。</p>
+<p>为了实现这个transduce，以及在其上map，filter，find这种操作的可组合性，引入了transducer+transformer的概念。</p>
+<p>这个transducer的概念最早是在Clojure里出现，有兴趣的同学可以看看<a href="https://video.tudou.com/v/XMjMxNTY2MDgzNg==.html?__fr=oldtd" target="_blank" rel="noopener">Clojure作者的演讲</a></p>
+<h3 id="fantasyland-map"><a href="#fantasyland-map" class="headerlink" title="fantasyland/map"></a>fantasyland/map</h3><blockquote>
+<ol>
+<li>最后一个参数<code>f</code>上出现在<code>methodNames</code>中的方法</li>
+<li>根据最后一个参数<code>f</code>返回新的<code>transformer</code></li>
+<li>ramda默认处理逻辑</li>
+</ol>
+</blockquote>
+<p>既然第2点讲完了，开始这篇文章的最后一部分，这一部分与上面讲的<code>transducer</code>没有任何关系，这一部分也是本文想着重介绍的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = _dispatchable([<span class="string">'fantasy-land/map'</span>, <span class="string">'map'</span>],...)</span><br></pre></td></tr></table></figure></p>
+<p>从上面<code>R.map</code>的实现中可以看到，传入<code>_dispatchable</code>的<code>methodsName</code>中，第一个方法名是<code>fantasyland/map</code>。</p>
+<p>如果<code>R.map(fn, obj)</code>，<code>obj</code>上有<code>fantasyland/map</code>方法，则<code>R.map(fn, obj)</code>等价于<code>obj[&#39;fantasyland/map&#39;](fn)</code>。</p>
+<p>那么<code>methodsName</code>中另一个<code>map</code>和这个<code>fantasyland/map</code>有啥区别？为啥还有这么长的一个名字？</p>
+<h2 id="fantasyland规范"><a href="#fantasyland规范" class="headerlink" title="fantasyland规范"></a>fantasyland规范</h2><p>其实<code>fantasyland/map</code>这个名字是有特殊含义的，<code>fantasyland/map</code>没有特定的实现，不过，如果你要实现这么一个方法，你需要遵循<code>fantasyland</code>规范。</p>
+<p>所谓的<a href="https://github.com/fantasyland/fantasy-land" target="_blank" rel="noopener">fantasyland规范</a>，其实就是一个文档，这个文档里规定了一些代数结构在javascript里实现的约束</p>
+<blockquote>
+<p>Fantasy Land Specification<br>aka “Algebraic JavaScript Specification”</p>
+</blockquote>
+<p>如果你在大学有接触过《离散数学》的话，其中的一些概念会在这个规范中有具体的javascript定义，比如：<em>二元关系（等价关系，全序关系），群，半群</em>。当然，除了这3类数据结构，还有<em>范畴</em>以及在基础代数结构上衍生出来的其它结构。</p>
+<h3 id="类型签名"><a href="#类型签名" class="headerlink" title="类型签名"></a>类型签名</h3><p>接下去我们会着重看一下与<code>fantasy-land/map</code>相关的定义，不过，在此之前有一些简单的类型签名，需要提前了解一下（下面的类型签名解释，是个人翻译版本，如果你有兴趣，可以直接看github上英文原版的解释）：</p>
+<ul>
+<li><code>::</code>“a属于类型b”<ul>
+<li><code>e :: t</code>可以理解成：“e属于类型t”</li>
+<li><code>true :: Boolean</code>-“<code>true</code>属于<code>Boolean</code>类型”</li>
+<li><code>42 :: Integer，Number</code>-“<code>42</code>既属于<code>Integer</code>也属于<code>Number</code>类型”</li>
+</ul>
+</li>
+<li>通过<em>类型构造函数</em>可以构造一个新的类型<ul>
+<li>类型构造函数接受0个或多个参数</li>
+<li><code>Array</code>就是一个类型构造函数，它接受一个类型作为参数</li>
+<li><code>Array String</code>是存放着字符串的数组，像这几个数组都是属于<code>Array String</code>：<code>[]</code>，<code>[&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]</code></li>
+<li><code>Array（Array String）</code>是存放着数组的数组，存放的数组里面又存放着字符串，像这几个数组都是属于<code>Array（Array String）</code>：<code>[]</code>，<code>[[], []]</code>，<code>[[], [&#39;foo&#39;], [&#39;bar`, &#39;baz&#39;]]</code></li>
+</ul>
+</li>
+<li>小写字母是类型变量<ul>
+<li>类型变量可以代表任何类型，除非用胖箭头（下面有介绍）对它做类型约束</li>
+</ul>
+</li>
+<li><code>-&gt;</code>（箭头）函数的类型构造函数<ul>
+<li><code>-&gt;</code>是一个中缀类型构造函数，这个类型构造函数接受两个参数，箭头左边的参数是输入类型，右边的参数是输出类型</li>
+<li><code>-&gt;</code>可以接受0个或多个输入类型作为左边的参数。语法：<code>(&lt;input-types&gt;) -&gt; &lt;output-type&gt;</code>，<code>&lt;input-types&gt;</code>中的多个类型以<code>,</code>分隔。一元函数输入参数旁边的括号可以省略，比如：<code>String -&gt; Boolean</code>，<code>(String, String) -&gt; Boolean</code>。</li>
+<li><code>String -&gt; Array String</code>对应一类函数：接受一个<code>String</code>类型的参数，然后返回一个类型为<code>Array String</code>的值</li>
+<li><code>String -&gt; Array String -&gt; Array String</code>代表着一类函数：接受一个类型为String的输入，输出一个类型为<code>Array String -&gt; Array String</code>的函数，这个输出的函数接受一个类型为<code>Array String</code>的参数，输出类型为<code>Array String</code>的值</li>
+<li><code>(String, Array String) -&gt; Array String</code>代表着一类函数：接受两个参数，第一个是<code>String</code>类型，第二个是<code>Array String</code>类型，输出类型为<code>Array String</code>的值</li>
+<li><code>() -&gt; Number</code>代表着一类函数：不接受输入，返回一个类型为<code>Number</code>的值</li>
+</ul>
+</li>
+<li><code>~&gt;</code>（波浪箭头）方法的类型构造函数<ul>
+<li>当一个函数是一个对象的属性时，它被叫做这个对象上的“方法”。所有的“方法”都拥有一个隐含的参数类型-所在对象的类型</li>
+<li><code>a ~&gt; a -&gt; a</code>代表着一类方法：是类型为<code>a</code>的对象上的方法，且这个方法接受一个类型为<code>a</code>的参数，返回一个类型为<code>a</code>的值</li>
+</ul>
+</li>
+<li><code>=&gt;</code>（胖箭头）胖箭头用来对类型变量做类型约束<ul>
+<li>比如有这么一个方法<code>a ~&gt; a -&gt; a</code>，在这个方法的类型签名中，<code>a</code>可以代表任何类型。<code>Semigroup a =&gt; a ~&gt; a -&gt; a</code>，而这个类型签名中就对类型变量<code>a</code>做了类型约束，使得类型<code>a</code>必须满足类型类<code>Semigroup</code>。当一个类型满足一个类型类的意思是，这个类型实现了所有类型类指定的函数/方法。</li>
+</ul>
+</li>
+</ul>
+<p>就拿这次我们要说的<code>fantasy-land/map</code>举例：<br><img src="https://pic1.zhimg.com/80/v2-84874d6ffb552bf86edba8f656c7491c_hd.jpg" alt="fantasy-land/map"></p>
+<h3 id="fantasy-land-map解析"><a href="#fantasy-land-map解析" class="headerlink" title="fantasy-land/map解析"></a>fantasy-land/map解析</h3><p>先不管下面这部分</p>
+<blockquote>
+<p>Functor<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; u[<span class="string">'fantasy-land/map'</span>](<span class="function"><span class="params">a</span> =&gt;</span> a) is equivalent to u (identity)</span><br><span class="line">&gt; u[<span class="string">'fantasy-land/map'</span>](<span class="function"><span class="params">x</span> =&gt;</span> f(g(x))) is equivalent to u[<span class="string">'fantasy-land/map'</span>](g)[<span class="string">'fantasy-land/map'</span>](f) (composition)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>直接看规范中对<code>fantasy-land/map</code>的定义：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fantasy</span>-land/map :: <span class="type">Functor</span> f =&gt; f a ~&gt; (a -&gt; b) -&gt; f b</span><br></pre></td></tr></table></figure></p>
+<p><code>Functor</code>是一个类型类，<code>f</code>必须满足<code>Functor</code>，<code>f a</code>代表了以<code>f</code>作为类型构造函数，类型<code>a</code>作为构造参数生成的类型，比如<code>Array String</code>，代表字符串数组，<code>Array</code>就是<code>f</code>，它满足<code>Functor</code>类型类。</p>
+<p>如果一个对象，是<code>Functor</code>实例（具体的值）。那么这个对象上需要存在一个名为<code>fantasy-land/map</code>的方法，这个方法必须接受一个函数作为参数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">u[<span class="string">'fantasy-land/map'</span>](f)</span><br><span class="line"><span class="comment">// 举个例子</span></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>][<span class="string">'fantasy-land/map'</span>](f)</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><code>f</code>必须是一个函数<ul>
+<li>如果<code>f</code>不是一个函数，<code>fantasy-land/map</code>的行为是不确定的</li>
+<li><code>f</code>可以返回任何类型的值</li>
+<li>不应该检测<code>f</code>的返回类型</li>
+</ul>
+</li>
+<li><code>fantasy-land/map</code>方法，必须返回一个相同的Functor（比如<code>[1,2,3][&#39;fantasy-land/map&#39;](f)</code>必须返回也一个数组：<code>Array &lt;f返回的类型&gt;</code>）</li>
+</ol>
+<p>其实可以类比<code>Array.prototype.map</code>方法，只是换了个名字而已。</p>
+<p>那么说了这么多，<code>Functor</code>是个什么东东？除了<code>Array</code>以外，还有什么是<code>Functor</code>？</p>
+<p>其实<code>Function</code>也是<code>Functor</code>，惊喜吗？</p>
+<p>不卖关子了，<code>Functor</code>的中文名是“函子”，接下来讲讲“函子”。</p>
+<h2 id="啥是函子"><a href="#啥是函子" class="headerlink" title="啥是函子"></a>啥是函子</h2><p>“函子”是范畴论中的概念，所以，在准备完全理解“函子”之前，你需要明白啥是“范畴”？</p>
+<h3 id="范畴"><a href="#范畴" class="headerlink" title="范畴"></a>范畴</h3><p>其实，在生活中，无处不充斥着范畴，只不过范畴论把这些东西抽象成了数学结构。</p>
+<blockquote>
+<p>范畴此一概念代表着一堆数学实体和存在于这些实体间的关系。<br>–<em>维基百科</em></p>
+</blockquote>
+<p>范畴的定义其实很简单，就是实体的集合+实体间的关系。</p>
+<p>那么什么是“实体”？这取决于你怎么看。</p>
+<p>从集合的角度来说，实体是<code>a set of values</code>，首先它得是一个集合（set），其次，这个集合是由有好多的值组成（value）。</p>
+<p>还是比较抽象，再具体一点，比如：一个类型可被看作为值的集合（a set of values），类型与类型之间的关系就是函数，所以一堆类型+类型之间的函数，就是范畴。</p>
+<p>比如有下面这些函数：<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fn1 :: <span class="built_in">Number</span> -&gt; <span class="built_in">String</span></span><br><span class="line"><span class="keyword">const</span> fn1 = <span class="function">(<span class="params">a: <span class="built_in">number</span></span>) =&gt;</span> <span class="string">`<span class="subst">$&#123;a&#125;</span>1`</span>;</span><br><span class="line"></span><br><span class="line">fn2 :: <span class="built_in">String</span> -&gt; <span class="built_in">Boolean</span></span><br><span class="line"><span class="keyword">const</span> fn2 = <span class="function">(<span class="params">a: <span class="built_in">string</span></span>) =&gt;</span> a === <span class="string">'1'</span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>这些函数都是定义在Number和String上的映射关系。Number，String和Boolean，以及它们之间的映射关系，构成下面这个范畴<br><img src="https://pic1.zhimg.com/80/v2-b0976a68172c7afe68c8f9f2f39beb4c_hd.jpg" alt="范畴"></p>
+<p>在范畴论中，图片中的<code>NUMBER</code>，<code>STRING</code>和<code>BOOLEAN</code>叫做“对象”（Object），<code>fn1</code>和<code>fn2</code>叫做“态射”（Morphism），<code>fn2 * fn1</code>叫做“态射复合”，<code>NUMBER -&gt; NUMBER</code>叫做单位态射。</p>
+<p>明白什么是之后，接下来说一说我们的主角：函子</p>
+<h3 id="函子"><a href="#函子" class="headerlink" title="函子"></a>函子</h3><p>先来看看维基上的解释：</p>
+<blockquote>
+<p>在范畴论中，函子是范畴间的一类映射。函子也可以解释为小范畴范畴内的态射。<br>–维基百科</p>
+</blockquote>
+<p>范畴和范畴也会有映射关系，如果把范畴视作一个对象时，函子就是范畴之间的态射。然后组成了一个范畴的范畴。</p>
+<p>举个例子：考虑一个基础类型的范畴A，一个数组范畴B。<br><img src="https://pic3.zhimg.com/80/v2-5e2eb48666ee35a8459a5cb006bc1592_hd.jpg" alt="两个范畴"></p>
+<p>思考以下几个问题：</p>
+<ol>
+<li><code>Number</code>和<code>Array&lt;Number&gt;</code>之间的关系</li>
+<li><code>String</code>和<code>Array&lt;String&gt;</code>之间的关系</li>
+<li><code>Number</code>到<code>String</code>的态射与<code>Array&lt;Number&gt;</code>到<code>Array&lt;String&gt;</code>的态射的关系</li>
+</ol>
+<p>之前介绍过<code>Array</code>是类型构造函数：</p>
+<ol>
+<li>将<code>Number</code>传进<code>Array</code>，构造出<code>Array&lt;Number&gt;</code></li>
+<li>将<code>String</code>传进<code>Array</code>，构造出<code>Array&lt;String&gt;</code></li>
+<li>可通过<code>Array</code>上的<code>map</code>方法会保持<code>Number -&gt; String</code>映射到<code>Array&lt;Number&gt; -&gt; Array&lt;String&gt;</code></li>
+</ol>
+<p>再回顾一下上文对函子的定义：</p>
+<blockquote>
+<p>在范畴论中，函子是范畴间的一类映射。</p>
+</blockquote>
+<p>上面例子中，范畴A到范畴B的映射其实就是类型构造函数<code>Array</code>，所以说，<code>Array</code>就是函子。<br><img src="https://pic4.zhimg.com/80/v2-67a98a2190440f213e504fa2ceeac3d3_hd.jpg" alt="函子"></p>
+<p>这里省去了对公式上的定义的match，争取大家对这个概念有感性的认识，如果想知道函子严谨的定义，可以看这里<a href="https://zh.wikipedia.org/wiki/%E5%87%BD%E5%AD%90" target="_blank" rel="noopener">函子的定义</a>。</p>
+<h2 id="回到fantasy-land-map"><a href="#回到fantasy-land-map" class="headerlink" title="回到fantasy-land/map"></a>回到fantasy-land/map</h2><p>了解了函子的感性定义之后，回到严谨的规范上来。</p>
+<p>之前解析<code>fantasy-land/map</code>的时候，有个定义一直没有提及，就是<code>Functor</code>，<code>fantasy-land/map</code>在文档中的位置其实是Functor的子标题，现在再来回顾一下。</p>
+<blockquote>
+<p>Functor<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="number">1.</span> u[<span class="string">'fantasy-land/map'</span>](<span class="function"><span class="params">a</span> =&gt;</span> a) is equivalent to u (identity)</span><br><span class="line">&gt; <span class="number">2.</span> u[<span class="string">'fantasy-land/map'</span>](<span class="function"><span class="params">x</span> =&gt;</span> f(g(x))) is equivalent to u[<span class="string">'fantasy-land/map'</span>](g)[<span class="string">'fantasy-land/map'</span>](f) (composition)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>通过对比函子的公式定义，解析Functor需满足的条件（F即函子）：</p>
+<ol>
+<li><p>保持着单位态射（id即单位态射，idX即对象X上的单位态射）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F(id_X) = id_&#123;F(X)&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>保持着态射的复合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F(g*f) = F(f)*F(g)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>总结一下fantasyland规范中对函子的定义</strong></p>
+<ol>
+<li><p>如果实现一个函子，你需要在函子上实现<code>fantasy-land/map</code>方法，这个方法的类型签名应该是这样的：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fantasy</span>-land/map :: <span class="type">Functor</span> f =&gt; f a ~&gt; (a -&gt; b) -&gt; f b</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函子实例调用方法<code>fantasy-land/map</code>时，需同时保持单位态射和态射的复合。</p>
+</li>
+</ol>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>这篇文章不知不觉写得有些长了，从Ramda文档-&gt;源码-&gt;transducer-&gt;fantasyland规范-&gt;范畴论-&gt;函子，算是自己的完整的探索过程，希望能够带给你一些不一样的东西。</p>
+<p>如果你对Ramda，函数式编程，甚至是范畴论感兴趣，欢迎加入我们的兴趣群。</p>
+<p><strong>参考文章</strong><br><a href="https://blog.oyanglul.us/javascript/clojure-essence-in-javascript-transducer.html" target="_blank" rel="noopener">JavaScript玩转Clojure大法之Transducer</a><br><a href="https://zh.wikipedia.org/wiki/%E8%8C%83%E7%95%B4%E8%AE%BA" target="_blank" rel="noopener">Wikipedia 范畴论</a><br><a href="https://zh.wikipedia.org/wiki/%E5%87%BD%E5%AD%90" target="_blank" rel="noopener">Wikipedia 函子</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/29/一个前端的-functor，applicative-functor，monad-初探/" rel="next" title="一个前端的 Functor，applicative Functor，monad 初探">
+                <i class="fa fa-chevron-left"></i> 一个前端的 Functor，applicative Functor，monad 初探
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gloria">
+            
+              <p class="site-author-name" itemprop="name">Gloria</p>
+              <p class="site-description motion-element" itemprop="description">FE Engineer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jabbla" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="gloria_n@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zhu-xiao-ran-47-68" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/1783375687" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#不简单的R-map"><span class="nav-number">1.</span> <span class="nav-text">不简单的R.map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的使用"><span class="nav-number">1.1.</span> <span class="nav-text">简单的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看看ramda源码"><span class="nav-number">1.2.</span> <span class="nav-text">看看ramda源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#transduce"><span class="nav-number">1.2.1.</span> <span class="nav-text">transduce</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transducer"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">transducer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在Ramda中"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">在Ramda中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回到开始的话题"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">回到开始的话题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结一下"><span class="nav-number">1.2.1.1.3.</span> <span class="nav-text">总结一下</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fantasyland-map"><span class="nav-number">1.2.2.</span> <span class="nav-text">fantasyland/map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fantasyland规范"><span class="nav-number">1.3.</span> <span class="nav-text">fantasyland规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型签名"><span class="nav-number">1.3.1.</span> <span class="nav-text">类型签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fantasy-land-map解析"><span class="nav-number">1.3.2.</span> <span class="nav-text">fantasy-land/map解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#啥是函子"><span class="nav-number">1.4.</span> <span class="nav-text">啥是函子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#范畴"><span class="nav-number">1.4.1.</span> <span class="nav-text">范畴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函子"><span class="nav-number">1.4.2.</span> <span class="nav-text">函子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回到fantasy-land-map"><span class="nav-number">1.5.</span> <span class="nav-text">回到fantasy-land/map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结尾"><span class="nav-number">1.6.</span> <span class="nav-text">结尾</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gloria</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
